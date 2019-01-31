@@ -20,21 +20,21 @@ module.exports = {
     themeConfig:{
         nav:[
             {text: 'Home', link:'/'},
-            {text: 'Linux', link:'/basic/'},
-            {text: 'Python', link:'/middle/'},
-            {text: 'ML', link:'/high/'},
+            {text: 'Linux', link:'/linux/'},
+            {text: 'Python', link:'/python/'},
+            {text: 'ML', link:'/ml/'},
         ],
         // sidebar: 'auto'
         sidebar: {
-            '/basic/':[
+            '/linux/':[
                 '',
             ],
 
-            '/middle/':[
+            '/python/':[
                 '',
             ],
 
-            '/high/':[
+            '/ml/':[
                 '',
             ],
         }

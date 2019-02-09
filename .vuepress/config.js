@@ -1,6 +1,6 @@
 module.exports = {
     title: 'Way To Machine Learning',
-    description: '机器学习之路',
+    description: ' ',
     markdown: {
         anchor: { permalink: true }, // 内置插件设置：文件内部链接。
         lineNumbers: false, // 设置代码块中是否显示行号。
@@ -36,6 +36,8 @@ module.exports = {
 
             '/ml/':[
                 '',
+                'gan',
+                'face_recognition',
             ],
         }
     }

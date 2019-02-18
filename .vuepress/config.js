@@ -28,6 +28,7 @@ module.exports = {
         sidebar: {
             '/linux/':[
                 '',
+                'download_tool',
             ],
 
             '/python/':[
@@ -38,6 +39,7 @@ module.exports = {
                 '',
                 'gan',
                 'face_recognition',
+                'how_to_make_your_own_dataset',
             ],
         }
     }

@@ -26,7 +26,7 @@ pageClass: ml-class
 
 ## 2. 测试安装
 在python环境中输入
-```
+``` python
 import face_recognition
 import cv2
 ```
@@ -84,3 +84,6 @@ print(results)
 
 更多例子参考`face_recognition`的[Examples](https://github.com/ageitgey/face_recognition)
 
+
+
+<Valine></Valine>

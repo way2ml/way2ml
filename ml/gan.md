@@ -1,8 +1,9 @@
 ---
 pageClass: ml-class
 ---
-# Generative Adversarial Network (GAN)
-生成对抗神经网络
+# 生成对抗神经网络 
+Generative Adversarial Network (GAN)
+
 ### 什么是GAN
 
 ### GAN的原理

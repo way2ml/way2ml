@@ -2,8 +2,7 @@
 pageClass: ml-class
 ---
 
-# Face Recognition
-使用Python实现人脸识别。
+# 使用Python实现人脸识别(Face Recognition)
 
 ## 1. 准备工作
 - 操作系统: `Linux` 或者 `MacOS`

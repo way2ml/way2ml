@@ -19,10 +19,10 @@ module.exports = {
 
     themeConfig:{
         nav:[
-            {text: 'Home', link:'/'},
-            {text: 'Linux', link:'/linux/'},
-            {text: 'Python', link:'/python/'},
-            {text: 'ML', link:'/ml/'},
+            {text: '主页', link:'/'},
+            {text: '玩转Linux', link:'/linux/'},
+            {text: '爱上Python', link:'/python/'},
+            {text: '沉迷ML', link:'/ml/'},
         ],
         // sidebar: 'auto'
         sidebar: {
@@ -37,6 +37,7 @@ module.exports = {
 
             '/ml/':[
                 '',
+                'how_to_start_learning_ml',
                 'gan',
                 'face_recognition',
                 'how_to_make_your_own_dataset',

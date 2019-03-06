@@ -33,6 +33,7 @@ module.exports = {
 
             '/python/':[
                 '',
+                'use_pi_to_learn_python'
             ],
 
             '/ml/':[

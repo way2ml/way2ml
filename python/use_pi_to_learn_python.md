@@ -204,4 +204,71 @@ Hello World!
 在这一节，你可以了解到:
 - *如何使用Python控制树莓派的引脚输出*
 
+### 5. Blink LED
+这一节我们的题目是`Blink LED`, 也就是说，我们要让LED灯变得一闪一闪。结合上一节的内容，给`GPIO17`高电平，则LED亮，给`GPIO17`低电平，则LED灭。那么一闪一闪的逻辑就该是下面的逻辑:
+```
+LED 亮
+持续一段时间T1
+LED 灭
+持续一段时间T2
+LED 亮
+持续一段时间T3
+LED 灭
+持续一段时间T4
+......
+```
+根据上面这个逻辑我们在一般模式下，编写程序`blink_led.py`, 内容如下:
+```python
+# -*- coding: utf-8 -*-
+import time # 导入时间模块
+import RPi.GPIO as GPIO # 导入GPIO引脚控制模块
+
+GPIO.setmode(GPIO.BCM) # 使用BCM引脚编号模式
+GPIO.setup(17, GPIO.OUT) # 设置GPIO17为输出引脚
+
+GPIO.output(17, True) # LED 亮
+time.sleep(0.5) # 延时0.5秒
+GPIO.output(17, False) # LED 灭
+time.sleep(0.5) # 延时0.5秒
+GPIO.output(17, True) # LED 亮
+time.sleep(0.5) # 延时0.5秒
+GPIO.output(17, False) # LED 灭
+time.sleep(0.5) # 延时0.5秒
+GPIO.output(17, True) # LED 亮
+time.sleep(0.5) # 延时0.5秒
+GPIO.output(17, False) # LED 灭
+time.sleep(0.5) # 延时0.5秒
+GPIO.output(17, True) # LED 亮
+time.sleep(0.5) # 延时0.5秒
+GPIO.output(17, False) # LED 灭
+time.sleep(0.5) # 延时0.5秒
+
+GPIO.cleanup() # 恢复引脚到默认状态
+```
+在上面的程序中:
+- `# -*- coding: utf-8 -*-`: 因为我在程序中使用了中文注释，因此在Python2中需要添加这样一条注释来避免报错；而在Python3中这条语句则不需要。
+- `time.sleep(0.5)`：这条语句使得树莓派保持当前的状态不变，并持续0.5秒
+
+通过`python blink_led.py`,运行程序。如果不出差错，那么可以看到LED灯亮灭了4次，然后停止闪烁。恩恩，效果还不错。但是你感觉这个程序写得怎么样呢?　是否有那么些复杂呢? 还有没有更简单的方法呢? 
+
+咳咳，是时候引出我们的一号小Boss了，那就是`while`循环语句。我把上面的程序改成下面的程序`blink_led_while.py`:
+```python
+# -*- coding: utf-8 -*-
+import time # 导入时间模块
+import RPi.GPIO as GPIO # 导入GPIO引脚控制模块
+
+GPIO.setmode(GPIO.BCM) # 使用BCM引脚编号模式
+GPIO.setup(17, GPIO.OUT) # 设置GPIO17为输出引脚
+
+counter = 0
+while counter < 4:
+    GPIO.output(17, True) # LED 亮
+    time.sleep(0.5) # 延时0.5秒
+    GPIO.output(17, False) # LED 灭
+    time.sleep(0.5) # 延时0.5秒
+    counter = counter + 1
+GPIO.cleanup()
+```
+
+
 <Valine></Valine>

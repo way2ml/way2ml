@@ -1,10 +1,10 @@
 module.exports = {
     title: 'Way To Machine Learning',
-    description: ' ',
+    description: '机器学习之道',
     markdown: {
         anchor: { permalink: true }, // 内置插件设置：文件内部链接。
-        lineNumbers: false, // 设置代码块中是否显示行号。
-        toc: { includeLevel: [2, 3, 4] }, // 内置插件设置：目录显示标题的层级。
+        lineNumbers: true, // 设置代码块中是否显示行号。
+        toc: { includeLevel: [1, 2, 3, 4, 5] }, // 内置插件设置：目录显示标题的层级。
         config: md => { // 外部插件设置：markdown-it-plugin。
           md.use(require('markdown-it-katex'))
           md.use(require('markdown-it-mark'))
@@ -39,6 +39,7 @@ module.exports = {
             '/ml/':[
                 '',
                 'how_to_start_learning_ml',
+                'deep_learning_with_tensorflow',
                 'gan',
                 'face_recognition',
                 'how_to_make_your_own_dataset',

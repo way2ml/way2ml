@@ -2,8 +2,8 @@
 pageClass: linux-class
 ---
 
-# Top three download tool I use in Linux
-**在Linux中我最常用的三种下载工具**
+# 在Linux中我最常用的三种下载工具 
+**Top three download tool I use in Linux**
 
 在生活中我常常被一些Linux的学习者问到类似 “Linux下如何下载文件？” “Linux下有些什么下载软件？”这样的问题。因此我决定在这篇文章里面总结出我最常用的Linux下载工具。
 
@@ -66,7 +66,7 @@ sudo pacman -S uget # Arch, Manjaro
 打开`uget`, 按下新建下载的快捷键`Ctrl N`,然后添加下载连接，指定文件的保存位置，最大连接个数，点击`OK`进行下载。
 
 
-## 4.总结:
+## 4.总结
 使用如下三个命令:
 ```bash
 axel -n 10 https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh

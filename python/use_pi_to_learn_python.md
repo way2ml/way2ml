@@ -10,38 +10,20 @@ pageClass: python-class
 
 ## 三. 目录 
 下面是主要的内容:
-1. Python简介
-    - Python的含义
-    - Python的发音
-2. Python环境
-    - Python常见的两种模式
-    - Python的注释
-3. 用Python问候这个世界
-    - 来历，这其实是一个信仰
-    - 意义
-    - 字符串
-4. 用Python控制LED
-    - 看一看树莓派的引脚
-    - 了解一点电路
-    - 你看那个灯，像不像天上的星星
-5. Blink LED
-    - 时间的控制
-    - 循环
-6. Python检测按键的状态
-    - 使用按键控制你的LED
 
-7. 编写更优雅的程序
-
-8. 播放背景音乐
-
-9. 面向对象的编程
-
-10. 结合起来
-    - steady hand
-    - 文件的读写
-
-11. 玩起来
-
+|     内容      | 知识点 |
+| ----------------------- | --------------------- |
+| 1. Python简介 |Python是怎么来的？Python是什么意思?Python怎么发音?|
+| 2. Python环境 |Python有哪两种常见的两种模式?如何编写,运行Python程序? Python如何注释?|
+| 3. 用Python问候这个世界 |Hello World程序是怎么来的? 有什么意义?|
+| 4. 用Python控制LED灯 |如何Python控制硬件?如何用Python点亮LED灯?|
+| 5. Blink LED |如何利用Python控制时间? 如何编写while循环语句? 如何处理程序的异常?|
+| 6. Python检测按键状态 |如何编写if语句? 如何使用Python检测按键的状态?|
+| 7. 编写更优雅的程序|什么是模块化的编程思想?如何一步步优化程序?|
+| 8. 播放音乐|如何使用Python播放音乐?|
+| 9. 文件的写入与读取|如何写入和读取文件?|
+| 10. 面向对象的编程|什么是面向对象的编程?如何写面向对象的程序?|
+| 11. Steady Hand游戏设计|什么是Steady Hand? 如何编写游戏程序? 如何让游戏更好玩?|
 那就让我们开始吧！
 
 ## 四. 主要内容
@@ -51,7 +33,7 @@ pageClass: python-class
 
 为什么要使用Python呢? 世上编程语言千千万，为啥要选Python？ 我想到一个常常被Python使用者提到的话"人生苦短，我用Python", 为什么这样说呢? 如今Python已经成为全世界最受欢迎的编程语言之一，全世界人民用Python开发了大量的函数库，你可以使用简单的几条语句实现很复杂的功能。这样可以让你专注于你要解决的问题, 而不用拘泥于细节，从而节约了大量的开发时间。另外一方面是Python太流行了，全世界都在用Python, 英国有的5岁小孩就开始玩树莓派，用的编程语言就是Python。所以为什么不选择Python呢?
 
-我还想强调的一点就是Python的发音，这个音不是那么好发。Python `['paɪθɑn]`, 前面的`Py`年`[pai]`,和圆周率的Pi的发音是一样的，这没有什么问题。之后的`th`发`θ`， 咬住舌头即可。`on`就是`on the table`里面`on`的发音。注意体会一下。
+我还想强调的一点就是Python的发音，这个音不是那么好发。Python `['paiθɑn]`, 前面的`Py`年`[pai]`,和圆周率的Pi的发音是一样的，这没有什么问题。之后的`th`发`θ`， 咬住舌头即可。`on`就是`on the table`里面`on`的发音。注意体会一下。
 
 在这一节，你可以了解到:
 - *Python是怎么来的*
@@ -161,18 +143,20 @@ Hello World!
 
 ## 4. 使用Python控制LED灯
 很多时候，我们认为计算机像是台式机或者笔记本电脑，但树莓派向我们展示了计算机的另外一种形式。对我而言，树莓派最吸引我的地方并不是它有多小，而是树莓派有40个外接的引脚，通过外接的引脚我们可以和物理世界交互，从而完成各种有趣的应用。我们来看看树莓派的[引脚图](https://pinout.xyz/)吧:
-
+<p align="center">
 <img src='/images/python/use_pi_to_learn_python/pi_pinout.png' width=500>
-
+</p>
 图中展示了两种引脚编号的方式，其中一种是物理引脚编号，也就是从1到40；另一种叫做Broadcom编号模式，也就是我们接下来要使用的模式。接下来我们将要使用Python来控制一个LED灯。
 
 首先，来看一个简单的电路图:
-
+<p align="center">
 <img src='/images/python/use_pi_to_learn_python/led_on_schematic.png' width=500>
-
+</p>
 从这个电路中可以看到，若`GPIO17`输出高电平，那么整个回路中存在电势差，则有电流流过LED,可以预测LED会被点亮。反之，`GPIO17`若输出低电平，LED不会被点亮。根据原理图，我们搭建下面的电路:
 
+<p align="center">
 <img src='/images/python/use_pi_to_learn_python/led_on_breadboard.png' width=500>
+</p>
 
 硬件电路搭建好了，接下来就该我们的Python上场了。按照前面的讨论我们需要控制`GPIO17`的输出电平。当然，这不会很难。在树莓派的Python库中有这个一个叫做`RPi.GPIO`的库可以帮我们完成这项操作。为了演示的方便，我们直接在树莓派终端输入`python`，进入Python的交互模式，然后依次输入下面的命令:
 ```python
@@ -183,9 +167,9 @@ Hello World!
 >>> 
 ```
 哈哈，你注意到什么了吗? 看看你的效果是不是和我一样呢? 
-
+<p align="center">
 <img src='/images/python/use_pi_to_learn_python/led_on_real.png' width=500>
-
+</p>
 不出所料，LED灯被点亮了。在上面的语句中:
 - `import RPi.GPIO as GPIO`： 导入`RPi.GPIO`库，并简称为`GPIO`,这是很常规的一种操作，有一些Python库的名字很长，我们使用简称来方便我们编写程序。
 - `IO.setmode(GPIO.BCM)`：我们指定使用Broadcom的引脚编号方式。
@@ -315,24 +299,24 @@ except KeyboardInterrupt:
 
 ## 6. 使用Python检测按键状态
 在这节中，我们会用Python检测按键的状态，根据按键不同的状态来做出不同的反应[2]。首先，让我们来看一看按键的物理特性,如图:
-
-<img src='/images/python/use_pi_to_learn_python/push_button.png' width='20%'> 
-
+<p align="center">
+<img src='/images/python/use_pi_to_learn_python/push_button.svg' width='20%'> 
+</p>
 它有这几个关键的性质:
 1. 数字相同的引脚内部是相连的
 2. 数字不同的引脚内部是断开的
 3. 当按下按键后,数字不同的引脚由断开状态变为相连的状态
 
 按照给出的原理图: 
-
+<p align="center">
 <img src='/images/python/use_pi_to_learn_python/button_led_shematic.png' width='50%'>
-
+</p>
 搭建出下面的电路:
-
+<p align="center">
 <img src='/images/python/use_pi_to_learn_python/button_led.png' width='50%'>
-
-接下来，我们通过编程来获取第一个按键开关的状态。编写程序`detect_button.py `:
-```python
+</p>
+接下来，我们通过编程来获取第一个按键开关的状态。编写程序`detect_button.py `: 
+``` python
 import RPi.GPIO as GPIO
 import time
 
@@ -344,11 +328,13 @@ while True:
     if input_state == False:
         print('Button Pressed')
         time.sleep(0.2)
-
 ```
+
 在上面的程序里面:
 1. `GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_UP)` 设置`GPIO27`引脚为输入引脚，并设置为引脚**上拉**,即`pull up`模式。上拉模式的内部原理如下:
-<img src='/images/python/use_pi_to_learn_python/pullup.png' width='50%'>
+<p align="center">
+<img src='/images/python/use_pi_to_learn_python/pullup.svg' width='50%'>
+</p>
 
 在设置`GPIO27`的引脚为输入引脚上拉模式后, 树莓派检测到的引脚电平为高电平(True), 当按下按键后，树莓派检测到`GPOI27`的电平为低电平(False)。
 
@@ -700,7 +686,7 @@ def blink(speed, times):
         GPIO.output(17, False)
         time.sleep(t)
         counter = counter + 1  
-``` 
+```
 这里面有个`while`循环语句，因为要计数，所以我们还要定义一个计数器`counter`,在每次闪烁后`counter`的值加1。这样其实是不够优雅的。同样的功能我们可以通过`for`循环来实现:
 ```python
 def blink(speed, times):
@@ -710,7 +696,7 @@ def blink(speed, times):
         time.sleep(t)
         GPIO.output(17, False)
         time.sleep(t)
-``` 
+```
 这里的`i`充当了`counter`的计数功能，但是不用我们去写自加的操作，达到了简化的功能。
 
 在这一节中，我们可以了解到:
@@ -722,7 +708,7 @@ def blink(speed, times):
 - `pass`的用途
 - `for`循环语句的编写
 
-## ８. 播放背景音乐
+## ８. 播放音乐
 现在我们来对我们最后的游戏添加背景音乐。这里我们用来加载音乐的函数库叫做`pygame`, 默认树莓派是已经安装好了这样一个Python函数库。接下来我们实现下面的两个主要功能:
 1. 播放背景音乐
 2. 通过两个按键来控制音量

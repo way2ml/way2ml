@@ -300,7 +300,7 @@ except KeyboardInterrupt:
 ## 6. 使用Python检测按键状态
 在这节中，我们会用Python检测按键的状态，根据按键不同的状态来做出不同的反应[2]。首先，让我们来看一看按键的物理特性,如图:
 <p align="center">
-<img src='/images/python/use_pi_to_learn_python/push_button.svg' width='20%'> 
+<img src='/images/python/use_pi_to_learn_python/push_button.svg' width='50%'> 
 </p>
 它有这几个关键的性质:
 1. 数字相同的引脚内部是相连的

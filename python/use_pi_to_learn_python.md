@@ -2,10 +2,6 @@
 pageClass: python-class
 ---
 # 我用树莓派带你学会Python
-<p align="center">
-<iframe src="//player.bilibili.com/player.html?aid=48432827&cid=84825562&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=480 height=380> </iframe>
-
-</p>
 ## 一. 背景
 大家好。为了大家更了解我，我先做一个自我介绍。我叫黄杰，本科念的电子信息工程，毕业后做了两年的图像处理工程师，硕士的研究方向是机器学习。在大学二年级下学期（2013年）的时候，无意之间发现了树莓派(Raspberry Pi)。一瞬间就被它的小巧，功能强大折服。原来电脑可以是这样的。也是从那个时候开始接触Linux操作系统，Python编程语言等。毕业设计也是用树莓派做了一个扫描翻译的机器，后来也因为这个毕业设计和成像扫描有关，上海一家做自动识别的公司招我去他们那里做软件工程师，从事图像处理的工作。也正是因为从树莓派上面学到的Linux和Python的知识促使我一步一步向机器学习这个方向靠拢。可以说这个小小的计算机真正地改变了我的生活。
 
@@ -1001,15 +997,125 @@ main()
 - 如何编写面向对象的程序
 
 ## 11. Steady Hand游戏设计
+开始这节学习之前，我们先来看看Steady Hand游戏是怎么回事。
+
+<p align="center">
+<iframe src="//player.bilibili.com/player.html?aid=48432827&cid=84825562&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=480 height=380> </iframe>
+</p>
+
+整个游戏有一个开始点，一个挑战终点，在开始点和结束点之间有一根铜丝。游戏规则是这样: 
+挑战者需要拿着一个铁环，不断调整角度，方向，将铁环从开始点移动到挑战终点。在整个挑战过程中，铁环不能接触铜丝，否则挑战失败。
+
+现在我们一边玩，一边想如何编程实现这样一个游戏。
+
+在开始的时候我们需要用铁环触碰开始点，那如何检测到我是否触碰到了开始点呢? 对，靠电平信号。我们将铁环(记铁环为`D`)和树莓派的`GND`相连，将和开始位置相连的GPIO口引脚(这里记为`A`)，设置为输入模式，并设置成电平上拉模式(这样在铁环没有接触开始位置的时候，开始位置对应于高电平)。因此在开始的部分我们可以这样做，不停地检测开始位置的电平，若是开始位置`A`的电平由高变低，那么游戏就开始了。就像是赛跑一样，信号枪声一响起，裁判便按下计时器，开始计时。这里我们也把开始的时刻给记录下来(我们记为`T1`)，到挑战成功后，便可以用来计算挑战所用的时间了。
+
+在游戏开始后，我们的背景音乐响起。如何播放音乐? 你还记得吗。如果不记得了，到第8小节看看吧。播放音乐在这里可以想象成按下了一个播放按钮，也就是启动了一个开关。按下这个开关后，我们便不需要管音乐播放的事了。那这段空闲应该做什么呢? 
+
+你看这时挑战者在不停地移动铁环，好像没有程序什么事。好像真的没有什么事做? 真的是这样吗? 当然不是，你看当铁环触碰到铜丝的时候，树莓派便发出语音警告`干什尼？`(做什么啊?)。也就是说在移动铁环的过程中树莓派一直在检测铁环有没有触碰到铜丝，一旦触碰到，马上做出反应。如何检测的呢? 方法和检测触碰开始位置的方法一样。铜丝和树莓派的一个引脚(记为`C`)相连，同样把铜丝的引脚`C`设置成上拉输入模式，因此在没有铁环接触到铜丝的时候呢，引脚`C`的是高电平。一旦铁环触碰到铜丝，那么引脚`C`的信号便变成了低电平。立刻做出反应--播放语音提示`干什尼？`表示挑战失败。失败后需要重新回到开始位置，重新计时。
+
+若是在挑战过程中，铁环没有触碰到铁丝,一直成功地到了结束位置，这时挑战者需要用铁环触碰结束位置，以此告诉树莓派挑战成功了。一旦树莓派收到挑战成功的信号，那么它立刻会记录这时的时刻(记为`T2`)。 利用最开始记录的`T1`和挑战成功记录的`T2`，那么就可以很容易的得到挑战用的时间`T = T2 - T1`。然后播放挑战成功的语音提示--一串笑声`Hahahaha`, 播放用时多久。
+
+程序的思路就是这样，接下来就是具体怎么去完成这样一个项目了。
+在编写程序之前，我们准备游戏的硬件。就像下面一样[3]: 
+
+<p align="center">
+<img src='/images/python/use_pi_to_learn_python/steadyhand.svg' width=500>
+</p>
+
+对照第4节里面的引脚图，将A,B,C,D和树莓派对应引脚相连，如下: 
+<p align="center">
+<img src='/images/python/use_pi_to_learn_python/steady_hand_connect.svg' width='50%'>
+</p>
+
+接下来为游戏编写程序, 这里我把v2.0主程序的`main()`写在下面: 
+```python
+def main():
+    print("***** Welcome To The Steady Hand Challenge *****")
+    setUp()
+    musicSetup(volume=30)
+
+    bgmSound = './music/creativeminds_l.mp3'
+    startSound = './music/start_ad_01.mp3'
+    ooopsSound = './music/ooops_ya_01.mp3'
+    endSound = './music/end_fql_01.mp3'
+    badSound = '/music/ooops_ya_02.mp3'
+
+    dum = 0
+    start_rest = 4
+    end_rest = 0
+    wire = 1
+
+    while True:
+        print(">> To Start Move the loop to the start rest")
+        stopPlay()
+        # Wait for the iron loop to touch the
+        # Start rest A
+        while GPIO.input(start_rest) != 0:
+            time.sleep(0.2)
+        # print(">> Start when you are ready")
+        play(startSound,5) 
+        time.sleep(0.7)
+        while GPIO.input(start_rest) == 0:
+            time.sleep(0.01)
+        play(bgmSound,-1)
+        print(">> Game Start, keep moving......")
+        start_time = datetime.datetime.now()
+        errorCounter = 0
+        happyFlag = True
+        while GPIO.input(end_rest) != 0: 
+            if GPIO.input(wire) != 0:
+                time.sleep(0.01)
+            else:
+                play(ooopsSound,1)
+                time.sleep(1)
+                errorCounter = errorCounter + 1
+                happyFlag = False
+                print('>> Ooops, Game Over')
+                break
+        end_time = datetime.datetime.now()
+        total_time =(end_time  - start_time).seconds
+        print('>> Time: ' + str(total_time) + 's')
+        stopPlay()
+        if happyFlag == True:
+            print('>> Congratulations, You win!')
+            play(endSound,1)
+            time.sleep(2)
+            tellTimeUsed(total_time)
+        else:
+            pass
+```
+好了，通过这一节的游戏设计，我们把前面学到的知识又复习了一遍，希望你可以把这个游戏完成，然后给周围的伙伴玩你做的游戏，他们或许能够给你提出一些需要优化的地方，这时你就可以针对他们的反馈更新你的程序，让游戏变得越来越好玩。希望你能够喜欢这个游戏，享受编程带给你的乐趣。
+
+这个教程的所有例子在[这里](https://github.com/HuangJiaLian/UseRaspberryPiToLearnPython)都可以下载。
+
+## 结语
+一直以来我都想要做一个像这样的Python初级教程，现在终于初步完成了，我很开心。这套教程虽然简单，但是包含了Python最基本的概念，如果你是一步步一边学一边写，那么恭喜你，你已经入门Python了。前方还有一片广阔的美丽新天地，就随着你自己的意愿不断探索吧。本科毕业这几年，其他老师的话没有记住多少，但教我《信号与系统》的老师奥本海姆的话却记忆深刻。他是这样说的: 
+
+> Let me just comment that as a professor of mine once said which I never forgotten. The purpose of a set of lectures or of courses for that matter of anything you study is not really to cover a subject but to uncover the subject. 
+
+> 一门课程不要试图去涵盖所有的内容，而是要去揭示这门学科的魅力。
+
+希望我能够让你觉得编程其实挺好玩的，这也是对我最大的安慰了。
+
+最后，不要忘记持续关注我哦。
+
+1. 主页: [www.way2ml.com](www.way2ml.com)
+2. 邮箱: jackhuang719668276@163.com
+3. 微信: JackHuang_China 
+4. Bilibili:[阿梁又叫Jack_Huang](https://space.bilibili.com/233674060)
+5. Youtube: [Jack Huang](https://www.youtube.com/channel/UCSMCgLJ5gQwYrBCZ8pBY-cg?view_as=public)
+6. Github: [HuangJiaLian](https://github.com/HuangJiaLian)
 
 ## 参考
 [1] [https://automatetheboringstuff.com/chapter2/](https://automatetheboringstuff.com/chapter2/)<br>
 [2] [http://razzpisampler.oreilly.com/ch07.html](http://razzpisampler.oreilly.com/ch07.html)<br>
+[3] MagPi Issue 5: Steady Hand Fun With The RaspberryPi
 
 **所需硬件**
 - 树莓派3B
 - 面包板
-- 排线(公对公,公对母)
+- 排线
 - 电阻
 <Valine></Valine>
 

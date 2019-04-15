@@ -23,6 +23,7 @@ module.exports = {
             {text: '玩转Linux', link:'/linux/'},
             {text: '爱上Python', link:'/python/'},
             {text: '沉迷ML', link:'/ml/'},
+            {text:'关于我',link:'/about/'}
         ],
         // sidebar: 'auto'
         sidebar: {

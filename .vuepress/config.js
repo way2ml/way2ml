@@ -34,7 +34,8 @@ module.exports = {
 
             '/python/':[
                 '',
-                'use_pi_to_learn_python'
+                'use_pi_to_learn_python',
+                'daily_python'
             ],
 
             '/ml/':[

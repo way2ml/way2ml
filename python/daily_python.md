@@ -1,6 +1,45 @@
 # Python日常
 在这个板块，我主要记录的是会常用到的Python技能。
+## Anaconda的使用(Usage of Anaconda)
+### 1.删除软件源
+``` python
+conda config --show
+conda config --remove channels 'https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/' 
+```
 
+### 2. 更新所有的软件
+``` python
+conda update --all
+```
+
+### 3. 创建新的环境
+```bash
+conda create -n gpu_tf_keras
+```
+
+### 4. 切换到新的环境
+```bash
+conda activate gpu_tf_keras
+```
+
+### 5. 删除一个环境
+```bash
+conda env remove -n gpu_tf_keras
+```
+
+## pip 的使用(Usage Of pip)
+### 1. 安装python软件包？
+```bash
+pip install package
+```
+### 2. 卸载python软件包?
+```
+pip uninstall package
+```
+### 3. 临时修改pip软件源，当下载速度很慢时使用
+```bash
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple package
+```
 ## 基本操作
 ### 1. 列表如何切片 ? | How to slice a list ?
 ``` python
@@ -50,12 +89,12 @@ Out[12]: [(1, 4), (2, 5), (3, 6)]
 In [13]: test(c)
 Out[13]: [(1, 4), (2, 5), (3, 6)]
 ```
-### 4. 浮点数控制输出的精度
+### 4. 如何控制浮点数的输出格式? | How to control the output format of a float number?
 ``` python
 "{0:.2f}".format(13.949999999999999)
 ```
 
-### 5. 筛选出一个list中的特定元素
+### 5. 筛选出一个列表中的特定元素？| How to select specific element in a list?
 ``` python
 a = [1,2,2,3,4,5]
 a = list(filter(lambda x: x!= 2, a))
@@ -63,21 +102,21 @@ a = list(filter(lambda x: x!= 2, a))
 结果是`[1,3,4,5]`
 
 ## 字符串处理
-### 1. 字符串一般分割
+### 1. 如何分割字符串? | How to split a string?
 ``` python
 txt = "hello, my name is Peter, I am 26 years old"
 x = txt.split(", ")
 print(x)
 ```
 
-### 2. 提取数字
+### 2. 如何提取字符串中的数字? | How to extract numbers in a string?
 ```python
 import re
 s = '1x100.csv'
 re.findall('\d+')
 ```
 
-### 3. sort string list by number
+### 3. 如何将字符串列表按数字大小排序？| How to sort string list by number？
 [参考](https://stackoverflow.com/questions/5967500/how-to-correctly-sort-a-string-with-a-number-inside)
 ```python
 import re
@@ -109,7 +148,7 @@ alist.sort(key=natural_keys)
 print(alist)
 ```
 
-### 4. 筛选出两个字符中间夹着的部分
+### 4. 如何选出两个字符中间的部分？｜How to select the string between two strings?
 ```python
 >>> import re
 >>> s = 'Part 1. Part 2. Part 3 then more text'
@@ -120,7 +159,7 @@ print(alist)
 ```
 
 ## 数据处理
-### 1. 生成0到1之间的随机数
+### 1. 如何生成0到1之间的随机数？ | How to generate random numbers between 0 and 1?
 
 ```python
 from pyDOE import lhs
@@ -139,14 +178,14 @@ def get_traing_data(all_data, num):
     return t_data, x_data
 ```
 
-### 2. 生成1到20之间的列表
+### 2. 如何生成1到20之间的列表？| How to generate a number list from 1 to 20？ 
 ```python
 >> a=[x for x in range(1,20)]
 >> a
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 ```
 
-### 3. 从一个list中随机选取一个元素
+### 3. 如何从一个列表中随机选取一个元素？｜How to random select a number from a list?
 ``` python
 import random
 num_layers = random.sample(layers_option, 1)[0]
@@ -856,32 +895,6 @@ for i in range(times):
     os.system(cmd)
 ```
 
-## Anaconda的使用方法
-### 1.删除软件源
-``` python
-conda config --show
-conda config --remove channels 'https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/' 
-```
-
-### 2. 更新所有的软件
-``` python
-conda update --all
-```
-
-### 3. 创建新的环境
-```bash
-conda create -n gpu_tf_keras
-```
-
-### 4. 切换到新的环境
-```bash
-conda activate gpu_tf_keras
-```
-
-### 5. 删除一个环境
-```bash
-conda env remove -n gpu_tf_keras
-```
 
 ## 图像处理
 ### 1. 读取.tif格式图片
@@ -905,8 +918,8 @@ array([[40, 35,  1, ..., 21, 21,  8],
        [ 7, 25, 10, ...,  5, 16, 23]], dtype=uint8)
 ```
 
-### 2. 安装PIL
-```
+### 2. 如何安装PIL？ |　How to install PIL? 
+```bash
 conda install -c anaconda pillow
 ```
 
@@ -928,4 +941,9 @@ out_test_dir = './test1_converted/'
 for img in os.listdir(test_dir):
 	im = Image.open(test_dir+img).convert('L')
 	im.save(out_test_dir+img[:-3] + 'tif')
+```
+
+### 4. 如何安装Opencv? | How to install OpenCV?
+```bash
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple opencv_python
 ```

@@ -16,7 +16,14 @@ module.exports = {
         ['link', {rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css'}], 
         ['link', {rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css'}] 
     ],  
-
+    plugin:[
+        [
+            '@vuepress/register-components',
+            {
+                componentsDir: './components'
+            }
+        ]
+    ],
     themeConfig:{
         nav:[
             {text: '主页', link:'/'},
@@ -42,10 +49,13 @@ module.exports = {
                 '',
                 'how_to_start_learning_ml',
                 'deep_learning_with_tensorflow',
+                'which_parts_cnn_pay_attention',
                 'gan',
                 'face_recognition',
                 'how_to_make_your_own_dataset',
             ],
-        }
+        },
+        sidebarDepth:2,
+        lastUpdated: 'Last Updated',
     }
 }

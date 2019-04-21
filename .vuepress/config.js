@@ -49,13 +49,13 @@ module.exports = {
                 '',
                 'how_to_start_learning_ml',
                 'deep_learning_with_tensorflow',
-                'which_parts_cnn_pay_attention',
+                'story_of_cnn',
                 'gan',
                 'face_recognition',
                 'how_to_make_your_own_dataset',
             ],
         },
         sidebarDepth:2,
-        lastUpdated: 'Last Updated',
+        lastUpdated: '上一次更新',
     }
 }

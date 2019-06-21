@@ -2,11 +2,13 @@
 pageClass: ml-class
 ---
 # 机器学习Q&A
+<img src='/images/ml/ml_q_a/QA.jpg' width='10%'>
+
 在人工智能的新时代，我周围有好多朋友都想要开启机器学习之旅。虽然网络上有很多的资料，但是总是太多太杂，对于初学者很难能够判断出资料质量的好坏。这里记录一些我常常被问道的问题:
 > 1. 机器学习使用什么编程语言呢? 
 
 我的建议: Python. 虽然也有好多其他的编程语言可以用于机器学习，但就目前来看， Python是最流行的。当然Python的版本应该是选择Python3(因为Python2会逐渐被淘汰)
-
+<img src='/images/ml/ml_q_a/Most-popular-programming-languages-2018.png' width='100%'>
 > 2. 如何开启开启机器学习之路呢?
 
 我的建议: 1. 掌握基本的Linux知识 2.学会基本的Python语法 3.学会使用Tensorflow 4.使用Tensorflow完成手写字符的识别
@@ -18,7 +20,7 @@ pageClass: ml-class
 > 4. Linux, Python, Tensorflow 这三者有什么关系？
 
 我的回答: Linux是操作系统，除了Linux操作系统，常用的操作系统还有MacOS和Windows; Python是一门广泛使用的计算机编程语言，也是在数据科学领域最常用到的编程语言之一； Tensorflow是一个Google开发的机器学习框架，可以简单地理解为函数库，可以被Python调用从而来实现各种算法，从而达到想要的功能。Python运行在Linux操作系统上，另外Python使用Tensorflow完成各种功能。
-
+<img src='/images/ml/ml_q_a/tf_logo_social.png' width='100%'>
 > 5. Tensorflow就像是其他的函数库一样，拿过来马上就可以使用吗?
 
 我的回答: 并不是。虽然Tensorflow就像函数库一样，但是有它自己独有的规则，需要通过一定的学习才能不断掌握。

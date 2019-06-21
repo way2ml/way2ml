@@ -30,13 +30,14 @@ module.exports = {
             {text: '玩转Linux', link:'/linux/'},
             {text: '爱上Python', link:'/python/'},
             {text: '沉迷ML', link:'/ml/'},
-            {text:'关于我',link:'/about/'}
+            {text:'关于',link:'/about/'}
         ],
         // sidebar: 'auto'
         sidebar: {
             '/linux/':[
                 '',
                 'download_tool',
+                'daily_cmd',
             ],
 
             '/python/':[
@@ -50,12 +51,13 @@ module.exports = {
                 'how_to_start_learning_ml',
                 'deep_learning_with_tensorflow',
                 'story_of_cnn',
+                'cnn_machanism',
                 'gan',
                 'face_recognition',
-                'how_to_make_your_own_dataset',
+                'what_is_RL'
             ],
         },
         sidebarDepth:2,
-        lastUpdated: '上一次更新',
+        lastUpdated: '上次更新',
     }
 }

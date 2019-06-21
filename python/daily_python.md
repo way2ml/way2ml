@@ -1,3 +1,6 @@
+---
+pageClass: python-class
+---
 # Python日常
 在这个板块，我主要记录的是会常用到的Python技能。
 ## Anaconda的使用(Usage of Anaconda)
@@ -100,6 +103,36 @@ a = [1,2,2,3,4,5]
 a = list(filter(lambda x: x!= 2, a))
 ```
 结果是`[1,3,4,5]`
+
+### 6. 对列表求和
+``` python
+li = [1,2,3]
+sum(li)
+```
+
+### 7. 对两列表同时遍历
+```python
+li1 = [1,2,3,4,5]
+li2 = ['a','b','c','d','e']
+for i,j in zip(li1,li2):
+    print(i,j)
+``` 
+输出:
+```bash
+1 a
+2 b
+3 c
+4 d
+5 e
+```
+
+## 概率统计
+### 1. 如何按照概率对一个列表采样
+```python
+np.random.seed(0)
+p = np.array([0.1, 0.0, 0.7, 0.2])
+index = np.random.choice([0, 1, 2, 3], p = p.ravel())
+```
 
 ## 字符串处理
 ### 1. 如何分割字符串? | How to split a string?
@@ -244,6 +277,44 @@ with open('list.data', 'wb') as filehandle:
 with open('list.data', 'rb') as filehandle:  
     # read the data as binary data stream
     placesList = pickle.load(filehandle)
+```
+
+### 8. 如何获取一个列表中特定元素的index? 
+```python
+li = [1,2,3,4,5]
+In [30]: li = np.array(li)                                                           
+
+In [31]: li                                                                          
+Out[31]: array([1, 2, 3, 4])
+
+In [32]: li > 1                                                                      
+Out[32]: array([False,  True,  True,  True])
+
+In [33]: select = li > 1                                                             
+
+In [34]: select                                                                      
+Out[34]: array([False,  True,  True,  True])
+
+In [35]: li[select]                                                                  
+Out[35]: array([2, 3, 4])
+
+```
+
+### 9.如何将list of list 变成　list
+```python
+d = [[180.0], [173.8], [164.2], [156.5], [147.2], [138.2,12]]
+elite_states = sum(d,[])
+[180.0, 173.8, 164.2, 156.5, 147.2, 138.2, 12]
+```
+
+### 10. 如何统计一个列表中的元素出现的次数
+```python
+a = [1, 2, 3, 1, 1, 2]
+dict = {}
+for key in a:
+    dict[key] = dict.get(key, 0) + 1
+print(dict)
+# >>>{1: 3, 2: 2, 3: 1}
 ```
 ## Numpy 
 ### 1. 二维数据变一维/一维变二维
@@ -731,8 +802,15 @@ import glob
 list_of_files = glob.glob('./wb_rec/*')
 latest_file = max(list_of_files, key=os.path.getctime)
 ```
-###  9. 文件的复制和删除
-
+###  9. 获取文件路径
+``` python
+import os
+# 当前路径
+os.getcwd()
+#父目录
+os.path.dirname(os.getcwd())
+# 
+```
 ## Tensorflow
 
 ### 1. Tensorboard里面显示图片

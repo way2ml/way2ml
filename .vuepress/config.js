@@ -36,6 +36,7 @@ module.exports = {
         sidebar: {
             '/linux/':[
                 '',
+                'learn_linux_by_doing',
                 'download_tool',
                 'daily_cmd',
             ],

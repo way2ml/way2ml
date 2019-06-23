@@ -114,4 +114,4 @@ ssh-copy-id jack@112.2.1.23
 scp jack@10.95.10.44:~/compare_train.zip .
 ```
 
-<Livere/>
+<Livere id="city" uid="MTAyMC80NDg0Mi8yMTM2Mw=="/>

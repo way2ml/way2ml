@@ -1120,5 +1120,5 @@ def main():
 - 排线
 - 电阻
 
-<Livere/>
+<Livere id="city" uid="MTAyMC80NDg0Mi8yMTM2Mw=="/>
 

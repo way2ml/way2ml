@@ -82,4 +82,4 @@ uget: max connections: 16
 
 
 
-<Livere/>
+<Livere id="city" uid="MTAyMC80NDg0Mi8yMTM2Mw=="/>

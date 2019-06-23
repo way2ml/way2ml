@@ -74,4 +74,4 @@ data/
 
 参考:[维基百科](https://en.wikipedia.org/wiki/Convolutional_neural_network)
 
-<Livere/>
+<Livere id="city" uid="MTAyMC80NDg0Mi8yMTM2Mw=="/>

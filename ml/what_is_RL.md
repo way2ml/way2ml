@@ -120,4 +120,4 @@ $$
 [2] ["Reinforcement Learning: An Introduction" by Sutton and Barto](http://incompleteideas.net/sutton/book/the-book-2nd.html)<br>
 [3] [Understanding RL: The Bellman Equations](https://joshgreaves.com/reinforcement-learning/understanding-rl-the-bellman-equations/)<br>
 
-<Livere/>
+<Livere id="city" uid="MTAyMC80NDg0Mi8yMTM2Mw=="/>

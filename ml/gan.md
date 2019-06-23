@@ -10,4 +10,4 @@ Generative Adversarial Network (GAN)
 
 ### 使用GAN的例子
 
-<Livere/>
+<Livere id="city" uid="MTAyMC80NDg0Mi8yMTM2Mw=="/>

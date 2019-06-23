@@ -1026,4 +1026,4 @@ for img in os.listdir(test_dir):
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple opencv_python
 ```
 
-<Livere/>
+<Livere id="city" uid="MTAyMC80NDg0Mi8yMTM2Mw=="/>

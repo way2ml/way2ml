@@ -72,12 +72,12 @@ Manjaro的Cinnamon桌面环境: 点[这里](/images/linux/practical_Linux/manjar
 <img src='/images/linux/practical_Linux/manjaro.png'> 
 </p>
 
-Linux Mint是我使用多年的系统, 非常稳定，曾多年稳居[Disowatch](https://distrowatch.com/)的榜首。Mint是基于Ubuntu，遇到问题，解决起来也很方法。加上使用Cinnamon桌面环境，更使得Mint显得非常优雅，现代。
+Linux Mint是我使用多年的系统, 非常稳定，曾多年稳居[Disowatch](https://distrowatch.com/)的榜首。Mint是基于Ubuntu，遇到问题，解决起来也比较容易。加上使用Cinnamon桌面环境，更使得Mint显得非常优雅，现代。
 
-Manjaro是一款基于Arch Linux的发行版。不同于Arch的是，Manjaro比Arch更易用。Manjaro的口号是:Enjoy the simplicity。可见它非常的简洁。当你有一定的Linux使用经验后可以尝试这一个非常优秀的Linux发行版。
+Manjaro是一款基于Arch Linux的发行版。不同于Arch的是，Manjaro比Arch更易用。Manjaro的口号是:Enjoy the simplicity。可见它非常的简洁。当你有一定的Linux使用经验后可以尝试这个非常优秀的Linux发行版。
 
 ::: tip
-作为一个Linux初学者，在还不熟悉Linux的情况下，千万不要认为Linux的操作习惯不直观。要知道:复杂的工作需要复杂的工具，复杂的工具需要时间去掌握。事实上，要做一个一开始就就顺手的软件其实也是可以的，但是一旦你熟悉之后，往往简单顺手的软件不能满足你的需求，你不得不去找新的工具来解决你的问题。从长远来看，那些一开始就易用的软件往往会比那些功能强大需要时间掌握的软件更让人失望。
+作为一个Linux初学者，在还不熟悉Linux的情况下，千万不要认为Linux的操作习惯不直观。要知道:复杂的工作需要复杂的工具，复杂的工具需要时间去掌握。事实上，使用一开始就就顺手的软件其实也是可以的，但是一旦你熟悉之后，往往简单顺手的软件不能满足你的需求，你不得不去找新的工具来解决你的问题。从长远来看，那些一开始就易用的软件往往会比那些功能强大需要时间掌握的软件更让人失望。
 
 当我们使用一开始就好用的交互方式，最终我们会得到*计算机控制*的系统，当我们使用设计优良，强大需要时间掌握的交互方式，最终我们会得到*用户控制*的系统。
 :::

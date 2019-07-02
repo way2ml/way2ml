@@ -63,14 +63,14 @@ Linux提供两种交互方式，一种是基于文本的交互，另一种是使
 </p>
 Windows和MacOS大量使用GUI，因此你一定会对GUI非常熟悉。其实在Linux下也是可以使用GUI的，事实上Linux下的GUI界面已经相当不错了, 请看看下面的截图:
 
-Linux Mint的Cinnamon桌面环境: 点[这里](/images/linux/practical_Linux/cinnamon.png)看大图。
-<p align="center">
+Linux Mint的Cinnamon桌面环境: 点击看大图。
+[<p align="center">
 <img src='/images/linux/practical_Linux/cinnamon.png'>
-</p>
-Manjaro的Cinnamon桌面环境: 点[这里](/images/linux/practical_Linux/manjaro.png)看大图。
-<p align="center">
+</p>](/images/linux/practical_Linux/cinnamon.png)
+Manjaro的Cinnamon桌面环境: 点击看大图。
+[<p align="center">
 <img src='/images/linux/practical_Linux/manjaro.png'> 
-</p>
+</p>](/images/linux/practical_Linux/manjaro.png)
 
 Linux Mint是我使用多年的系统, 非常稳定，曾多年稳居[Disowatch](https://distrowatch.com/)的榜首。Mint是基于Ubuntu，遇到问题，解决起来也比较容易。加上使用Cinnamon桌面环境，更使得Mint显得非常优雅，现代。
 
@@ -127,8 +127,13 @@ Linux系统非常好用，但是需要学习。
 
 ## 远程管理
 
-参考: 
 
+
+<!-- <Counter/> -->
+
+参考: 
 [1] ["Harley Hahn's Guide To Unix and Linux"](http://unix.harley.com/instructors/internet-resources/index.html)
 
-<Livere id="city" uid="MTAyMC80NDg0Mi8yMTM2Mw=="/>
+<ClientOnly>
+<Livere/>
+</ClientOnly>

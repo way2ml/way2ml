@@ -55,7 +55,8 @@ module.exports = {
                 'cnn_machanism',
                 'gan',
                 'face_recognition',
-                'what_is_RL'
+                'what_is_RL',
+                'RL_Practice'
             ],
         },
         sidebarDepth:2,

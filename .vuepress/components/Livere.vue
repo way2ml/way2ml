@@ -1,22 +1,26 @@
 <template>
-    <div id="lv-container"
-        :data-id="id"
-        :data-uid="uid"
-    ></div>
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NDg0Mi8yTM2Mw==">
+</div>
 </template>
 
+
 <script>
-    export default {
-        name: 'LiveRe',
-        props: ['id', 'uid'],
-        mounted() {
-            const ds = document.createElement('script');
-            if (typeof LivereTower === 'function') return;
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-            const s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ds, s);
-        }
-    };
+export default {
+  mounted () {
+    import('./Livere').then(module => {
+      // use code
+    (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+    })
+  }
+}
 </script>

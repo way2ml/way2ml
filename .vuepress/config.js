@@ -1,6 +1,6 @@
 module.exports = {
     title: 'Way To Machine Learning',
-    description: 'Welcome to this wonderful journey!',
+    description: 'Welcome to this wonderful journey.',
     markdown: {
         anchor: { permalink: true }, // 内置插件设置：文件内部链接。
         lineNumbers: true, // 设置代码块中是否显示行号。

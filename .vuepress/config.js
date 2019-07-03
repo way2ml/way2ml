@@ -27,39 +27,176 @@ module.exports = {
     themeConfig:{
         nav:[
             {text: '主页', link:'/'},
-            {text: '玩转Linux', link:'/linux/'},
-            {text: '爱上Python', link:'/python/'},
-            {text: '沉迷ML', link:'/ml/'},
+            {text: '玩转Linux',
+             items:[
+                 {text:'动手学Linux教程',link:'/linux/learn_linux_by_doing/'},
+                 {text:'Linux工具箱',link:'/linux/linux_tools/'},
+                 {text:'命令行日常',link:'/linux/daily_cmd/'}
+                   ]
+            },
+
+            {text: '爱上Python', link:'/python/',
+             items:[
+                {text:'用树莓派入门Python',link:'/python/use_pi_to_learn_python/'},
+                {text:'Python日常',link:'/python/daily_python/'}
+                   ]
+            },
+
+            {text: '沉迷ML', link:'/ml/',
+            items:[
+                {text:'CNN',link:'/ml/CNN/'},
+                {text:'RL理论',link:'/ml/RL_Theory/'},
+                {text:'RL实践',link:'/ml/RL_Practice/'},
+                {text:'Tensorflow实践',link:'/ml/TF/'},
+                {text:'实战项目',link:'/ml/Projects/'},
+                {text:'GAN',link:'/ml/GAN/'},
+                {text:'RNN',link:'/ml/RNN/'},
+                {text:'其他',link:'/ml/Others/'},
+                   ]
+            },
             {text:'关于',link:'/about/'}
         ],
         // sidebar: 'auto'
         sidebar: {
-            '/linux/':[
+            ///////////////////////////
+            //        Linux          //
+            ///////////////////////////
+            // 动手学Linux教程
+            '/linux/learn_linux_by_doing/':[
                 '',
-                'learn_linux_by_doing',
+                'Linux_Intro',
+                'Start_To_Use_Linux',
+                'GUI',
+                'Linux_Env',
+                'Keyboard',
+                'App_In_Cmd',
+                'Linux_Manual',
+                'Command_Syntax',
+                'The_Shell',
+                'Shell_Init_Files',
+                'Std_IO_Redirection_Pipes',
+                'Filter_Intro_Basic',
+                'Filter_Compare_Extract',
+                'Filter_Counting_Format',
+                'Filter_Selecting_Sorting_Combine',
+                'Regular_Expression',
+                'Display',
+                'Vim',
+                'Linux_FileSystem',
+                'Working_With_Directories',
+                'Working_With_Files',
+                'Process_And_Job',
+                'Remote_Control',
+            ],
+            '/linux/linux_tools/':[
+                '',
                 'download_tool',
-                'daily_cmd',
             ],
 
-            '/python/':[
+            '/linux/daily_cmd/':[
                 '',
-                'use_pi_to_learn_python',
-                'daily_python'
+                'very_basic',
+                'daily_shell',
+                'remote_control'
+            ],
+            
+
+   
+            ///////////////////////////
+            //        Python         //
+            ///////////////////////////
+            // 用树莓派学Python教程
+            '/python/use_pi_to_learn_python/':[
+                '',
+                '01_background',
+                '02_Purpose',
+                '03_menu',
+                '04_python_intro',
+                '05_python_env',
+                '06_hello_world',
+                '07_led',
+                '08_blink',
+                '09_button',
+                '10_elegant_code',
+                '11_music',
+                '12_record',
+                '13_oop',
+                '14_steady_hand',
+                '15_end',
+                '16_reference',
+                '17_material',
             ],
 
-            '/ml/':[
+            // Python日常命令
+            '/python/daily_python/':[
                 '',
-                'how_to_start_learning_ml',
-                'deep_learning_with_tensorflow',
-                'story_of_cnn',
-                'cnn_machanism',
+                'daily_python',
+            ],
+
+            ///////////////////////////
+            //          ML           //
+            ///////////////////////////
+            // 卷积神经网络
+            '/ml/CNN/':[
+                '',
+                'a_01_story_of_cnn',
+                'a_02_cnn_machanism',
+            ],
+            // 强化学习理论
+            '/ml/RL_Theory/':[
+                '',
+                'a_01_what_is_rl',
+                'a_02_basic_interface',
+                'a_03_rl_vs_others',
+                'a_04_rl_in_life',
+                'a_05_terms_in_rl',
+                'a_06_a_target_of_rl',
+                'a_06_difficulties_in_rl',
+                'a_07_rl_class',
+                'a_08_rl_mathods',
+                'b_01_policy_based_approch',
+                'b_02_ppo',
+                'z_99_references',
+            ],
+
+            // 强化学习实践
+            '/ml/RL_Practice/':[
+                '',
+                'RL_Practice',
+            ],
+
+            // Tensorflow实践
+            '/ml/TF/':[
+                '',
+                'a_01_how_to_make_your_own_dataset',
+                'b_01_deep_learning_with_tensorflow',
+            ],
+
+            // 实战项目
+            '/ml/Projects/':[
+                '',
+                'a_01_face_recognition',
+            ],
+
+            // Gan
+            '/ml/GAN/':[
+                '',
                 'gan',
-                'face_recognition',
-                'what_is_RL',
-                'RL_Practice'
             ],
+            
+            // RNN
+            '/ml/RNN/':[
+                '',
+            ],
+
+            // 其他
+            '/ml/Others/':[
+                '',
+                'a_01_how_to_start_learning_ml',
+            ],
+
         },
-        sidebarDepth:2,
+        sidebarDepth:3,
         lastUpdated: '上次更新',
     }
 }

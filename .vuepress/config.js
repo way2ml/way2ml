@@ -1,6 +1,6 @@
 module.exports = {
     title: 'Way To Machine Learning',
-    description: '机器学习之路',
+    description: 'Welcome to this wonderful journey!',
     markdown: {
         anchor: { permalink: true }, // 内置插件设置：文件内部链接。
         lineNumbers: true, // 设置代码块中是否显示行号。
@@ -26,23 +26,23 @@ module.exports = {
     ],
     themeConfig:{
         nav:[
-            {text: '主页', link:'/'},
-            {text: '玩转Linux',
+            {text: 'Home', link:'/'},
+            {text: 'Linux',
              items:[
-                 {text:'动手学Linux教程',link:'/linux/learn_linux_by_doing/'},
+                 {text:'动手学Linux',link:'/linux/learn_linux_by_doing/'},
                  {text:'Linux工具箱',link:'/linux/linux_tools/'},
                  {text:'命令行日常',link:'/linux/daily_cmd/'}
                    ]
             },
 
-            {text: '爱上Python', link:'/python/',
+            {text: 'Python', link:'/python/',
              items:[
                 {text:'用树莓派入门Python',link:'/python/use_pi_to_learn_python/'},
                 {text:'Python日常',link:'/python/daily_python/'}
                    ]
             },
 
-            {text: '沉迷ML', link:'/ml/',
+            {text: 'ML', link:'/ml/',
             items:[
                 {text:'CNN',link:'/ml/CNN/'},
                 {text:'RL理论',link:'/ml/RL_Theory/'},
@@ -54,7 +54,7 @@ module.exports = {
                 {text:'其他',link:'/ml/Others/'},
                    ]
             },
-            {text:'关于',link:'/about/'}
+            {text:'About',link:'/about/'}
         ],
         // sidebar: 'auto'
         sidebar: {

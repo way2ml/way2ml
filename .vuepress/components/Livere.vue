@@ -1,5 +1,7 @@
 <template>
-<div id="lv-container" data-id="city" data-uid="MTAyMC80NDg0Mi8yMTM2Mw==">
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NTA5OS8yMTYxNg==">
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
 </div>
 </template>
 
@@ -24,3 +26,5 @@ export default {
   }
 }
 </script>
+
+<!-- City版安装代码已完成 -->

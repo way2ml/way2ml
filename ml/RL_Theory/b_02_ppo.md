@@ -5,7 +5,7 @@ pageClass: ml-class
 # Proximal Policy Optimization(PPO)
 OpenAI默认的强化学习算法, 是Policy Gradient的变形。
 <p align='center'>
-<img src='/images/ml/RL/ppo.png' width='60%'>
+<img src='/images/ml/RL/ppo.png' width='100%'>
 </p>
 
 ## On-Policy到Off-Policy 
@@ -33,7 +33,8 @@ $$
 E_{x \sim p}[f(x)] = \int f(x) p(x) d x=\int f(x) \frac{p(x)}{q(x)} q(x) d x=E_{x\sim q}\left[f(x) \frac{p(x)}{q(x)}\right]
 $$
 
-这样就是从$q$这个分布里面采样得到$x$, 而不是从$p$里面做采样了，真是神奇的变化啊! 这里的$\frac{\p(x)}{q(x)}$就是起到一个修正的作用的权值。
+这样就是从$q$这个分布里面采样得到$x$, 而不是从$p$里面做采样了，真是神奇的变化啊! 这里的$\frac{
+    p(x)}{q(x)}$就是起到一个修正的作用的权值。
 
 理论上分布$q(x)$为什么都可以,但是实作上$q$和$p$不能差太多。虽然两个分布的期望是一样的，但是他们的方差呢?
 
@@ -93,12 +94,71 @@ $$
 - 这一项很难算，直接忽略掉
 而这里的$p_{\theta}(a_t| s_t)$，$p_{\theta'}(a_t| s_t)$很好算，就直接是两个网络$\theta$,$\theta'$的输出。
 
+由下面的
+::: tip 关系
+$$
+\nabla f(x)=f(x) \nabla \log f(x)
+$$
+:::
+可以得到我们的目标函数:
+
 $$
 J^{\theta^{\prime}}(\theta)=E_{\left(s_{t}, a_{t}\right) \sim \pi_{\theta^{\prime}}}\left[\frac{p_{\theta}\left(a_{t} | s_{t}\right)}{p_{\theta^{\prime}}\left(a_{t} | s_{t}\right)} A^{\theta^{\prime}}\left(s_{t}, a_{t}\right)\right]
 $$ 
 
-## Add Constraint
+上面的式子中概率直接由神经网络的输出得到，Advantage可以通过采样估算，因此是可以算的。
 
+目标函数有了，回到前面提到过的问题:$p(\theta)$和$p(\theta')$不能差太多，差太多结果就会不好，那如何处理这个问题呢? 
+
+## Add Constrain
+使用下面的技巧，在做训练的时候添加一个Constrain, 我们不直接训练$J^{\theta^{\prime}}(\theta)$,而是训练下面的目标函数:
+
+$$
+J_{P P O}^{\theta^{\prime}}(\theta)=J^{\theta^{\prime}}(\theta)-\beta KL\left(\theta, \theta^{\prime}\right)
+$$
+
+这里的$\beta KL\left(\theta, \theta^{\prime}\right)$是两个模型的输出的动作的的[KL Diversion](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence)，他是用来衡量$\theta$和$\theta^\prime$像不像的量, 这个值是一个非负数，当$\theta$和$\theta^\prime$相等时, $KL\left(\theta, \theta^{\prime}\right)=0$, 相差越大这个值越大。
+
+::: warning 注意
+这里的KL Diversion并不是参数上的距离，而是行为上的距离。因为有很多时候，参数变化了不一定行为就发生了改变。
+:::
+
+说这么多, PPO算法就是下面的样子:
+::: tip PPO Algorithm
+- 初始化Policy的参数$\theta^0$
+- 循环
+    - 使用$\theta^k$去和环境做互动,收集$\{s_t, a_t \}$, 计算advantage $A^{\theta^{k}}(s_t,a_t)$
+    - 找使得$J_{PPO}(\theta)$更优的$\theta$: 这一步要多次更新$\theta$
+        - $$
+            J_{P P O}^{\theta^{k}}(\theta)=J^{\theta^{k}}(\theta)-\beta K L\left(\theta, \theta^{k}\right)
+        　$$
+        - $$
+          J^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \frac{p_{\theta}\left(a_{t} | s_{t}\right)}{p_{\theta^{k}}\left(a_{t} | s_{t}\right)} A^{\theta^{k}}\left(s_{t}, a_{t}\right)
+          $$
+        - $$
+          KL(\theta,\theta^k)= ?
+          $$
+    - 动态调整Constrain的权值$\beta$, 也叫作Adaptive KL Penalty:
+        - 更新$\theta$后, 如果发现$KL\left(\theta, \theta^{k}\right)>K L_{\max }$, 说明后面的约束没有起到作用, 因此增大$\beta$
+        - 更新$\theta$后, 如果发现$KL\left(\theta, \theta^{k}\right)<K L_{\min }$, 说明后面的约束作用太强,因此减小$\beta$
+
+:::
+
+上面式子中的$KL(\theta,\theta^k)$还没有给出来，它需要通过采样数据得到,不是那么容易，因此为了逃避这个问题, 我们使用PPO2算法,它对应的目标函数是:
+
+<p align='center'>
+<img src='/images/ml/RL/ppo2.png', width='100%'>
+</p>
+
+这个式子里面没有了$KL$, 看起来变得复杂了，但事实操作的时候变得很简单, $\varepsilon$是一个可变的参数。这个式子可以达到和$KL$一样的功能，就是使得$p_\theta$和$p_{\theta^k}$不要差距太大。它是怎么做到的呢?
+
+注意到横轴是$\frac{p_\theta}{p_{\theta^k}}$, 若是$A>0$, 也就是说$(s_t,a_t)$这组pair是好的，于是我们就想要增加$(s_t,a_t)$这组pair的几率，也就是想要$p_{\theta}$越大越好，但是有不能太大，即$\frac{p_\theta}{p_{\theta^k}}$的值不能大于$1+\varepsilon$。这样就避免了两者差别太大。注意到$p_{\theta^k}$始终是不变的。
+
+::: tip clip function
+$$
+\text{clip}(a, b, c)=\left\{\begin{array}{ll}{b,} & {\text { if } a<b} \\ {c,} & {\text { if } a>c} \\ {a,} & {\text { else }}\end{array}\right.
+$$
+:::
 
 
 <Livere/>

@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Author: Jack Huang
+ * @Github: https://github.com/HuangJiaLian
+ * @Date: 2019-09-05 16:24:09
+ * @LastEditors: Jack Huang
+ * @LastEditTime: 2019-09-05 17:20:48
+ */
 module.exports = {
     title: 'Way To Machine Learning',
     description: 'Welcome to this wonderful journey.',
@@ -131,6 +139,7 @@ module.exports = {
             '/python/daily_python/':[
                 '',
                 'daily_python',
+                'handle_time',
             ],
 
             ///////////////////////////
@@ -162,7 +171,7 @@ module.exports = {
             // 强化学习实践
             '/ml/RL_Practice/':[
                 '',
-                'RL_Practice',
+                'start_to_use_Gym',
             ],
 
             // Tensorflow实践

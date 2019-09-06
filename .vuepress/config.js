@@ -4,7 +4,7 @@
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-05 16:24:09
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-05 17:20:48
+ * @LastEditTime: 2019-09-06 09:41:17
  */
 module.exports = {
     title: 'Way To Machine Learning',
@@ -172,6 +172,7 @@ module.exports = {
             '/ml/RL_Practice/':[
                 '',
                 'start_to_use_Gym',
+                'q_learning',
             ],
 
             // Tensorflow实践

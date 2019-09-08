@@ -4,7 +4,7 @@
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-05 16:24:09
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-06 09:41:17
+ * @LastEditTime: 2019-09-08 11:02:03
  */
 module.exports = {
     title: 'Way To Machine Learning',
@@ -171,8 +171,9 @@ module.exports = {
             // 强化学习实践
             '/ml/RL_Practice/':[
                 '',
-                'start_to_use_Gym',
-                'q_learning',
+                'a_start_to_use_Gym',
+                'b_q_learning',
+                'c_deep_q_learning'
             ],
 
             // Tensorflow实践
@@ -180,6 +181,7 @@ module.exports = {
                 '',
                 'a_01_how_to_make_your_own_dataset',
                 'b_01_deep_learning_with_tensorflow',
+                'questions_how_to_gradient_in_tf'
             ],
 
             // 实战项目

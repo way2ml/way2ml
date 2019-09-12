@@ -4,7 +4,7 @@
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-05 16:24:09
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-08 11:02:03
+ * @LastEditTime: 2019-09-12 15:45:57
  */
 module.exports = {
     title: 'Way To Machine Learning',
@@ -138,8 +138,18 @@ module.exports = {
             // Python日常命令
             '/python/daily_python/':[
                 '',
-                'daily_python',
+                'python_env',
+                'python_basic',
+                'string',
+                'haddle_file',
+                'probability',
                 'handle_time',
+                'signal_processing',
+                'numpy',
+                'pandas',
+                'data_processing',
+                'visualise',
+                'tensorflow',
             ],
 
             ///////////////////////////
@@ -173,7 +183,9 @@ module.exports = {
                 '',
                 'a_start_to_use_Gym',
                 'b_q_learning',
-                'c_deep_q_learning'
+                'c_deep_q_learning',
+                'c_deep_q_learning_2',
+                'c_deep_q_learning_3',
             ],
 
             // Tensorflow实践

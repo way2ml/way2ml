@@ -1,33 +1,33 @@
 ---
 pageClass: ml-class
 ---
+
 <!--
  * @Description: 
  * @Author: Jack Huang
  * @Github: https://github.com/HuangJiaLian
- * @Date: 2019-09-08 10:28:29
+ * @Date: 2019-09-12 14:24:27
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-12 14:23:42
+ * @LastEditTime: 2019-09-12 14:50:26
  -->
-# DQN: 一个好的开始
 
-所谓　Deep Q-Learning　就是使用神经网络去找到从状态到动作的映射，可以理解为利用神经网络去模拟一个Q-Table。而使用神经网络的原因是神经网络
-可以处理更为复杂的环境。接下来使用DQN来解决过山车的问题。
 
-首先我们看一下DQN的算法:
+# DQN: 优化变得更完善
 
-<p align='center'>
-<img src='/images/ml/RL_Prt/dqn_algorithm.png'>
-</p>
+我们在上一节中使用DQN解决了过山车的问题，在这一节中我们对上一节的程序做一些优化。优化主要包含:
 
-根据算法我们将其转化成Python程序，如下:
+- 记录训练过程
+- 保存训练模型
+- 可视化训练过程
 
-``` python
+```python
 from tensorflow.keras import models, layers, optimizers
 import gym 
 from collections import deque
 import numpy as np 
 import random
+import pandas as pd 
+import matplotlib.pyplot as plt 
 
 class DQNSolver:
 	"""docstring for DQNSolver"""
@@ -48,6 +48,7 @@ class DQNSolver:
 		# 初始化NN_target
 		self.model_target = self.model
 
+		
 	def create_model(self):
 		model = models.Sequential([
 			layers.Dense(100, input_dim=self.obervation_space, activation='relu'),
@@ -55,6 +56,7 @@ class DQNSolver:
 			])
 		model.compile(loss='mean_squared_error', optimizer = optimizers.Adam(self.lr))
 		return model 
+			
 
 	# epsilon random to get action
 	def action(self, state, epsilon):
@@ -114,6 +116,9 @@ class DQNSolver:
 			self.model_target.set_weights(self.model.get_weights())
 			self.step = 0
 
+	def save_model(self, file_path='MountainCar-v0-dqn.h5'):
+		print('model saved')
+		self.model.save(file_path)
 
 def main(env_name):
 	# 准备环境
@@ -122,14 +127,18 @@ def main(env_name):
 	action_space = env.action_space.n 
 	print(observation_space, action_space)
 	dqn_solver = DQNSolver(observation_space, action_space)
-
 	# 开始训练
 	# 表示玩1000次游戏
-	episodes = 5000
+	episodes = 1000
 	# 每一轮游戏里面玩的步数
 	steps = 200
 	scores = []
 	render = False
+	record_every = 50
+
+	col_names = ['Eps','Won','Cur','Min','Ave','Max']
+	df = pd.DataFrame(columns=col_names)
+
 	for episode in range(episodes):
 		state = env.reset()
 		score = 0
@@ -140,10 +149,7 @@ def main(env_name):
 			epsilon = 0.1
 			action = dqn_solver.action(state=state, epsilon=epsilon)
 			next_state, reward, done, _ = env.step(action)
-			if next_state[0] >=  env.goal_position:
-				print('I made it.')
-				# 需要手动给0, 因为gym永远都给-1
-				reward = 0
+			reward = 0 if (next_state[0] >=  env.goal_position) else -1
 			score += reward
 			dqn_solver.store(state, action, reward, next_state, done)
 			state = next_state
@@ -151,16 +157,50 @@ def main(env_name):
 			if done:
 				break
 
+		win_flag = True if reward == 0 else False
 		scores.append(score)	
-		print('Eps:{} Cur:{:.2f} Min:{:.2f} Anv:{:.2f} Max:{:.2f}'.format(episode, score, min(scores), np.mean(scores), max(scores)))
-		if np.mean(scores[-30:]) > -170:
-			render =  True
+
+		print('Eps:{} Won:{} Cur:{:.2f} Min:{:.2f} Anv:{:.2f} Max:{:.2f}'\
+				.format(episode, win_flag, score, min(scores[-record_every:]), \
+				        np.mean(scores[-record_every:]), max(scores[-record_every:])))
+		
+		if episode > 50:
+			df.loc[len(df)] = [episode, win_flag, score, min(scores[-record_every:]),
+							   np.mean(scores[-record_every:]), max(scores[-record_every:])]
+
+
+		# if episode > 30:
+		# 	if np.mean(scores[-30:]) > -170:
+		# 		render =  True
+
+		if episode > 50:
+			if np.mean(scores[-50:]) > -170:
+				dqn_solver.save_model()
+				df.to_csv('Record.csv')
+
+def plot_record(file_path):
+	df = pd.read_csv(file_path)
+	ax = plt.gca()
+	df.plot(kind='line',x='Eps',y='Min',ax=ax)
+	df.plot(kind='line',x='Eps',y='Cur',ax=ax)
+	df.plot(kind='line',x='Eps',y='Ave',ax=ax)
+	df.plot(kind='line',x='Eps',y='Max',ax=ax)
+	plt.savefig('plot.png')
+	plt.show()
 
 if __name__ == "__main__":
-	env_name = "MountainCar-v0"
-	main(env_name=env_name)
+	main(env_name="MountainCar-v0")
+	plot_record('Record.csv')
 ```
 
-大概经过几百个episode的训练就可以得到一个很好的神经网络来解决这个问题了。
-接下来，我会添加一些辅助代码来完善这个程序。我们到时候见。
+这样我们将训练的过程记录了下来, 我得到这样一张图:
+<p align='center'>
+<img src='/images/ml/RL_Prt/plot.png'>
+</p>
+
+可以看到在大概前300个episode在总的奖励上都没有什么提升，但是在400个episode后性能就有了明显的提升。
+另外我们还保存了神经网络的参数，也就是说我们下次可以直接使用训练好的神经网络去解决这个过山车的问题了。
+
+下一节我将会直接调用训练好的武功秘籍，我们到时候见。
+
 <Livere/>

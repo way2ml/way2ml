@@ -7,7 +7,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 14:55:54
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-12 16:04:00
+ * @LastEditTime: 2019-09-20 20:17:52
  -->
 
 # 可视化
@@ -226,3 +226,31 @@ def plot_record(file_path):
 	plt.savefig('plot.png')
 	plt.show()
 ```
+
+## 如何在matplotlib中动态地画图? 
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+import time
+from math import *
+
+plt.ion() #开启interactive mode 成功的关键函数
+plt.figure(1)
+t = [0]
+t_now = 0
+m = [sin(t_now)]
+
+for i in range(2000):
+	plt.clf() #清空画布上的所有内容
+    t_now = i*0.1
+    t.append(t_now)#模拟数据增量流入，保存历史数据
+    m.append(sin(t_now))#模拟数据增量流入，保存历史数据
+    plt.plot(t,m,'-r')
+    plt.draw()#注意此函数需要调用
+    plt.pause(0.01)
+```
+
+参考 [链接](https://blog.csdn.net/u013468614/article/details/58689735)
+
+<Livere/>

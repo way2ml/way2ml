@@ -4,7 +4,7 @@
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-05 16:24:09
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-12 15:45:57
+ * @LastEditTime: 2019-09-20 22:29:14
  */
 module.exports = {
     title: 'Way To Machine Learning',
@@ -150,6 +150,7 @@ module.exports = {
                 'data_processing',
                 'visualise',
                 'tensorflow',
+                'solutions'
             ],
 
             ///////////////////////////
@@ -175,6 +176,10 @@ module.exports = {
                 'a_08_rl_mathods',
                 'b_01_policy_based_approch',
                 'b_02_ppo',
+                'c_actor_critic',
+                'c_02_GAE',
+                'd_irl',
+                'e_temporal_difference_learning',
                 'z_99_references',
             ],
 
@@ -186,6 +191,7 @@ module.exports = {
                 'c_deep_q_learning',
                 'c_deep_q_learning_2',
                 'c_deep_q_learning_3',
+                'd_create_env',
             ],
 
             // Tensorflow实践

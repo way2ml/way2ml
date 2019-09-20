@@ -2,6 +2,17 @@
 pageClass: ml-class
 ---
 
+<!--
+ * @Description: 
+ * @Author: Jack Huang
+ * @Github: https://github.com/HuangJiaLian
+ * @Date: 2019-08-13 09:52:16
+ * @LastEditors: Jack Huang
+ * @LastEditTime: 2019-09-19 10:02:25
+ -->
+
+
+
 # Proximal Policy Optimization(PPO)
 OpenAI默认的强化学习算法, 是Policy Gradient的变形。
 <p align='center'>
@@ -10,8 +21,8 @@ OpenAI默认的强化学习算法, 是Policy Gradient的变形。
 
 ## On-Policy到Off-Policy 
 在RL中我们要学习的就是一个Agent
-- On-Policy: 和环境互动的Agent就是我们要学习的Agent； 一边做互动，一边学习。
-- Off-Policy: 和环境互动的Agent不是我们要学习的Agent； 通过看别人学习。
+- ==On-Policy==: 和环境互动的Agent就是我们要学习的Agent； ==一边做互动，一边学习。==
+- ==Off-Policy==: 和环境互动的Agent不是我们要学习的Agent； ==通过看别人学习。==
 
 前面提到的Policy Gradient的方法就是一种On-Policy的方法。
 $$
@@ -61,8 +72,17 @@ $$
 <img src='/images/ml/RL/p_q_explain.png' width='60%'>
 </p>
 
+本来两者的期望按理来说应该是一样的，但是由于两个概率分布$p(x)$, $q(x)$ 相差太大，若是采样不够就会出现得到的两个分布的的期望
+不一样。
 
 ### 正式开始将On-Policy变成Off-Policy
+
+::: warning 疑问
+可以这样理解吗? 原本$\tau$服从的分布$p_{\theta}(\tau)$其实是不清楚的, 需要玩很多很多把的游戏才能够统计近似出来。而且每改变一次
+$\theta$, 又要玩很多把游戏才能得到新的$p_{\theta}(\tau)$, 这样做是非常耗费时间的。于是我们就使用一个已知的概率分布去抽样，得到的
+游戏记录可以保存起来，这样就可以不断地拿去更新。
+:::
+
 将原来的:
 $$
 \nabla \overline{R}_{\theta}=E_{\tau \sim p_{\theta}(\tau)}\left[R(\tau) \nabla \log p_{\theta}(\tau)\right]

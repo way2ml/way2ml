@@ -2,6 +2,16 @@
 pageClass: ml-class
 ---
 
+<!--
+ * @Description: 
+ * @Author: Jack Huang
+ * @Github: https://github.com/HuangJiaLian
+ * @Date: 2019-07-04 01:00:26
+ * @LastEditors: Jack Huang
+ * @LastEditTime: 2019-09-19 09:41:56
+ -->
+
+
 # Policy-based Approach
 Learning an Actor。这种方法的核心就是Policy Gradient。
 ### 什么叫Actor? 
@@ -12,6 +22,7 @@ Learning an Actor。这种方法的核心就是Policy Gradient。
 
 - Input: Agent观测到的Observation。
 - Output: Agent要采取的Action。通常假设Actor是Stochastic的,也就是说Policy的输出是一个几率。
+用Gang的话来说，==Policy的输出是一个概率分布==。
 
 
 ::: tip 提示
@@ -53,7 +64,7 @@ Learning an Actor。这种方法的核心就是Policy Gradient。
 就算是每次我们使用同样一个Actor,每一次游戏得到的$R_{\theta}$也是不一样的。因为:
 - Actor若是Stochastic,即动作本来就是一种可能性。
 - 游戏本身也有随机性的,采取同样的Action,每次看到的Observation也是不同的。
-也就是说，$R_{\theta}$就是一个随机变量。因此我们的目标就应该变成:
+也就是说，$R_{\theta}$就是一个随机变量。因此==我们的目标就应该变成==:
 **学习去最大化$R_{\theta}$的期望值 $\bar{R}_{\theta}$**
 
 **这个期望值$\bar{R}_{\theta}$就表示函数的好坏。**　那应该如何去计算这个期望值呢? 
@@ -85,7 +96,15 @@ $$
 :::
 
 #### 3. 挑选最好的函数
-选出最好的Actor,采用的方法就是**Gradient Ascent**
+选出最好的Actor,采用的方法就是**Gradient Ascent**.
+
+这里的问题变成了: 当 $\theta$ 取什么的时候，可以让 $\bar{R}_{\theta}$取得最大值。目的是最后得到这个$\theta$。
+在原来的时候就是去偏导为0的地方即可求得对应的$\theta$, 但是实际当中我们使用Gradient Ascent的方法来最终得到这个$\theta$.
+
+::: warning 问题
+为什么不直接对$\bar{R}_{\theta}$求$\theta$的偏导，然后取偏导值为0,从而得到$\theta$, 而要这么费劲地去训练，迭代去得到$\theta$?
+:::
+
 - 数学语言来描述:
    - $\theta^{*} = arg  \max \limits_{\theta}\bar{R}_\theta$
    - $\bar{R}_{\theta} = \sum_{\tau}R(\tau)P(\tau|\theta)$
@@ -262,7 +281,7 @@ $$
 这里的$\gamma < 1$，　叫做**Discounted Factor**.
 
 再进一步, 将$R(\tau^n) - b$叫做**Advatage Function**,记为$A^{\theta}(s_t,a_t)$
-它的意义就是,在$s_t$下采取$a_t$这个动作，相比与其他的动作，有多好。
+Advatage Function的意义就是,在$s_t$下采取$a_t$这个动作，==相比与其他的动作，有多好。==
 
 ::: warning 注意
 其实这里的Advatage Function其实就是用来做梯度时的权值，是需要认为设计的，怎么设计呢? 其实是一个问题。可以利用一个神经网络去设计。也就是可以利用*Critic*去设计，后面会提到。

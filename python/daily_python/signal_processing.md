@@ -8,7 +8,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 15:38:17
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-12 15:39:48
+ * @LastEditTime: 2019-09-16 16:40:22
  -->
 
 # 信号
@@ -32,7 +32,7 @@ while True:
         break
 ```
 
-## 2. 如何定时中断?
+## 如何定时中断?
 
 ```python
 import signal
@@ -49,7 +49,7 @@ while True:
     print('not yet')
 ```
 
-## 3. 如何检测哪个键被按下?
+## 如何检测哪个键被按下?
 ```python
 import keyboard  # using module keyboard
 while True:  # making a loop
@@ -61,4 +61,23 @@ while True:  # making a loop
             pass
     except:
         break  # if user pressed a key other than the given key the loop will break
+```
+
+
+## 如何检查方向键是否被按下? 
+```python
+import readchar
+
+while True:
+    keypress = readchar.readkey()
+    if keypress == readchar.key.UP:
+        print("UP")
+    elif keypress == readchar.key.DOWN:
+        print("DOWN")
+    elif keypress == readchar.key.LEFT:
+        print("LEFT")
+    elif keypress == readchar.key.RIGHT:
+        print("RIGHT")
+    elif keypress in (readchar.key.CR, readchar.key.CTRL_C):
+        break
 ```

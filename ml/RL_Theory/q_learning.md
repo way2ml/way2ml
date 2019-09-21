@@ -6,11 +6,12 @@ pageClass: ml-class
  * @Description: 
  * @Author: Jack Huang
  * @Github: https://github.com/HuangJiaLian
- * @Date: 2019-09-20 09:21:08
+ * @Date: 2019-09-21 11:14:43
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-21 09:25:16
+ * @LastEditTime: 2019-09-21 11:15:57
  -->
 
-# Inverse Reinforcement Learning
-反向强化学习
+# Q Learing
+
+<Livere/>
 

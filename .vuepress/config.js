@@ -4,7 +4,7 @@
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-05 16:24:09
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-20 22:29:14
+ * @LastEditTime: 2019-09-21 12:00:00
  */
 module.exports = {
     title: 'Way To Machine Learning',
@@ -99,6 +99,7 @@ module.exports = {
             '/linux/linux_tools/':[
                 '',
                 'download_tool',
+                'latex',
             ],
 
             '/linux/daily_cmd/':[
@@ -149,6 +150,7 @@ module.exports = {
                 'pandas',
                 'data_processing',
                 'visualise',
+                'sound',
                 'tensorflow',
                 'solutions'
             ],
@@ -174,6 +176,9 @@ module.exports = {
                 'a_06_difficulties_in_rl',
                 'a_07_rl_class',
                 'a_08_rl_mathods',
+                'sarsa',
+                'q_learning',
+                'on_policy_vs_off_policy',
                 'b_01_policy_based_approch',
                 'b_02_ppo',
                 'c_actor_critic',

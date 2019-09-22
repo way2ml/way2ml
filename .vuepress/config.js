@@ -4,7 +4,7 @@
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-05 16:24:09
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-21 12:00:00
+ * @LastEditTime: 2019-09-22 23:57:34
  */
 module.exports = {
     title: 'Way To Machine Learning',
@@ -100,6 +100,7 @@ module.exports = {
                 '',
                 'download_tool',
                 'latex',
+                'gnome_calculatar',
             ],
 
             '/linux/daily_cmd/':[
@@ -152,7 +153,8 @@ module.exports = {
                 'visualise',
                 'sound',
                 'tensorflow',
-                'solutions'
+                'solutions',
+                'tools',
             ],
 
             ///////////////////////////
@@ -163,6 +165,7 @@ module.exports = {
                 '',
                 'a_01_story_of_cnn',
                 'a_02_cnn_machanism',
+                'b_3d_cnn',
             ],
             // 强化学习理论
             '/ml/RL_Theory/':[

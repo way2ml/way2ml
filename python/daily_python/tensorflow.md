@@ -8,12 +8,12 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 15:44:42
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-12 15:56:14
+ * @LastEditTime: 2019-09-23 14:18:03
  -->
 
 # Tensorflow
 
-## 1. Tensorboard里面显示图片
+## Tensorboard里面显示图片
 ```python
 import tensorflow as tf
 
@@ -41,7 +41,7 @@ sess.close()
 
 ```
 
-## 2. 断点续训功能
+## 断点续训功能
 ```python
         
         self.saver = tf.train.Saver() # To Save Trainning Process
@@ -64,7 +64,7 @@ sess.close()
 
 `tensorboard --logdir=LOGPATH` 即可打开 Tensorboard
 
-## 3. 切片
+## 切片
 Tensorflow支持numpy形式的切片
 举例说明:
 ``` python 
@@ -94,7 +94,7 @@ Tensorflow支持numpy形式的切片
  #      [7]], dtype=int32)
  
 ```
-## 4. 查看Tensorfow是否使用的是GPU版本
+## 查看Tensorfow是否使用的是GPU版本
 ``` python
 import tensorflow as tf
 if tf.test.gpu_device_name():
@@ -107,7 +107,7 @@ else:
 `Default GPU Device: /device:GPU:0`
 
 
-## 5.在Tensorflow中添加观察项，便于观察训练结果
+## 在Tensorflow中添加观察项，便于观察训练结果
 ``` python
 # 第零步: 在要观察的值附近修改成下面的格式
 with tf.name_scope('loss'):
@@ -129,13 +129,13 @@ if (i+1) % 50 == 0:
     vgg.writer.add_summary(result,i)
 ```
 
-## 6. loss降不下去可能的原因
+## loss降不下去可能的原因
 - 每次的Minibatch都随便给
 - 参数不够
 - 
 loss一会很高一会很低 
 
-## 7. Tensorfow GPU 版本的依赖
+## Tensorfow GPU 版本的依赖
 ```
 https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
 CUDA Toolkit	Linux x86_64 Driver Version	Windows x86_64 Driver Version
@@ -172,3 +172,30 @@ def save_model(self, file_path='MountainCar-v0-dqn.h5'):
 def load_model(self):
 		return models.load_model('./MountainCar-v0-dqn.h5',compile=False)
 ```
+
+## 如何使用tf.one_hot()?
+在处理的训练数据的标签时，往往需要把标签变成one_hot的形式，在Tensorflow里面可以这样处理。
+```python
+import tensorflow as tf
+labels = [0,1,2,3,4,5,6,7,8,9]
+n_labels = 10
+labels_one_hot = tf.one_hot(labels,n_labels)
+sess = tf.Session()
+result = sess.run(labels_one_hot)
+print(result)
+```
+得到的结果:
+```bash
+[[1. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 1. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 1. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 1. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 1. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 1. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 1. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 1. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 1. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 1.]]
+```
+
+## 

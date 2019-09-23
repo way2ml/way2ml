@@ -4,7 +4,7 @@
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-05 16:24:09
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-22 23:57:34
+ * @LastEditTime: 2019-09-23 15:54:21
  */
 module.exports = {
     title: 'Way To Machine Learning',
@@ -101,6 +101,7 @@ module.exports = {
                 'download_tool',
                 'latex',
                 'gnome_calculatar',
+                'git'
             ],
 
             '/linux/daily_cmd/':[
@@ -179,6 +180,7 @@ module.exports = {
                 'a_06_difficulties_in_rl',
                 'a_07_rl_class',
                 'a_08_rl_mathods',
+                'TD_0',
                 'sarsa',
                 'q_learning',
                 'on_policy_vs_off_policy',

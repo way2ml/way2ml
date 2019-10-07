@@ -8,7 +8,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-22 23:53:56
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-22 23:57:12
+ * @LastEditTime: 2019-09-27 22:14:56
  -->
 
 # 工具
@@ -44,3 +44,28 @@ for page in pages:
 python convert_to_png.py Policy_Based_Approch.pdf
 ```
 于是便得到了按页码排序的png图片了。
+
+## 简繁转换
+```bash
+pip install hanziconv
+```
+
+```python
+>>> from hanziconv import HanziConv
+>>> print(HanziConv.toSimplified('繁簡轉換器'))
+繁简转换器
+>>> print(HanziConv.toTraditional('繁简转换器'))
+繁簡轉換器
+>>> print(HanziConv.toSimplified(u'繁簡轉換器'))
+繁简转换器
+>>> print(HanziConv.toTraditional(u'繁简转换器'))
+繁簡轉換器
+>>> print(HanziConv.toSimplified(u'mix English and Chinese. 繁簡轉換器')
+mix English and Chinese. 繁简转换器
+>>> print(HanziConv.toTraditional(u'mix English and Chinese. 繁简转换器'))
+mix English and Chinese. 繁簡轉換器
+>>> print(HanziConv.toSimplified('mix English and Chinese. 繁簡轉換器'))
+mix English and Chinese. 繁简转换器
+>>> print(HanziConv.toTraditional('mix English and Chinese. 繁简转换器'))
+mix English and Chinese. 繁簡轉換器
+```

@@ -36,6 +36,7 @@ Actor-Critics就是通过V得到Advantage Function, 然后做Policy Gridient, �
 <img src='/images/ml/RL/policy_base_approch/Policy_Based_Approch_6.png'>
 </p> -->
 
+Reinforce是Policy Gradient的其中一种方法，你在不知不觉中已经学了它了。
 
 关于为什么要在Actor的Loss里面添加Entropy的项，这里有一个[讨论](https://github.com/dennybritz/reinforcement-learning/issues/34)。
 

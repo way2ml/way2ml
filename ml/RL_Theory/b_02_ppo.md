@@ -8,7 +8,7 @@ pageClass: ml-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-08-13 09:52:16
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-19 10:02:25
+ * @LastEditTime: 2019-09-24 14:52:13
  -->
 
 
@@ -68,6 +68,11 @@ $$
 $$
 
 两式中只有第一项不一样。因此，若是两个分布太大，就会出现很大的偏差。若是采样不够多就有可能出现偏差, 举个例子来说:
+
+::: tip 提示
+$\mathbb{E}_{x\sim q}[f^2(x)\frac{p^2(x)}{q^2(x)}] = \int f^2(x)\frac{p^2(x)}{q^2(x)}q(x)dx = \int f^2(x)\frac{p^2(x)}{q(x)}dx = \int f^2(x)\frac{p(x)}{q(x)}p(x)dx = \mathbb{E}_{x\sim p}[f^2(x)\frac{p(x)}{q(x)}]$
+:::
+
 <p align='center'>
 <img src='/images/ml/RL/p_q_explain.png' width='60%'>
 </p>

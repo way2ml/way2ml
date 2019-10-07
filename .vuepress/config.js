@@ -4,8 +4,9 @@
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-05 16:24:09
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-23 15:54:21
+ * @LastEditTime: 2019-10-06 15:49:15
  */
+
 module.exports = {
     title: 'Way To Machine Learning',
     description: 'Welcome to this wonderful journey.',
@@ -13,7 +14,8 @@ module.exports = {
         anchor: { permalink: true }, // 内置插件设置：文件内部链接。
         lineNumbers: true, // 设置代码块中是否显示行号。
         toc: { includeLevel: [1, 2, 3, 4, 5] }, // 内置插件设置：目录显示标题的层级。
-        config: md => { // 外部插件设置：markdown-it-plugin。
+        config: md => { 
+          // 外部插件设置：markdown-it-plugin。
           md.use(require('markdown-it-katex'))
           md.use(require('markdown-it-mark'))
           md.use(require('markdown-it-sup'))
@@ -101,7 +103,8 @@ module.exports = {
                 'download_tool',
                 'latex',
                 'gnome_calculatar',
-                'git'
+                'git',
+                'raspberry_pi'
             ],
 
             '/linux/daily_cmd/':[
@@ -182,9 +185,11 @@ module.exports = {
                 'a_08_rl_mathods',
                 'TD_0',
                 'sarsa',
+                'n_step_td',
                 'q_learning',
                 'on_policy_vs_off_policy',
                 'b_01_policy_based_approch',
+                'b_02_a_importance_sampling',
                 'b_02_ppo',
                 'c_actor_critic',
                 'c_02_GAE',
@@ -222,6 +227,7 @@ module.exports = {
             '/ml/GAN/':[
                 '',
                 'gan',
+                'convex_conjugate_and_gan',
             ],
             
             // RNN
@@ -233,6 +239,9 @@ module.exports = {
             '/ml/Others/':[
                 '',
                 'a_01_how_to_start_learning_ml',
+                'entropy_cross_entropy_and_kl_divergence',
+                'why_ppo_cant_solve_moutain_car',
+                'Convex_function'
             ],
 
         },

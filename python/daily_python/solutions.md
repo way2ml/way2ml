@@ -8,7 +8,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-20 16:47:14
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-20 17:05:24
+ * @LastEditTime: 2019-10-04 11:29:20
  -->
 
 # 解决方案
@@ -41,5 +41,17 @@ pip install --upgrade gym[atari]
 参考: [链接](https://github.com/openai/baselines/issues/387)
 
 
+## Tensorflow
+### ensorFlow: “Attempting to use uninitialized value” in variable initialization
+没有初始化tf全局变量
+```python
+init = tf.global_variables_initializer()
+sess.run(init)
+```
+或者
+```python
+init = tf.initialize_all_variables()
+sess.run(init)
+```
 
 <Livere/>

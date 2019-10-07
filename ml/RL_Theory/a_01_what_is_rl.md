@@ -2,10 +2,21 @@
 pageClass: ml-class
 ---
 
+<!--
+ * @Description: 
+ * @Author: Jack Huang
+ * @Github: https://github.com/HuangJiaLian
+ * @Date: 2019-07-04 00:51:57
+ * @LastEditors: Jack Huang
+ * @LastEditTime: 2019-09-26 21:52:27
+ -->
+
 # 什么是强化学习?
 什么是强化学习? 这恐怕是学习强化学习的人都会问到的问题。我曾经看到过一个视频，里面有一个四肢完整的机器人。最开始的时候只会在地上乱动，过了一段时间，它学会了爬；再过来一会，它学会了走；再过一会儿走得越来越好了。最开始看到这个感觉就是:"哇，好厉害。我也想学这个。"然后知道这个东西是机器学习。都是过了好久才知道原来是强化学习实现了这个过程。强化学习是一种通过探索，试错从而找到一套很不错的的处理问题方法的过程。强化学习有下面的特征:
 - 面向智能体的学习———通过和环境交互来达到目标 
 - 通过试错来学习, 通常仅有不及时的奖励
 
-
+::: warning
+Reinforcement Learning中的Reinforce指的是什么? 难道是Policy Gradient中的Reinforce算法吗? 
+:::
 <Livere/>

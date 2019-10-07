@@ -8,7 +8,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 15:25:13
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-23 14:36:20
+ * @LastEditTime: 2019-09-27 15:06:13
  -->
 
 # Numpy 
@@ -218,3 +218,13 @@ array([70., 71., 72., 73., 74., 75., 76., 77., 78., 79., 80., 81., 82.,
 </p>
 
 参考 [链接](https://www.sharpsightlabs.com/blog/numpy-axes-explained/)
+
+## 如何将大小为1的array转化成对应的Scalar?
+```python
+>>> np.asscalar(np.array([24]))
+24
+>> np.asscalar(np.array([[24]]))
+24
+```
+
+<Livere/>

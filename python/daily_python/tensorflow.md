@@ -8,7 +8,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 15:44:42
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-23 14:18:03
+ * @LastEditTime: 2019-10-04 11:27:14
  -->
 
 # Tensorflow
@@ -198,4 +198,29 @@ print(result)
  [0. 0. 0. 0. 0. 0. 0. 0. 0. 1.]]
 ```
 
-## 
+## 如何安装Tensorflow2.0?
+
+创建一个新的Conda环境， 命名为tf2.0
+```bash
+conda create -n tf2.0
+```
+
+进入到tf2.0环境
+```bash
+conda activate tf2.0
+```
+安装pip
+```bash
+conda install pip
+```
+检查Python和pip的版本
+需要满足`Python > 3.4 and pip >= 19.0`
+```bash
+python3 --version
+pip --version
+```
+开始安装tf2.0
+``` 
+pip install tensorflow-gpu==2.0
+```
+

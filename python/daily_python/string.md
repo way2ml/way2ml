@@ -8,25 +8,25 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 15:16:34
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-12 15:17:49
+ * @LastEditTime: 2019-10-24 10:09:43
  -->
 
 # 字符串
-## 1. 如何分割字符串? | How to split a string?
+## 如何分割字符串? | How to split a string?
 ``` python
 txt = "hello, my name is Peter, I am 26 years old"
 x = txt.split(", ")
 print(x)
 ```
 
-## 2. 如何提取字符串中的数字? | How to extract numbers in a string?
+## 如何提取字符串中的数字? | How to extract numbers in a string?
 ```python
 import re
 s = '1x100.csv'
 re.findall('\d+')
 ```
 
-## 3. 如何将字符串列表按数字大小排序？| How to sort string list by number？
+## 如何将字符串列表按数字大小排序？| How to sort string list by number？
 [参考](https://stackoverflow.com/questions/5967500/how-to-correctly-sort-a-string-with-a-number-inside)
 ```python
 import re
@@ -58,7 +58,7 @@ alist.sort(key=natural_keys)
 print(alist)
 ```
 
-## 4. 如何选出两个字符中间的部分？｜How to select the string between two strings?
+## 如何选出两个字符中间的部分？｜How to select the string between two strings?
 ```python
 >>> import re
 >>> s = 'Part 1. Part 2. Part 3 then more text'
@@ -66,4 +66,9 @@ print(alist)
 ' Part 2. '
 >>> re.search(r'Part 1(.*?)Part 3', s).group(1)
 '. Part 2. '
+```
+
+## 如何控制浮点数的输出格式? | How to control the output format of a float number?
+``` python
+"{0:.2f}".format(13.949999999999999)
 ```

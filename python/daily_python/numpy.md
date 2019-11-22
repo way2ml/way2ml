@@ -8,7 +8,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 15:25:13
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-27 15:06:13
+ * @LastEditTime: 2019-11-15 15:52:22
  -->
 
 # Numpy 
@@ -226,5 +226,180 @@ array([70., 71., 72., 73., 74., 75., 76., 77., 78., 79., 80., 81., 82.,
 >> np.asscalar(np.array([[24]]))
 24
 ```
+
+### 如何将多个矩阵叠起来形成类似多通道图片的数据?
+```python
+import numpy as np 
+# 3张单通道的图片
+x = np.array([[ 0,  1,  2], [ 3,  4,  5], [ 6,  7,  8], [ 9, 10, 11]])
+y = np.array([[12, 13, 14], [15, 16, 17], [18, 19, 20], [21, 22, 23]])
+z = np.array([[24, 25, 26], [27, 28, 29], [30, 31, 32], [33, 34, 35]])
+
+# 叠加成一张3通道的图片
+t = np.stack((x,y,z))
+
+print(x.shape, y.shape, z.shape,t.shape)
+``` 
+输出:
+```bash
+(4, 3) (4, 3) (4, 3) (3, 4, 3)
+```
+最后的的(3,4,3)中的数字代表的意思是:
+- 3: 三个通道
+- 4: 四行
+- 3: 三列
+
+结合下面这张图:
+<p align='center'>
+<img src='https://www.numpy.org.cn/static/images/article/arr3d.7442cd4e11c6.jpg'>
+</p>
+
+我们想要索引17，则可以通过下面的方式:
+```python
+t[1][1][2]
+```
+输出:
+```bash
+17
+```
+::: tip 提示
+注意我们的index是从0开始。
+:::
+
+参考:<br/> 
+[使用 NumPy 进行数组编程](https://www.numpy.org.cn/article/advanced/numpy_array_programming.html#%E8%BF%9B%E5%85%A5%E7%8A%B6%E6%80%81%EF%BC%9A%E4%BB%8B%E7%BB%8Dnumpy%E6%95%B0%E7%BB%84) <br/>
+[numpy.stack](https://docs.scipy.org/doc/numpy/reference/generated/numpy.stack.html)
+
+
+### 如何打印一个完整的Numpy Array? 
+我们在打印输出比较大的Numpy矩阵的时候，因为显示完整的矩阵会不太美观，所以会简化输出。但有时我们确实需要查看完整的信息，
+那么我们可以在`print`语句前面加下面的语句来显示完整的内容:
+```python
+np.set_printoptions(threshold=np.inf)
+```
+
+### 如何用指定的索引值批量索引? 
+#### 方法1 fancy index
+这个问题有热心网友帮我回答了, [How to index numpy array with given indexes?](https://stackoverflow.com/questions/58870150/how-to-index-numpy-array-with-given-indexes)
+
+有时我们需要对一个array批量索引，这时我们可以把索引值放在一个列表里面。
+
+在强化学习中我现在有很多个不同状态下的动作的分布dis(离散的分布)：
+```python
+import numpy as np
+distributions = np.array([[0.1,0.2,0.7],[0.3,0.3,0.4],[0.2,0.2,0.6]])
+
+# array([[0.1, 0.2, 0.7],  # \pi(s0)
+#        [0.3, 0.3, 0.4],  # \pi(s1)
+#        [0.2, 0.2, 0.6]]) # \pi(s2)
+```
+
+接下来我们想要看在s0状态下采取动作0,在s1状态下采取动作2,在s2状态下采取动作1,对应的概率分别是多少，于是我们将索引保存到一个列表中:
+
+``` python
+actions = np.array([[0],[2],[1]])
+
+# array([[0],  # 在s0状态采取动作0
+#        [2],  # 在s1状态采取动作2
+#        [1]]) # 在s2状态采取动作1
+```
+
+接下来想要得到在对应状态下采取特定动作对应的概率:
+
+想要得到的结果是:
+```python
+# array([0.1,0.4,0.2])
+# or 
+# array([[0.1],
+#        [0.4],
+#        [0.2]])
+```
+
+但是应该怎么做? 我尝试过np.take, 但是我没有达到效果.
+
+```python
+probabilities = np.take(distributions, actions)
+```
+
+可以这样做:
+
+```python
+distributions[np.arange(3), actions.ravel()]  
+```
+
+总结一下可以这样做:
+
+```python
+import numpy as np
+distributions = np.array([[0.1,0.2,0.7],[0.3,0.3,0.4],[0.2,0.2,0.6]])
+actions = np.array([0, 2, 1])
+probabilities = distributions[np.arange(distributions.shape[0]), actions] 
+```
+
+
+#### 方法二 bool索引
+```python
+import numpy as np
+distributions = np.array([[0.1,0.2,0.7],
+                          [0.3,0.3,0.4],
+                          [0.2,0.2,0.6]])
+```
+
+```python
+H = distributions
+#定义两个数组，便于后面用作布尔索引
+[i,j]=np.indices(H.shape)
+print(i)
+print(j)
+```
+
+```
+[[0 0 0]
+ [1 1 1]
+ [2 2 2]]
+[[0 1 2]
+ [0 1 2]
+ [0 1 2]]
+```
+
+```python
+#对第一个态，提取第一个动作
+H[(i==j) & (i<1)]
+```
+```
+array([0.1])
+```
+
+```python
+#对第2个态，提取第3个动作
+H[(i+1==j) & (i>0)]
+```
+```
+array([0.4])
+```
+
+```python
+#对第3个态，提取第2个动作
+H[(i==j+1) & (j>0)]
+```
+```
+array([0.2])
+```
+
+```python
+H[((i==j) & (i<1)) | ((i+1==j) & (i>0)) | ((i==j+1) & (j>0))]
+```
+```
+array([0.1, 0.4, 0.2])
+```  
+
+```python
+H[((i==j) & (i==0)) | ((i+1==j) & (i==1)) | ((i==j+1) & (i==2))]
+```
+```
+array([0.1, 0.4, 0.2])
+```
+
+
 
 <Livere/>

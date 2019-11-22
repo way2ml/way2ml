@@ -4,7 +4,7 @@
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-05 16:24:09
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-10-06 15:49:15
+ * @LastEditTime: 2019-11-12 15:31:45
  */
 
 module.exports = {
@@ -55,12 +55,15 @@ module.exports = {
             {text: 'ML', link:'/ml/',
             items:[
                 {text:'CNN',link:'/ml/CNN/'},
+                {text:'RNN',link:'/ml/RNN/'},
+                {text:'GAN',link:'/ml/GAN/'},
+                {text:'Tensorflow',link:'/ml/TF/'},
+                {text:'PyTorch',link:'/ml/PyTorch/'},
                 {text:'RL理论',link:'/ml/RL_Theory/'},
                 {text:'RL实践',link:'/ml/RL_Practice/'},
-                {text:'Tensorflow实践',link:'/ml/TF/'},
                 {text:'实战项目',link:'/ml/Projects/'},
-                {text:'GAN',link:'/ml/GAN/'},
-                {text:'RNN',link:'/ml/RNN/'},
+                {text:'ML经验',link:'/ml/Experience/'},
+                {text:'信息论',link:'/ml/Information_Theory/'},
                 {text:'其他',link:'/ml/Others/'},
                    ]
             },
@@ -104,14 +107,21 @@ module.exports = {
                 'latex',
                 'gnome_calculatar',
                 'git',
-                'raspberry_pi'
+                'raspberry_pi',
+                'frp',
+                'startdic',
+                'linux_install_guide',
             ],
 
             '/linux/daily_cmd/':[
                 '',
                 'very_basic',
                 'daily_shell',
-                'remote_control'
+                'remote_control',
+                'aABb_cross',
+                'admin',
+                'gui_env',
+                
             ],
             
 
@@ -159,6 +169,9 @@ module.exports = {
                 'tensorflow',
                 'solutions',
                 'tools',
+                'web',
+                'solved_problems',
+                'vscode'
             ],
 
             ///////////////////////////
@@ -183,10 +196,12 @@ module.exports = {
                 'a_06_difficulties_in_rl',
                 'a_07_rl_class',
                 'a_08_rl_mathods',
+                'q_learning',
                 'TD_0',
                 'sarsa',
                 'n_step_td',
-                'q_learning',
+                'td_lambda',
+                'sarsa_lambda',
                 'on_policy_vs_off_policy',
                 'b_01_policy_based_approch',
                 'b_02_a_importance_sampling',
@@ -194,8 +209,12 @@ module.exports = {
                 'c_actor_critic',
                 'c_02_GAE',
                 'd_irl',
-                'e_temporal_difference_learning',
+                'Maximum_Entropy_IRL',
+                'why_gail_reward_no_use',
+                'AIRL',
+                'mountain_car_env',
                 'z_99_references',
+                
             ],
 
             // 强化学习实践
@@ -207,6 +226,10 @@ module.exports = {
                 'c_deep_q_learning_2',
                 'c_deep_q_learning_3',
                 'd_create_env',
+                'a2c',
+                'PPO',
+                'GAIL',
+                'pendulum_v0',
             ],
 
             // Tensorflow实践
@@ -215,6 +238,11 @@ module.exports = {
                 'a_01_how_to_make_your_own_dataset',
                 'b_01_deep_learning_with_tensorflow',
                 'questions_how_to_gradient_in_tf'
+            ],
+            // PyTorch
+            '/ml/PyTorch/':[
+                '',
+                'install',
             ],
 
             // 实战项目
@@ -228,6 +256,8 @@ module.exports = {
                 '',
                 'gan',
                 'convex_conjugate_and_gan',
+                'think_gan',
+                'wgan'
             ],
             
             // RNN
@@ -235,13 +265,22 @@ module.exports = {
                 '',
             ],
 
+            '/ml/Experience/':[
+                '',
+                'Machine_Learning_Yearning'
+            ],
+
+            '/ml/Information_Theory/':[
+                '',
+            ],
             // 其他
             '/ml/Others/':[
                 '',
                 'a_01_how_to_start_learning_ml',
                 'entropy_cross_entropy_and_kl_divergence',
                 'why_ppo_cant_solve_moutain_car',
-                'Convex_function'
+                'Convex_function',
+                'some_math'
             ],
 
         },

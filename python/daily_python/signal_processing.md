@@ -8,7 +8,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 15:38:17
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-16 16:40:22
+ * @LastEditTime: 2019-10-15 15:39:07
  -->
 
 # 信号
@@ -81,3 +81,16 @@ while True:
     elif keypress in (readchar.key.CR, readchar.key.CTRL_C):
         break
 ```
+
+## 如何使用Opencv读取按键?
+```python
+import cv2 
+
+img = cv2.imread('directions.png')
+cv2.imshow('img',img)
+while True:
+    key = cv2.waitKey(-1)
+    print(key)
+```
+
+使用本地任意一张图代替`directions.png`即可。

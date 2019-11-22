@@ -9,7 +9,7 @@ pageClass: ml-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-05 16:26:24
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-05 21:09:49
+ * @LastEditTime: 2019-10-22 16:49:16
  -->
 
 
@@ -118,4 +118,5 @@ env.close()
 虽然过山车达到了高地，但却不是凭借自己的聪明才智，是我们告诉了它应该这样做。
 那么接下来我们想要然小车自己学习应该怎么样到达高地, 这也是机器学习应该做的，不是吗?  那我们下一节Q-learning再见哦!
 
+[MountainCar-v0 Wiki](https://github.com/openai/gym/wiki/MountainCar-v0)
 <Livere/>

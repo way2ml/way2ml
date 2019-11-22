@@ -2,6 +2,16 @@
 pageClass: linux-class
 ---
 
+<!--
+ * @Description: 
+ * @Author: Jack Huang
+ * @Github: https://github.com/HuangJiaLian
+ * @Date: 2019-10-27 09:20:20
+ * @LastEditors: Jack Huang
+ * @LastEditTime: 2019-10-27 09:20:28
+ -->
+
+
 # 最基础命令
 ## 穿梭命令行
 ```bash
@@ -70,6 +80,9 @@ zip FileName.zip DirName -r
 # .rar
 rar x FileName.rar
 rar a FileName.rar DirName
+
+# 解压Deb包
+ar x example.deb
 ```
 
 <Livere/>

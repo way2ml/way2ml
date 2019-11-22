@@ -8,7 +8,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 15:44:42
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-10-04 11:27:14
+ * @LastEditTime: 2019-10-24 20:28:01
  -->
 
 # Tensorflow
@@ -63,6 +63,72 @@ sess.close()
 运行成功之后，在命令行中执行:
 
 `tensorboard --logdir=LOGPATH` 即可打开 Tensorboard
+
+## 如何在保存/恢复多个网络模型的快照?
+保存
+```python
+# Saver to save all the variables
+model_save_path = './model/'
+model_name = 'gail'
+
+# max_to_keep表示你想要保存的快照数目
+saver = tf.train.Saver(max_to_keep=120)
+
+with tf.Session() as sess:
+    ...
+    for episode in range(max_episode):
+        ...
+        if episode > 0 and episode % 100 == 0:
+            # global_step可以帮你自动命名
+            saver.save(sess, os.path.join(model_save_path, model_name), global_step=episode)
+```
+
+恢复
+```python
+# Saver to save all the variables
+model_save_path = './model/'
+model_name = 'gail'
+# saver = tf.train.import_meta_graph(os.path.join(model_save_path,model_name+'-9600.meta'))
+saver = tf.train.Saver() 
+ckpt = tf.train.get_checkpoint_state(model_save_path)
+if ckpt and ckpt.model_checkpoint_path:
+        print('Found Saved Model.')
+        # 指定使用哪一个时刻训练好的模型
+        # [-1]:代表最新的
+        # [0]: 代表最老的
+        ckpt_to_restore = ckpt.all_model_checkpoint_paths[-2]
+else:
+    print('No Saved Model. Exiting')
+    exit()
+
+...
+
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    # Restore Model
+    if ckpt and ckpt.model_checkpoint_path:
+        saver.restore(sess,ckpt_to_restore)
+        print('Model Restored.')
+```
+
+## 如何查看checkpoint里面保存了哪些变量?
+```python
+from tensorflow.python.tools.inspect_checkpoint import print_tensors_in_checkpoint_file
+print_tensors_in_checkpoint_file(ckpt_to_restore, all_tensors=True, tensor_name='')
+```
+
+[How do I find the variable names and values that are saved in a checkpoint?
+](https://stackoverflow.com/questions/38218174/how-do-i-find-the-variable-names-and-values-that-are-saved-in-a-checkpoint)
+
+
+## 如何使用scope name 恢复部分保存的变量?
+```python
+# Restore only discriminator
+saver = tf.train.Saver(var_list=tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='discriminator'))
+```
+
+**参考:**
+[How to restore variables of a particular scope from a saved checkpoint in tensorflow?](https://stackoverflow.com/questions/42546365/how-to-restore-variables-of-a-particular-scope-from-a-saved-checkpoint-in-tensor/42977504)
 
 ## 切片
 Tensorflow支持numpy形式的切片
@@ -172,6 +238,8 @@ def save_model(self, file_path='MountainCar-v0-dqn.h5'):
 def load_model(self):
 		return models.load_model('./MountainCar-v0-dqn.h5',compile=False)
 ```
+
+
 
 ## 如何使用tf.one_hot()?
 在处理的训练数据的标签时，往往需要把标签变成one_hot的形式，在Tensorflow里面可以这样处理。

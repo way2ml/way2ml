@@ -8,7 +8,7 @@ pageClass: linux-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-23 10:10:28
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-23 10:38:53
+ * @LastEditTime: 2019-11-15 11:32:53
  -->
 # git
 
@@ -67,3 +67,7 @@ git push -u origin master
 ```
 ssh -T git@gitee.com
 ```
+
+## gist的妙用
+讨论问题的时候多多使用Github的gist功能, 不用发一些格式不对的东西个别人了。
+https://gist.github.com/

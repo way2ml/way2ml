@@ -8,11 +8,11 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 15:20:27
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-12 15:52:48
+ * @LastEditTime: 2019-10-24 10:39:06
  -->
 # 数据处理
 
-## 1. 如何生成0到1之间的随机数？ | How to generate random numbers between 0 and 1?
+## 如何生成0到1之间的随机数？ | How to generate random numbers between 0 and 1?
 
 ```python
 from pyDOE import lhs
@@ -31,20 +31,20 @@ def get_traing_data(all_data, num):
     return t_data, x_data
 ```
 
-## 2. 如何生成1到20之间的列表？| How to generate a number list from 1 to 20？ 
+## 如何生成1到20之间的列表？| How to generate a number list from 1 to 20？ 
 ```python
 >> a=[x for x in range(1,20)]
 >> a
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 ```
 
-## 3. 如何从一个列表中随机选取一个元素？｜How to random select a number from a list?
+## 如何从一个列表中随机选取一个元素？｜How to random select a number from a list?
 ``` python
 import random
 num_layers = random.sample(layers_option, 1)[0]
 ```
 
-## 4. 如何将一列数和矩阵相互转换?
+## 如何将一列数和矩阵相互转换?
 ``` python
 import numpy as np
 
@@ -59,7 +59,7 @@ def m2l(m):
     return l_m
 ```
 
-## 5. 如何将一个数字转换成科学计数的格式?
+## 如何将一个数字转换成科学计数的格式?
 ``` python
 from decimal import Decimal
 
@@ -68,7 +68,7 @@ def format_e(n):
     return a.split('E')[0].rstrip('0').rstrip('.') + 'E' + a.split('E')[1]
 ```
 
-## 6. 如何以同样的顺序交换两个列表?
+## 如何以同样的顺序交换两个列表?
 ``` python
 >>> import numpy as np
 >>> x = np.arange(10)
@@ -87,7 +87,7 @@ array([9, 3, 5, 2, 6, 0, 8, 1, 4, 7])
 array([0, 6, 4, 7, 3, 9, 1, 8, 5, 2])
 ```
 
-## 7. 如何保存和恢复一个列表? | How to save and restore a list ?
+## 如何保存和恢复一个列表? | How to save and restore a list ?
 ```python
 import pickle
 with open('list.data', 'wb') as filehandle:
@@ -99,7 +99,7 @@ with open('list.data', 'rb') as filehandle:
     placesList = pickle.load(filehandle)
 ```
 
-## 8. 如何获取一个列表中特定元素的index? 
+## 如何获取一个列表中特定元素的index? 
 ```python
 li = [1,2,3,4,5]
 In [30]: li = np.array(li)                                                           
@@ -120,14 +120,14 @@ Out[35]: array([2, 3, 4])
 
 ```
 
-## 9.如何将list of list 变成　list?
+## 如何将list of list 变成　list?
 ```python
 d = [[180.0], [173.8], [164.2], [156.5], [147.2], [138.2,12]]
 elite_states = sum(d,[])
 [180.0, 173.8, 164.2, 156.5, 147.2, 138.2, 12]
 ```
 
-## 10. 如何统计一个列表中的元素出现的次数？
+## 如何统计一个列表中的元素出现的次数？
 ```python
 a = [1, 2, 3, 1, 1, 2]
 dict = {}
@@ -146,3 +146,91 @@ replay_queue.append((state, action, reward, next_state, done))
 if len(replay_queue) < replay_size:
 			return None
 ```
+
+
+## 如何添加一个logger追踪训练过程的参数变化?
+
+```python
+import pandas as pd 
+import os 
+import matplotlib.pyplot as plt 
+
+class logger:
+    def __init__(self, logger_name, logger_path, col_names, restore=False):
+        self.logger_name = logger_name
+        if not os.path.exists(logger_path):
+            os.makedirs(logger_path)
+        self.logger_path = logger_path
+        self.col_names = col_names
+        self.save_path = os.path.join(self.logger_path, self.logger_name + '.csv')
+        if restore:
+            self.dataLogs = self.load()
+        else:
+            self.dataLogs = pd.DataFrame(columns=col_names) 
+
+    def add_row_data(self, one_row, saveFlag=False):
+        last_index = len(self.dataLogs)
+        self.dataLogs.loc[last_index] = one_row
+        if saveFlag:
+            self.save()
+
+    def save(self):
+        self.dataLogs.to_csv(self.save_path)
+
+    def load(self):
+        dataLogs_Saved = pd.read_csv(self.save_path)
+        return dataLogs_Saved
+
+    def plotToFile(self, title, showFlag = False):
+        plt.clf()
+        plt.title(title)
+        ax = plt.gca()
+        self.dataLogs.plot(kind='line', x = self.col_names[0], y=self.col_names[1], ax=ax)
+        self.dataLogs.plot(kind='line', x = self.col_names[0], y=self.col_names[2], ax=ax)
+        self.dataLogs.plot(kind='line', x = self.col_names[0], y=self.col_names[3], ax=ax)
+        self.dataLogs.plot(kind='line', x = self.col_names[0], y=self.col_names[4], ax=ax)
+        plt.savefig(os.path.join(self.logger_path, self.logger_name + '.png'))
+        if showFlag:
+            plt.show()
+
+    def close(self):
+        self.save()
+```
+
+## 如何取整? 
+向下取整:
+```python
+>>> a = 3.75
+>>> int(a)
+3
+```
+
+四舍五入:
+```
+>>> round(3.25); round(4.85)
+3.0
+5.0
+```
+
+向上取整:
+```python
+>>> import math
+>>> math.ceil(3.25)
+4.0
+>>> math.ceil(3.75)
+4.0
+>>> math.ceil(4.85)
+5.0
+```
+
+分别取小数部分和整数部分:
+```python
+>>> import math
+>>> math.modf(3.25)
+(0.25, 3.0)
+>>> math.modf(3.75)
+(0.75, 3.0)
+>>> math.modf(4.2)
+(0.20000000000000018, 4.0)
+```
+[Python 几种取整的方法](http://kuanghy.github.io/2016/09/07/python-trunc)

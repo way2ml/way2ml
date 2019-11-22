@@ -6,12 +6,12 @@ pageClass: ml-class
  * @Description: 
  * @Author: Jack Huang
  * @Github: https://github.com/HuangJiaLian
- * @Date: 2019-09-20 22:25:58
+ * @Date: 2019-10-12 19:55:11
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-20 22:26:45
+ * @LastEditTime: 2019-10-12 19:56:30
  -->
 
-# Temporal Difference Learning
-
+# PyTorch
+PyTorch入门教程
 
 <Livere/>

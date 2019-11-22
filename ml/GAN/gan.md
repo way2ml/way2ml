@@ -8,10 +8,10 @@ pageClass: ml-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-07-04 01:50:14
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-10-07 15:54:28
+ * @LastEditTime: 2019-10-08 11:40:30
  -->
 
-# 生成对抗神经网络 
+# GAN 生成对抗神经网络 
 Generative Adversarial Network (GAN)
 
 ## GAN的目的是什么? 
@@ -163,12 +163,12 @@ Discriminator学会给玲爱数据库的的所有图片高分$D(x)$的值趋近�
 
 即利用从两个分布的采样数据，使用监督学习的方法就可以训练Discriminator了。话是这样说，很简单，但是新的问题又出现了。
 
-$V(D,G) = \mathbb{E}_{x \sim P_{data}}[\log D(x)] + \mathbb{E}_{x \sim P_{G}}[\log (1-D(x))]$
+$$V(D,G) = \mathbb{E}_{x \sim P_{data}}[\log D(x)] + \mathbb{E}_{x \sim P_{G}}[\log (1-D(x))]$$
 
 该怎么算啊? 
 
 ### 如何计算V(D,G)？
-$V(D,G) = E_{x \sim P_{\text {data}}}[\log D(x)]+E_{x \sim P_{G}}[\log (1-D(x))]$中的期望我们用采样的均值代替。
+$V(D,G) = \mathbb{E}_{x \sim P_{\text {data}}}[\log D(x)]+\mathbb{E}_{x \sim P_{G}}[\log (1-D(x))]$中的期望我们用采样的均值代替。
 
 - 从$P_{data}(x)$中采样得到样本 $\left\{x^{1}, x^{2}, \ldots, x^{m}\right\}$, 正样本, 标签是$1$
 - 从$P_G(x)$中采样得到样本 $\left\{\tilde{x}^{1}, \tilde{x}^{2}, \ldots, \tilde{x}^{m}\right\}$, 负样本, 标签是$0$
@@ -232,6 +232,10 @@ $$
 </p>
 
 最大值点找到了, 我们看看此时的最大值是多少。 -->
+
+**参考**:
+
+[台大李宏毅老师GAN课程:GAN Lecture 4 (2018): Basic Theory](https://youtu.be/DMA4MrNieWo)
 
 
 <Livere/>

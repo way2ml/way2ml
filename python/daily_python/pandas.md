@@ -8,7 +8,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 15:31:27
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-12 15:59:14
+ * @LastEditTime: 2019-10-21 15:48:28
  -->
 
 # Pandas
@@ -46,7 +46,7 @@ def plot_record(file_path):
 ```
 
 ## 如何将某一列元素乘以一个数?
-```
+```python
 #!/usr/bin/env python
 import numpy as np 
 import pandas as pd
@@ -61,3 +61,45 @@ dataframe.loc[:,1] *= 1000
 dataframe.to_csv(sys.argv[1][:-4] + '_m.csv')
 ```
 
+## 如何将Dataframe数据转换成Numpy数据?
+
+```python
+    df = pd.read_csv('./expert_demo.csv')
+    ex_x = df.to_numpy()[:,0]
+    ex_y = df.to_numpy()[:,1]
+    plt.plot(ex_x,ex_y,color='blue')
+```
+
+## 如何选择一列? 
+```python
+import pandas as pd 
+data = pd.read_csv('xxxxx.csv',sep=' ', header=None)
+print(data.columns) # 从中选择一个label
+AgeCol= data["Age"] 
+```
+
+参考: [Indexing and Selecting Data with Pandas](https://www.geeksforgeeks.org/indexing-and-selecting-data-with-pandas/)
+
+## 如何创建一个空的Dataframe?
+```python
+import pandas as pd
+newDF = pd.DataFrame()
+```
+
+## 如何动态地创建Dataframe?
+```python
+# Create an empty dataframe to save all position (x,y)
+df = pd.DataFrame()
+for episode in range(max_episode):
+	# Create empity cols dynamically
+	df['tao_'+str(episode) +'_x'] = ''
+	df['tao_'+str(episode) +'_y'] = ''
+	for step in range(max_steps):
+		x, y = obs[0][0],obs[0][1]
+		# Add row element dynamically 
+		df.loc[step+1, 'tao_'+str(episode) +'_x'] = x
+        df.loc[step+1, 'tao_'+str(episode) +'_y'] = y 
+df.to_csv('traj.csv')
+```
+
+<Livere/>

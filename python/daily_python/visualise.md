@@ -7,7 +7,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 14:55:54
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-09-22 23:16:07
+ * @LastEditTime: 2019-11-20 21:22:15
  -->
 
 # 可视化
@@ -26,6 +26,50 @@ import moviepy.editor as mpe
 clips = [VideoFileClip(video) for video in videos]
 concat_clip = concatenate_videoclips(clips, method="compose")
 concat_clip.write_videofile('output.mp4')
+```
+
+## 如何将多张图变成视频?
+```python
+from moviepy.editor import *
+import moviepy.editor as mpe
+import moviepy.audio.fx.all as afx
+import os,re 
+import datetime
+import argparse
+
+def atof(text):
+    try:
+        retval = float(text)
+    except ValueError:
+        retval = text
+    return retval
+
+def natural_keys(text):
+    '''
+    alist.sort(key=natural_keys) sorts in human order
+    http://nedbatchelder.com/blog/200712/human_sorting.html
+    (See Toothy's implementation in the comments)
+    float regex comes from https://stackoverflow.com/a/12643073/190597
+    '''
+    return [ atof(c) for c in re.split(r'[+-]?([0-9]+(?:[.][0-9]*)?|[.][0-9]+)', text) ]
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-P', '--path', help='The path.',default='./')
+args = parser.parse_args()
+
+# 获取文件列表
+file_list = os.listdir(args.path)
+
+# 排序
+file_list.sort(key=natural_keys)
+# print(file_list)
+
+# 制作视频
+date_ = datetime.date.today()
+clips = [ImageClip(im).set_duration(0.5) for im in file_list[1:-1]]
+concat_clip = concatenate_videoclips(clips, method="compose")
+concat_clip.write_videofile(str(date_)+'.mp4', fps=24)
 ```
 
 
@@ -160,7 +204,7 @@ plt.show()
 ```
 [marker 参考](https://matplotlib.org/api/markers_api.html#module-matplotlib.markers)
 
-##　如何legend在制定的位置?
+## 如何legend在制定的位置?
 ``` python
 plt.legend(loc='lower right')
 ```
@@ -300,5 +344,350 @@ for index in range(10,40):
     img_3d_label = y_test[index]
     show3d_character(img_3d, str(img_3d_label) + ' in 3D')
 ```
+
+## 如何画一个过山车的跑道?
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import os 
+
+save_path = './img/'
+if not os.path.exists(save_path): 
+    os.mkdir(save_path)
+
+plt.xlabel('x') 
+plt.title('Mountain Car Track')
+plt.xlim(-1.2,0.6)
+plt.ylim(0,1.2)
+x = np.linspace(-1.2,0.6,100)
+plt.plot(x,np.sin(3*x)*.45+.55,'k-',lw=2,label='height(x)=0.45sin(3x) + 0.55')
+plt.legend(loc='upper left')
+plt.savefig(os.path.join(save_path,'MountainCarTrack'))
+plt.show()
+```
+
+## 如何生成，可视化一个二维的矩阵?
+
+```python
+import numpy as np 
+import matplotlib.pyplot as plt 
+import matplotlib.cm as cm 
+
+def main():
+    x_min =  -1.2
+    x_max = 1.2
+    y_min = -0.2 
+    y_max = 1.2
+
+    n = 100
+
+    x = np.linspace(x_min,x_max,n)
+    y = np.linspace(y_min,y_max,n)
+
+
+    X,Y = np.meshgrid( x , y )
+
+    # print(xv.shape,yv.shape)
+
+    Z = (1 - X**2 - Y**2)**2 +(Y**2)/(X**2 + Y**2)
+
+    plt.title('$V(x,y) = (1-x^2-y^2)^2 + y^2/(x^2+y^2)$')
+    plt.xlabel('$x$')
+    plt.ylabel('$y$')
+    C = plt.contour(X, Y, Z, 25, colors='green')
+    plt.savefig('./potential_surface.png')
+    plt.show()
+
+if __name__ == '__main__':
+    main()
+```
+
+```python
+import numpy as np
+from matplotlib import pyplot as plt
+import matplotlib.cm as cm
+
+n = 256
+x = np.linspace(-3., 3., n)
+y = np.linspace(-3., 3., n)
+X, Y = np.meshgrid(x, y)
+Z = X * np.sinc(X ** 2 + Y ** 2)
+plt.pcolormesh(X, Y, Z, cmap = cm.gray)
+plt.show()
+```
+
+参考: 《Matplotlib Plotting Cookbook》
+
+## 如何选择合适的颜色?
+[<p align='center'>
+<img src='https://matplotlib.org/3.1.0/_images/sphx_glr_named_colors_003.png' width='50%'>
+</p>](https://matplotlib.org/3.1.0/_images/sphx_glr_named_colors_003.png)
+
+
+## 如何选择互补色?
+色环中相对的颜色即为补色
+
+<p align='center'>
+<img src='/images/python/daily_python/visualize/fanse.png' width='30%'>
+</p>
+
+[维基百科:互补色](https://zh.wikipedia.org/wiki/%E4%BA%92%E8%A3%9C%E8%89%B2)
+
+## 如何使得y坐标反向? 
+```python
+plt.gca().invert_yaxis()
+```
+
+## 如何画一个点? 
+```python
+plt.plot([1], [1], marker='o', markersize=3, color="red")
+```
+或者
+```python
+plt.plot(1, 1, marker='o', markersize=3, color="red")
+```
+
+## 如何使波动较大的图变得平滑?
+使用Moving Averages
+```python
+import argparse
+import matplotlib.pyplot as plt 
+import pandas as pd 
+import textwrap
+
+parser = argparse.ArgumentParser(
+        prog='ProgramName',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=textwrap.dedent('''\
+        Example:
+         python Jplot.py -F Easy_V_Training_Log.csv
+        '''))
+
+parser.add_argument('-F','--file', help='The csv file to plot.')
+args = parser.parse_args()
+
+
+df = pd.read_csv(args.file)
+
+df['Moving Ave Actor(D)'] = df.iloc[:,2].rolling(window=50).mean()
+
+col_name = df.columns
+print(col_name)
+
+plt.figure(figsize=[15,10])
+plt.grid(True)
+plt.title('Return Changes')
+plt.xlabel('episode')
+plt.ylabel('return')
+plt.plot(df['Episode'], df['Actor(D)'], label='Actor(D)',color='lightgrey')
+plt.plot(df['Episode'], df['Moving Ave Actor(D)'],label='Moving Ave Actor(D)')
+plt.plot(df['Episode'], df['Expert Mean(D)'], label='Expert Mean(D)')
+plt.legend()
+
+imName = args.file.split('.')[0] + '.png'
+plt.savefig(imName)
+```
+
+<p align='center'>
+<img src='/images/python/daily_python/visualize/moving_ave.png'>
+</p>
+
+参考:
+[Moving Averages in pandas](https://www.datacamp.com/community/tutorials/moving-averages-in-pandas)
+
+## 如何将鼠标事件加入到图片中?
+**在Python脚本中:**
+```python
+import matplotlib.pyplot as plt
+
+# Need to create as global variable so our callback(on_plot_hover) can access
+fig = plt.figure()
+plot = fig.add_subplot(111)
+
+# create some curves
+for i in range(4):
+    # Giving unique ids to each data member
+    plot.plot(
+        [i*1,i*2,i*3,i*4],
+        gid=i)
+
+def mouse_move(event):
+    x, y = event.xdata, event.ydata
+    print(x, y)
+
+fig.canvas.mpl_connect('motion_notify_event', mouse_move)           
+plt.show()
+```
+
+**在Jupyter Notebook中:**
+```python
+%matplotlib notebook
+import numpy as np
+import matplotlib.pyplot as plt
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+# create some curves
+for i in range(4):
+    ax.plot(
+        [i*1,i*2,i*3,i*4],
+        gid=i)
+
+text=ax.text(0,0,'')
+
+def mouse_move(event):
+    x, y = event.xdata, event.ydata
+    text.set_text('x:{0:.4f}'.format(x) + ' ' + 'y:{0:.4f}'.format(y))
+
+fig.canvas.mpl_connect('motion_notify_event', mouse_move)           
+plt.show()
+```
+
+
+
+**参考**:
+
+[Get mouse coordinates without clicking in matplotlib](https://stackoverflow.com/questions/51349959/get-mouse-coordinates-without-clicking-in-matplotlib)<br/>
+[Possible to make labels appear when hovering over a point in matplotlib?](https://stackoverflow.com/questions/7908636/possible-to-make-labels-appear-when-hovering-over-a-point-in-matplotlib)<br/>
+[canvas.mpl_connect in jupyter notebook](https://stackoverflow.com/questions/43923313/canvas-mpl-connect-in-jupyter-notebook)
+
+
+## 如何画直方图?
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Fixing random state for reproducibility
+np.random.seed(19680801)
+
+mu, sigma = 100, 15
+x = mu + sigma * np.random.randn(10000)
+
+# the histogram of the data
+n, bins, patches = plt.hist(x, 50, density=True, facecolor='g', alpha=0.75)
+
+
+plt.xlabel('Smarts')
+plt.ylabel('Probability')
+plt.title('Histogram of IQ')
+plt.text(60, .025, r'$\mu=100,\ \sigma=15$')
+plt.xlim(40, 160)
+plt.ylim(0, 0.03)
+plt.grid(True)
+plt.show()
+```
+<p align='center'>
+<img src='https://matplotlib.org/3.1.1/_images/sphx_glr_pyplot_text_001.png'>
+</p>
+
+[参考:Pyplot Text](https://matplotlib.org/3.1.1/gallery/pyplots/pyplot_text.html#sphx-glr-gallery-pyplots-pyplot-text-py)
+
+## 如何在背景中添加网格?
+```python
+plt.grid()
+```
+
+
+## 如何画虚线?
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+x = np.linspace(0, 10, 500)
+dashes = [10, 5, 100, 5]  # 10 points on, 5 off, 100 on, 5 off
+
+fig, ax = plt.subplots()
+line1, = ax.plot(x, np.sin(x), '--', linewidth=2,
+                 label='Dashes set retroactively')
+line1.set_dashes(dashes)
+
+line2, = ax.plot(x, -1 * np.sin(x), dashes=[30, 5, 10, 5],
+                 label='Dashes set proactively')
+
+ax.legend(loc='lower right')
+plt.show()
+```
+
+<p align='center'>
+<img src='https://matplotlib.org/2.1.1/_images/sphx_glr_line_demo_dash_control_001.png'>
+</p>
+
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 500)
+y = np.sin(x)
+
+fig, ax = plt.subplots()
+
+# Using set_dashes() to modify dashing of an existing line
+line1, = ax.plot(x, y, label='Using set_dashes()')
+line1.set_dashes([2, 2, 10, 2])  # 2pt line, 2pt break, 10pt line, 2pt break
+
+# Using plot(..., dashes=...) to set the dashing when creating a line
+line2, = ax.plot(x, y - 0.2, dashes=[6, 2], label='Using the dashes parameter')
+
+ax.legend()
+plt.show()
+```
+<p align='center'>
+<img src='https://matplotlib.org/3.1.1/_images/sphx_glr_line_demo_dash_control_001.png'>
+</p>
+
+
+[A simple plot with a custom dashed line](https://matplotlib.org/2.1.1/gallery/lines_bars_and_markers/line_demo_dash_control.html)<br/>
+[Customizing dashed line styles](https://matplotlib.org/3.1.1/gallery/lines_bars_and_markers/line_demo_dash_control.html)<br>
+
+
+## 如何画一个势能面?
+```python
+import numpy as np 
+import matplotlib.pyplot as plt 
+import matplotlib.cm as cm 
+
+def main():
+    x_min =  -1.2
+    x_max = 1.2
+    y_min = -0.2 
+    y_max = 1.2
+
+    offset = 0.07
+    n = 100
+
+    x = np.linspace(x_min,x_max,n)
+    y = np.linspace(y_min,y_max,n)
+
+
+    X,Y = np.meshgrid( x , y )
+
+    # print(xv.shape,yv.shape)
+
+    Z = (1 - X**2 - Y**2)**2 +(Y**2)/(X**2 + Y**2)
+    
+    # Draw y coordinate inverse
+    plt.gca().invert_yaxis()
+    # plt.title('$V(x,y) = (1-x^2-y^2)^2 + y^2/(x^2+y^2)$')
+    plt.xlabel('$x$')
+    plt.ylabel('$y$')
+    C = plt.contour(X, Y, Z, 25, colors='green')
+    plt.scatter(-1,0,marker='x',color='tomato')
+    plt.annotate('A=(-1,0)',(-1-offset,0-offset))
+    plt.scatter(1,0,marker='x',color='tomato')
+    plt.annotate('B=(1,0)',(1-offset,0-offset))
+    plt.savefig('./data/potential_surface_ry.png')
+    plt.show()
+
+if __name__ == '__main__':
+    main()
+```
+
+<p align='center'>
+<img src='/images/python/daily_python/visualize/potential_surface_ry.png'>
+</p>
 
 <Livere/>

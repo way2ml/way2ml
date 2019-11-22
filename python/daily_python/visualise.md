@@ -7,7 +7,7 @@ pageClass: python-class
  * @Github: https://github.com/HuangJiaLian
  * @Date: 2019-09-12 14:55:54
  * @LastEditors: Jack Huang
- * @LastEditTime: 2019-11-20 21:22:15
+ * @LastEditTime: 2019-11-22 17:01:22
  -->
 
 # 可视化
@@ -689,5 +689,26 @@ if __name__ == '__main__':
 <p align='center'>
 <img src='/images/python/daily_python/visualize/potential_surface_ry.png'>
 </p>
+
+
+## 如何解决使用了plt.show()却不显示图片的问题?
+修改`matplotlibrc`文件. 
+
+首先通过下面的方法找到它的位置:
+```python
+>>> import matplotlib
+>>> matplotlib.matplotlib_fname()
+```
+
+然后改变里面的backend选项，可选项有:
+```python
+['GTK', 'GTKAgg', 'GTKCairo', 'FltkAgg', 'MacOSX', 'QtAgg', 'Qt4Agg',
+'TkAgg', 'WX', 'WXAgg', 'CocoaAgg', 'agg', 'cairo', 'emf', 'gdk', 'pdf',
+'ps', 'svg', 'template']
+```
+然后一个个尝试，直到找到你可以用的.
+
+[Stack Overflow:matplotlib does not show my drawings although I call pyplot.show()](https://stackoverflow.com/questions/7534453/matplotlib-does-not-show-my-drawings-although-i-call-pyplot-show)
+
 
 <Livere/>

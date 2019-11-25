@@ -292,3 +292,67 @@ pip --version
 pip install tensorflow-gpu==2.0
 ```
 
+
+## 一些常用的函数
+1. `tf.nn.softplus(features, name=None)`
+$$
+f(x) = \ln (1+e^x)
+$$
+
+<p align='center'>
+<img src='/images/python/daily_python/tensorflow/softplus.svg' width='50%'>
+</p>
+
+2. `tf.contrib.distributions.Normal`
+$$
+f\left(x | \mu, \sigma^{2}\right)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-\mu)^{2}}{2 \sigma^{2}}}
+$$
+
+<p align='center'>
+<img src='/images/python/daily_python/tensorflow/Normal_Distribution_PDF.svg' width='50%'>
+</p>
+
+The probability density function (pdf) is,
+
+```none
+pdf(x; mu, sigma) = exp(-0.5 (x - mu)**2 / sigma**2) / Z
+Z = (2 pi sigma**2)**0.5
+```
+
+where `loc = mu` is the mean, `scale = sigma` is the std. deviation, and, `Z`
+is the normalization constant.
+
+标准差 $\sigma$ 是方差的算术平方根,不能是负数。
+
+3. `tf.squeeze()`
+下面有个例子:
+```python
+import tensorflow as tf
+tf.enable_eager_execution() ##if using TF1.4 for TF2.0 eager mode is the default mode.
+####example 1
+a = tf.constant(value=[1,3,4,5],shape=(1,4))
+print(a)
+Output : tf.Tensor([[1 3 4 5]], shape=(1, 4), dtype=int32)
+
+#after applying tf.squeeze shape has been changed from  (4,1) to (4, )
+b = tf.squeeze(input=a)
+print(b)
+output: tf.Tensor([1 3 4 5], shape=(4,), dtype=int32)
+####example2
+a = tf.constant(value=[1,3,4,5,4,6], shape=(3,1,2))
+print(a)
+Output:tf.Tensor(
+[[[1 3]]
+ [[4 5]]
+ [[4 6]]], shape=(3, 1, 2), dtype=int32)
+
+#after applying tf.squeeze shape has been chnaged from (3, 1, 2) to (3, 2)
+b = tf.squeeze(input=a)
+print(b)
+Output:tf.Tensor(
+[[1 3]
+ [4 5]
+ [4 6]], shape=(3, 2), dtype=int32)
+```
+
+[stackoverflow](https://stackoverflow.com/questions/41482823/what-do-the-functions-tf-squeeze-and-tf-nn-rnn-do)

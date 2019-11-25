@@ -228,6 +228,7 @@ module.exports = {
                 'd_create_env',
                 'a2c',
                 'PPO',
+                'continuous_action_control',
                 'GAIL',
                 'pendulum_v0',
             ],

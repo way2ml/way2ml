@@ -23,7 +23,7 @@ print(x)
 ```python
 import re
 s = '1x100.csv'
-re.findall('\d+')
+re.findall('\d+',s)
 ```
 
 ## 如何将字符串列表按数字大小排序？| How to sort string list by number？

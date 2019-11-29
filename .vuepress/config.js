@@ -163,6 +163,7 @@ module.exports = {
                 'signal_processing',
                 'numpy',
                 'pandas',
+                'pytables',
                 'data_processing',
                 'visualise',
                 'sound',

@@ -15,6 +15,7 @@
     "markdown-it-task-checkbox": "^1.0.6"
   },
   "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.2.0",
     "markdown-it-katex": "^2.0.3",
     "vuepress": "^1.2.0"
   },

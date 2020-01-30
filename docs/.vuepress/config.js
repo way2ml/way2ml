@@ -26,13 +26,12 @@ module.exports = {
         ['link', {rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css'}], 
         ['link', {rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css'}] 
     ],  
-    plugin:[
-        [
-            '@vuepress/register-components',
-            {
-                componentsDir: './components'
-            }
-        ]
+    plugins:[
+        '@vuepress/back-to-top',
+        '@vuepress/register-components',
+        {
+            componentsDir: './components'
+        }
     ],
     themeConfig:{
         smoothScroll: true,
@@ -44,6 +43,8 @@ module.exports = {
         editLinks: true,
         // custom text for edit link. Defaults to "Edit this page"
         editLinkText:'编辑此页',
+        // 是否允许默认的搜索
+        // search: false,
         nav:[
             {text: 'Home', link:'/'},
             {text: 'Linux',

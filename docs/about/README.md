@@ -13,8 +13,8 @@
 </p>
 
 - Email:  jackhuang.wz@gmail.com
-- Bilibili: [阿梁又叫Jack_Huang](https://space.bilibili.com/233674060)
-- Youtube: [Jack Huang](https://www.youtube.com/channel/UCSMCgLJ5gQwYrBCZ8pBY-cg?view_as=public)
+- Bilibili: [阿梁又叫Jack_Huang](https://space.bilibili.com/390042436/)
+- Youtube: [Jack Huang](https://www.youtube.com/channel/UCmKFJQiyNsN1FNfimDN5YQQ)
 - Website: [www.way2ml.com](www.way2ml.com)
 
 # 黄刚

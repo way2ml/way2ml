@@ -35,6 +35,15 @@ module.exports = {
         ]
     ],
     themeConfig:{
+        smoothScroll: true,
+        // Assumes GitHub. Can also be a full GitLab url.
+        repo: 'way2ml/way2ml',
+        // if your docs are not at the root of the repo:
+        docsDir: 'docs',
+        // defaults to false, set to true to enable
+        editLinks: true,
+        // custom text for edit link. Defaults to "Edit this page"
+        editLinkText:'编辑此页',
         nav:[
             {text: 'Home', link:'/'},
             {text: 'Linux',

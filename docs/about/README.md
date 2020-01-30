@@ -12,7 +12,7 @@
 <img src='/images/about/jack.png' width='30%'>
 </p>
 
-- Email:  jackhuang719668276@163.com
+- Email:  jackhuang.wz@gmail.com
 - Bilibili: [阿梁又叫Jack_Huang](https://space.bilibili.com/233674060)
 - Youtube: [Jack Huang](https://www.youtube.com/channel/UCSMCgLJ5gQwYrBCZ8pBY-cg?view_as=public)
 - Website: [www.way2ml.com](www.way2ml.com)

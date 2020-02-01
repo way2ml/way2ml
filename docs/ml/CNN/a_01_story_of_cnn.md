@@ -63,12 +63,11 @@ data/
 
 记得持续关注我: 
 1. 主页: [www.way2ml.com](www.way2ml.com)
-2. Bilibili:[阿梁又叫Jack_Huang](https://space.bilibili.com/233674060)
-3. Youtube: [Jack Huang](https://www.youtube.com/channel/UCSMCgLJ5gQwYrBCZ8pBY-cg?view_as=public)
+2. Bilibili:[阿梁又叫JackHuang](https://space.bilibili.com/390042436)
+3. Youtube: [Jack Huang](https://www.youtube.com/channel/UCmKFJQiyNsN1FNfimDN5YQQ)
 4. 微信公众号:阿梁又叫JackHuang
 5. Github: [HuangJiaLian](https://github.com/HuangJiaLian)
-6. 邮箱: jackhuang719668276@163.com
-7. 微信: JackHuang_China 
+6. 邮箱: jackhuang.wz@gmail.com
 
 
 

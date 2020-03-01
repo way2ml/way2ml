@@ -16,6 +16,7 @@ module.exports = {
         toc: { includeLevel: [1, 2, 3, 4, 5] }, // 内置插件设置：目录显示标题的层级。
         extendMarkdown: md => { 
           // 外部插件设置：markdown-it-plugin。
+          md.use(require('markdown-it'))
           md.use(require('markdown-it-katex'))
           md.use(require('markdown-it-mark'))
           md.use(require('markdown-it-sup'))

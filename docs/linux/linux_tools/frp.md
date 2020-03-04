@@ -2,7 +2,8 @@
 pageClass: linux-class
 ---
 
-# 没有公共IP却想使用远程计算机怎么办? 
+# 任意两台电脑之间使用SSH🤔
+没有公共IP却想使用远程计算机怎么办? 
 ```
 frp 实现内网穿透
 natfrp.org 提供免费的 frp server 服务

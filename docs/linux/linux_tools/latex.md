@@ -1,16 +1,16 @@
 ---
 pageClass: linux-class
 ---
-# Latex快速查询手册
+# Latex快速查询🤪
 
 
-[<p align="center">
+<p align="center">
 <img src='/images/linux/linux_tools/latex/latexsheet-0.png'>
-</p>](/images/linux/linux_tools/latex/latexsheet-0.png)
+</p>
 
-[<p align="center">
+<p align="center">
 <img src='/images/linux/linux_tools/latex/latexsheet-1.png'>
-</p>](/images/linux/linux_tools/latex/latexsheet-1.png)
+</p>
 
 字母上面加一点： `\dot{x}`:$\dot{x}$
 

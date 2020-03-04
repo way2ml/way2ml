@@ -9,7 +9,7 @@
 
 module.exports = {
     title: 'Way To Machine Learning',
-    description: 'Welcome to this wonderful journey.',
+    description: ' ',   
     markdown: {
         anchor: { permalink: true }, // 内置插件设置：文件内部链接。
         lineNumbers: true, // 设置代码块中是否显示行号。
@@ -28,11 +28,20 @@ module.exports = {
         ['link', {rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css'}] 
     ],  
     plugins:[
+        // 回到顶端
         '@vuepress/back-to-top',
+        // 显示进度条
+        'vuepress-plugin-nprogress', 
         '@vuepress/register-components',
         {
             componentsDir: './components'
-        }
+        },
+        // 图片缩放
+        '@vuepress/medium-zoom',
+        // 代码一键复制
+        ['vuepress-plugin-code-copy', true],
+        // 流程图
+        'flowchart'
     ],
     themeConfig:{
         smoothScroll: true,
@@ -116,6 +125,7 @@ module.exports = {
                 '',
                 'download_tool',
                 'latex',
+                'markdown',
                 'gnome_calculatar',
                 'git',
                 'raspberry_pi',

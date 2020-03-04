@@ -1,38 +1,124 @@
 ---
 pageClass: ml-class
 ---
-# GAN 生成对抗神经网络 
-Generative Adversarial Network (GAN)
+# GAN入门，有这篇就够了🎉🎉🎉
+<p align='center'>
+<img src='/images/ml/GAN/deepdream.png' width='100%'>
+</p>
 
-## GAN的目的是什么? 
-我们拿生成图片来说清楚GAN背后是在做什么。
+2016年某日，有人在[Quora](https://www.quora.com)上抛出问题: [在深度学习领域有哪些正在或将要爆发的大突破？](https://www.quora.com/What-are-some-recent-and-potentially-upcoming-breakthroughs-in-deep-learning) 
+不曾料到Facebook AI首席科学家[杨立昆](http://yann.lecun.com/)对这个问题做出了详细的回答。他提到：
+> 在深度学习领域最近有太多的发展让我没有办法在这里一一列举。
+> 在我看来最重要的是对抗训练(也被叫做生成对抗神经网络, 简称GAN). 最开始是由[Goodfellow](http://www.iangoodfellow.com/)在学生时期提出来的。
+> 我想这个(指GAN)和那些正在被提出的变形是过去10年来最有趣的想法。
 
-想象我们有很多玲爱画的卡通头像。我们将每一张图看做是高维空间中的一个点$x$, 由于所有的这些卡通头像都是玲爱画的,因此所有的这些点一定
-是服从玲爱风格的某个分布的，我们把这个分布叫做$P_{data}(x)$; 也就是说，只要从这个分布里面随便采样一个点$x$, 那么这个点$x$对应的
-卡通头像都应该和我们现有的玲爱卡通头像数据库里面的卡通头像是几乎一样的。
+可以看到他给了GAN非常高的评价🎉，一方法说最重要的是GAN，另外一方面更是说GAN是过去10年来最有趣的想法。
+杨立昆最重要的贡献是在图像处理领域，他提出了卷积神经网络(CNN), 因此也被叫做卷积神经网络之父🧔🏻。我猜想他
+对GAN给出这么高的评价很有可能是GAN在图像领域有着广泛的应用。
 
-::: tip 我们的最终目的
-我们想要机器学会自己==生成玲爱风格==的卡通头像。我们要的是一个生成器。
+
+<Cimg src='/images/ml/GAN/yann-lecun.jpg' width='100%' caption='卷积神经网络之父 杨立昆(Yann Lecun)正在向学习GAN的我们微笑'/>
+
+例如，文章开头的图片就是GAN应用的一个很好的例子。这是一个叫做[Deep Dream Generator](https://deepdreamgenerator.com)
+的网页应用，用户JosieArt上传一张大象🐘图片，然后选择了图片左下角的风格，通过训练好的生成器
+就可以生成相应风格的图片。得到的效果是否还很不错呢？
+
+当然这里提到的只是GAN应用的冰山一角，在[Gans Awesome Applications](https://github.com/nashory/gans-awesome-applications)
+上可以查看大量GAN的应用。
+
+此刻或许大家就会好奇🤔，到底什么是GAN？ 
+
+## 什么是GAN🤔️
+GAN有两个神经网络🕸🕸。
+
+第一个叫**判别器**(**Discriminator**)，记做$D(Y)$。它得到输入$Y$(比如一张图)后输出一个
+值，这个值表示了$Y$看起来是否"真实"。$D(Y)$可以看作某种能量函数，当$Y$是真实样本时，函数的值接近0, 
+反之，当图片$Y$的噪声很大或者很奇怪时，函数值为正。 
+
+
+<Cimg src='/images/ml/GAN/gans.jpg' width='100%' caption='Generative adversarial network(GAN)'/>
+
+
+另一个网络叫做**生成器**(Generator), 记为$G(Z)$。
+这里的$Z$通常是从一个简单分布(例如高斯分布)随机抽样得到的向量，生成器$G(Z)$的作用是生成图片，这些
+生成的图片会被用来训练判别器$D(Y)$(给真实图片较低的值，其他的图片较高的值)。
+
+训练$D$的过程中,给它一张真实的图片，使其调整参数输出较低的值；再给它一张$G$生成的图片，让它调整参数
+输出较大的值$D(G(Z))$。
+
+另一方面，在训练$G$的时候, 它会调整内部的参数使得它生成的图片越来越真实。也就是它一直在优化使得它产生的
+图片能够骗过$D$, 想要让$D$认为它生成的图片是真实的。
+
+也就是说，对这些生成的图片，$G$想要最小化$D$的输出，而$D$想要最大化$D$的输出。所以这样的训练就叫做
+**对抗训练**(adversarial training), 也叫做**GAN**。
+
+## 训练GAN的目标🎯
+就拿生成图片来说清楚GAN背后是在做什么。
+
+日本晨间剧《[半分、青い。](https://ja.wikipedia.org/wiki/%E5%8D%8A%E5%88%86%E3%80%81%E9%9D%92%E3%81%84%E3%80%82)》，讲述了一个活泼小女孩，玲爱，在一次生病后造成左耳失聪，却没因此而气馁，
+在父母与青梅竹马的鼓励下继续开朗的活着，成为东京漫画家的故事。
+
+<Cimg src='/images/ml/GAN/永野芽郁.jpg' width='100%' caption='《半分、青い。》中的玲爱开心地加入GAN训练项目'/>
+
+说这个故事是因为我们这里需要**漫画家**😉。
+
+假设我们有很多玲爱画的卡通头像。每一张图可以看做是高维空间中的一个点$x$, 
+由于所有的这些卡通头像都是玲爱画的,因此认为所有的这些点都服从玲爱风格的某个分布$P_{data}(x)$;
+也就是说，只要从这个分布里面随便采样一个点$x$, 那么这个点$x$对应的
+头像都应该和玲爱画的风格一样。
+
+::: tip GAN的目标
+让机器学会生成玲爱风格的卡通头像。
 :::
-因此我们想要==找到一个Generator,它所产生的样本$x$产生的分布$P_{G}(x)$和玲爱风格的分布$P_{data}(x)$越接近越好==; 意思都明白，但应该如何转化，变得可操作呢?
+因此, 我们的目的是要**找到一个生成器,它所产生的样本$x$对应的分布$P_{G}(x)$和玲爱对应的分布$P_{data}(x)$越接近越好**。
+
+但该如何衡量分布的接近程度呢？这是一个问题，我们继续往下看。
+
+## 训练GAN的思路📕
+训练GAN可以分成下面的步骤😅:
+<Cimg src='/images/ml/GAN/daxiang.jpg' width='100%' caption='把大象放进冰箱的3个步骤'/>
+
+**步骤1**<br/>
+搭建一个生成器神经网络,所有参数用$\theta$表示，目的是用来生成图片$x$, 而这些样本$x$都服从分布$P_{G}(x; \theta)$。
+
+**步骤2**<br/>
+在现有头像数据库中抽出$n$张头像, 对应高维空间中$n$个点$\{x_1,x_2,...,x_n \}$。
+
+"抽"的这个动作相当于在分布$P_{data}(x)$里采样， 能够抽到到$\{x_1,x_2,...,x_n\}$, 也就是
+$P_{data}(x_1),P_{data}(x_2),...,P_{data}(x_n)$的概率很高。生成器训练的目标是让$P_{G}(x)$
+和$P_{data}(x)$越接近越好。因此我们希望$P_{G}(x_1; \theta),P_{G}(x_2; \theta),...,P_{G}(x_n; \theta)$
+中的每一个概率都很高, 换句话说就是想要$\prod_{k=1}^n P_{G}(x_k; \theta)$ 的值越大越好。
+
+::: tip 提示
+$x_1$被抽到了,那么一定是$P_{data}(x_1)$的概率高才会被抽到。
+:::
+
+**步骤3**<br/>
+训练网络找到参数
+
+$$
+\theta^* = \arg \max_{\theta} \prod_{k=1}^n P_{G}(x_k; \theta)
+$$
+
+其中$\prod_{k=1}^n P_{G}(x_k; \theta)$叫做样本的**Likelihood**。 
+可以证明:
+
+$$
+\arg \max_{\theta} \prod_{k=1}^n P_{G}(x_k; \theta) = \arg \min_{\theta} [KL(P_{data}||P_{G})]
+$$
+
+这里$KL$指的是**KL Divergence**, 它可以表示[两个分布的接近程度](/ml/Others/entropy_cross_entropy_and_kl_divergence.md)。
+上面这个式子说的是最大化**Likelihood**和最小化**KL Divergence**是同一个意思。
+
+因此这个步骤变为:训练网络找到参数
+
+$$
+\theta^* = \arg \min_{\theta} [KL(P_{data}||P_{G})]
+$$
 
 
-## GAN大概的思路
-我们就这样去做:
-
-准备,搭建一个神经网络,所有参数用$\theta$表示，目的是用来生成图片$x$, 而这些样本$x$都服从$P_{G}(x; \theta)$这个分布。
-
-Step1, 我们在现有的头像数据库中抽出$n$张头像, 也就是对应高维空间中$n$个点$\{x_1,x_2,...,x_n \}$; 
-现在我们在$P_{data}(x)$这个分布里面采样得到了$\{x_1,x_2,...,x_n\}$, 也就是可以解释为$P_{data}(x_1),P_{data}(x_2),...,P_{data}(x_n)$的概率很高。 ==我们从结果倒过去看，既然$x_1$被抽到了,那么一定是$P_{data}(x_1)$的概率高才会被抽到。== 因为我们的目标是$P_{G}(x)$和$P_{data}(x)$越接近越好。
-因此我们想要$P_{G}(x_1; \theta),P_{G}(x_2; \theta),...,P_{G}(x_n; \theta)$中的每一个概率都很高, 换句话说就是想要
-$\prod_{k=1}^n P_{G}(x_k; \theta)$ 的值越大越好。
-
-Step2,找到$\theta^* = \arg \max_{\theta} \prod_{k=1}^n P_{G}(x_k; \theta)$ 
-
-::: tip Maximize Likelihood vs Minimize KL Divergence
-$\prod_{k=1}^n P_{G}(x_k; \theta)$ 看做是生成的样本的Likelihood, 接下来要说的一件事是Maximize这个Likelihood和Minimize某个Divergence是一样的。
-
-$\theta^* = \arg \max_{\theta} \prod_{k=1}^n P_{G}(x_k; \theta) = \arg \max_{\theta} \log \prod_{k=1}^n  P_{G}(x_k; \theta)$
+::: details 证明： 最大化Likelihood = 最小化KL Divergence
+$\arg \max_{\theta} \prod_{k=1}^n P_{G}(x_k; \theta) = \arg \max_{\theta} \log \prod_{k=1}^n  P_{G}(x_k; \theta)$
 
 $= \arg \max_{\theta} \sum_{k=1}^n \log P_{G}(x_k; \theta)$, 由于$\{x_1,x_2,...,x_n\}$都来自于$P_{data}(x)$
 这个分布, 因此:
@@ -49,137 +135,144 @@ $= \arg \max_{\theta} [- KL(P_{data}||P_{G})]$
 
 $= \arg \min_{\theta} [KL(P_{data}||P_{G})]$
 
-
-总结一下就是:
-
-==Maximize Likelihood和Minimize KL Divergence基本上是一个意思。==
-
+证毕
 :::
 
-## GAN具体是怎么做的? 
-### 为Generator搭建一个神经网络
-从上一个小结的准备工作中我们搭建了一个神经网络, 这个神经网络就是我们最后想要学习的Generator, 待它学习好了，我们就可以利用它
-来生成漫画家玲爱风格的卡通头像了。
+## GAN具体步骤
+### 搭建生成器
+从上一个小结的准备工作中我们搭建了一个神经网络, 这个神经网络就是我们最后想要学习的生成器, 待它学习好了，我们就可以利用它
+来生成玲爱风格的卡通头像了。
 
-这个神经网络具体应该是什么样子的呢? 输入是什么? 输出是什么呢? 我们看下面这张图: 
+这个神经网络具体应该是什么样子的呢? 我们看下面这张图: 
 
-<p align='center'>
-<img src='/images/ml/GAN/generator.png' width='50%'>
-</p>
+<Cimg src='/images/ml/GAN/generator.png' width='50%' caption='GAN中生成器(Generator)的结构'/>
 
-上面这张图中Generator的输入是128维的一个向量, 这些输入的值可以控制输出头像的一些特征，例如头发的颜色，头发的长短, 肤色，性别等等。
-[这里](https://make.girls.moe/#/)有一个在线的卡通头像生成项目，去玩一下就很容易理解这里神经网络G的输入是什么了。输出当然最后
-得构成一张图片，例如这里的64*64个像素点最后就可以拼成一张Greyscale的图片。
+
+输入是128维的一个向量, 这些输入的值可以控制输出头像的一些特征，例如头发的颜色，头发的长短, 肤色，性别等等。
+[make.girls.moe](https://make.girls.moe/#/)是一个在线的卡通头像生成项目，去玩一下就很容易理解这里神经网络G的输入是什么了。
+
+输出构成一张图片，这里的64x64个像素点最后可以拼成一张灰度图。
 
 ::: tip Tip
 这里的输入可以看做是128维空间中的一个点;输出是4096维空间中的一个点; 输入数据我们从一个固定的分布中去采样(例如:128维的高斯分布);
 我们期望神经网络(G)的输出数据(图片)的分布$P_{G}(x)$能够和$P_{data}(x)$的分布越接近越好。
 :::
 
-### 确认我们的最终目的
-这样我们的最终目的换个说法就是:
-
-::: tip 最终目的
+### 确认目的
+训练最终目的: 找到
 $$
 G^* = \arg \min_{G} Div(P_{G}, P_{data})
 $$
-就是说我们想要找到一个最好的Generator $G^*$, 它能够使得$P_{G}$和$P_{data}$的某种Divergence越小越好。
-:::
 
-接下来。我们从我么的目的出发，一步一步走下去。 自然地，你就会问$Div(P_{G}, P_{data})$我们怎么算哇? 
+就是说我们想要找到一个最好的生成器$G^*$, 它能够使得$P_{G}$和$P_{data}$的某种Divergence越小越好(前面提到的$KL$是一种具体的Divergence)。
+有目标后，一步一步走下去。 自然地，你就会问$Div(P_{G}, P_{data})$我们该怎么算? 
 
-### 如何计算$Div(P_{G}, P_{data})$? 
-任何一种Divergence都是有公式的，原则上直接带入公式就可以算出来了。但是这里的问题是我们不知道$P_{G}, P_{data}$的表达式是什么。
+### 计算$Div(P_{G}, P_{data})$ 🧮
+任何一种Divergence都是有公式的，我在文章["什么是熵"](/ml/Others/entropy_cross_entropy_and_kl_divergence.md)中有提到。原则上直接带入公式就可以算出来了。但是这里的问题是我们不知道$P_{G}, P_{data}$的表达式是什么。
 
-尽管我们有玲爱画的漫画头像库，但是我们也不知道她画的头像服从什么分布啊? ($P_{data}$不知道)<br/>
-尽管我们有Generator可以生成很多的头像,但是我们也不知道这些生成的头像服从什么分布啊? ($P_{G}$不知道)
-
+一方面，尽管我们有玲爱画的漫画头像库，但是我们也不知道她画的头像服从什么分布, 即$P_{data}$未知; 
+另一方面，即使可以利用生成器生成很多的头像,但是我们也不知道这些生成的头像服从什么分布, 即$P_{G}$未知。
 那应该如何计算两个分布的Divergence呢? 我们的手上只有两个分布的样本? 可以直接比较样本吗? 
 
-可以直接比较样本吗? 可以直接比较样本吗? 可以直接比较样本吗? 脑海中不断回荡着这句话。
+答案是肯定的。这件事玲爱的漫画老师[秋風羽織](https://ja.wikipedia.org/wiki/%E8%B1%8A%E5%B7%9D%E6%82%A6%E5%8F%B8)
+先生可以帮我们大忙。
 
-想象我们人去看玲爱画的头像和机器画的头像，在训练机器的时候我们总是那个最残酷的人，怎么残酷了呢? 
-只要是机器画的，我们就说画得差;只要是玲爱画的，我们就说画得真好。我们永远说机器的差，玲爱的好，机器没有办法，为了
-得到我们的奖励它就会像玲爱学习。这样的结果是机器真的可以变得和玲爱一样优秀。
+<Cimg src='/images/ml/GAN/秋风.jpg' width='100%' caption='《半分、青い。》中的秋風羽織正在查看两类图片'/>
 
-::: tip 最终的目的, 我们期待的机器(Generator)
-机器真的可以变得和玲爱一样优秀的这个时候，也就是$P_{data}(x)$和$P_{G}(x)$很接近的时候, 也就是$Div(P_{G},P_{data})$很小的时候， 这不就是我们想要达到的那个时候吗。
+我们将玲爱和生成器$G$画的头像分别拿去给秋风先生过目，让他说说谁画得更真实。毕竟是玲爱是秋风先生
+的得意弟子，因此他总是想也不想就直接说玲爱的画的更好，还总是说生成的差太多。
+生成器器没有办法，为了得到秋风先生的的夸赞它就会像玲爱学习。
+这样的结果是机器或许真的可以变得和玲爱一样优秀。
+
+
+::: tip 我们的期待
+机器真的可以变得和玲爱一样优秀；也就是$P_{data}(x)$和$P_{G}(x)$可以很接近；也就是$Div(P_{G},P_{data})$很小。
 :::
 
-在训练机器(Generator)的过程中, 有一个关键的角色:我们-优秀的人类; 我们是不可能跑到算法里面去的，因此我们需要另外一个角色来代替
-我们。 让我们使用神经网络吧! 这个神经网络(Discriminator)只做一件事情: 给机器画的画低分，给玲爱画的画高分。这个另一个自己不是天生聪明的，每当机器(Generator)升级之后, 另一个自己(Discriminator)也需要再学习新的知识才能够很好地判断是谁画的。好在有很好的资料(训练数据,来自两个分布的样本)可以让它学习(更新网络参数参数)。
+可以看到，在训练生成器的过程中, 有一个举足轻重的角色: **秋風羽織**先生。
+在训练过程中，判别器可能会产生上万张图片，难道你真的准备让秋風先生去做这么无聊的事？😳
 
+当然不行，因此我们需要另外一个角色来代替秋風先生，那便是👉👉👉判别器。
+判别器就做一件事情: 给生成器的生成的头像打低分，给玲爱画的打高分。
+开始时判别器的技能当然比不过秋風先生，每当生成器升级之后, 判别器也需要更新技能才能够很好地判断。
+好在有很好的资料(训练数据,来自两个分布的样本)可以供它升级(更新网络参数参数)。因此我们希望最终可
+以得到一个像秋風先生那般厉害的判别器$D^*$。
 
-不能够直接算$Div(P_{G}, P_{data})$, 我们只能间接地训练一个Discriminator来判断说一张图片有多像玲爱画的,很像网络输出的值就
-接近1, 不像就接近零。这里的像和不像就反映了$Div(P_{G}, P_{data})$。 
+不能够直接算$Div(P_{G}, P_{data})$, 我们只能间接地训练一个判别器来判断一张图片有多像玲爱画的,
+很像判别器输出的值就接近1, 不像就接近0; 通过判别器的输出$D$,我们再构造一个函数$V$, 这个函数就
+反映了$Div(P_{G}, P_{data})$。 
 
-==因此, 要算$Div(P_{G}, P_{data})$我们就需要训练一个Discriminator来判断Generator生成的Sample到底有多像玲爱的画。
-Discriminator的输出就反映了$Div(P_{G}, P_{data})$。==
-
-我们的最终目标就变成
-
-::: tip 最终目标
+<!-- ::: tip 最终目标:找到最好的生成器
 $$
 G^* = \arg \min_{G} \max_{D} V(G,D)
 $$
+::: -->
+
+### 训练判别器
+要反映$Div(P_{G}, P_{data})$, 就需要有一个判别器网络。
+判别器的结构是什么样的呢?
+
+<Cimg src='/images/ml/GAN/discriminator.png' width='50%' caption='GAN中判别器(Discriminator)的结构' />
+
+可以看到，判别器的输入是图片，输出是一个数,这个数反映的是这张图有多像玲爱画的。
+
+我么如何才能得到像秋風先生那样厉害的判别器$D^*$呢？ 我们还需要做一件事，使用判别器构造出一个
+二分类器，即是否判断输入图是否为玲爱的。
+
+分类器的输出:
+
+$$
+V = \mathbb{E}_{x \sim P_{data}}[\log D(x)] + \mathbb{E}_{x \sim P_{G}}[\log (1-D(x))]
+$$
+
+::: details 解释
+$V$的表达式可以这样理解，在训练判别器计算分类器输出时：
+1. 当图片$x$来自玲爱数据集时，$x$带入$\mathbb{E}_{x \sim P_{data}}[\log D(x)]$计算。
+2. 当图片$x$来自生成器数据集时，$x$带入$\mathbb{E}_{x \sim P_{G}}[\log (1-D(x))]$计算。
+
+可以看到在1中$V$和判别器$D$相关; 在2中，由于图片$x$来自生成器，因此$V$还与$G$有关，因此$V$写作
+$V(D,G)$
 :::
 
-### 如何训练Discriminator? 
-要反映$Div(P_{G}, P_{data})$, 我们就要有一个训练好的Discriminator的输出。要得到这个输出必须要把这个Discriminator训练好。
-Discriminator是一个网络，那它又长什么样呢? 它的输入和输出是什么呢? 
-
-<p align='center'>
-<img src='/images/ml/GAN/discriminator.png' width='50%'>
-</p>
-
-训练好的Discriminator的输入是Generator生成的图，输出是一个Scalar,反映的是这张图有多像玲爱画的图。
-
-但是我们如何得到这个很好的Discriminator呢? 训练它。 数据从哪里来呢? 采样得到。训练这个Discriminator其实就是训练一个
-二分类器，判断说是还是不是玲爱画的画。
-
-玲爱的图的样本，从$P_{data}(x)$中采样得到，直白点就是从玲爱数据库中拿出$n$张照片, 每张照片都对应了一个标签'1';<br/>
-机器的图的样本, 从$P_{G}(x)$中采样得到, 直白点说就是让Generator生成$n$张照片, 每张照片对应一个标签'0';
-
-用这些样本(训练数据),就可以去训练我们的Discriminator了, 这就是最基本监督学习。
-
-你当然会问，既然是监督学习，那你优化的目标是什么? 有目标才有动力，因此很重要。
-
+于是判别器最优解，
 $$
-D^* = \arg \max_{D}V(D,G) = \arg \max_{D} (\mathbb{E}_{x \sim P_{data}}[\log D(x)] + \mathbb{E}_{x \sim P_{G}}[\log (1-D(x))])
+D^* = \arg \max_{D}V(D,G)
 $$
 
-也就是说我们通过调整参数，找到一个最好的Discriminator $D^*$ 它可以使得$V(D,G)$的值最大; 要使得$V(D,G)$更大，也就是说想要
-Discriminator学会给玲爱数据库的的所有图片高分$D(x)$的值趋近于1，给Generator生成的所有图片低分$D(x)$的值趋近于0。
+通过调整参数，尝试找到最好的判别器$D^*$，它使得$V$的值越大越好; 要使$V$更大，
+判别器就要学会:
+- 给玲爱的画高分，即让$D(x)$的值越接近1越好;
+- 给生成的画低分,即让$D(x)$的值越接近0越好。
 
-即利用从两个分布的采样数据，使用监督学习的方法就可以训练Discriminator了。话是这样说，很简单，但是新的问题又出现了。
+新的问题是:
 
 $$V(D,G) = \mathbb{E}_{x \sim P_{data}}[\log D(x)] + \mathbb{E}_{x \sim P_{G}}[\log (1-D(x))]$$
 
-该怎么算啊? 
+该怎么算? 
 
-### 如何计算V(D,G)？
-$V(D,G) = \mathbb{E}_{x \sim P_{\text {data}}}[\log D(x)]+\mathbb{E}_{x \sim P_{G}}[\log (1-D(x))]$中的期望我们用采样的均值代替。
-
-- 从$P_{data}(x)$中采样得到样本 $\left\{x^{1}, x^{2}, \ldots, x^{m}\right\}$, 正样本, 标签是$1$
-- 从$P_G(x)$中采样得到样本 $\left\{\tilde{x}^{1}, \tilde{x}^{2}, \ldots, \tilde{x}^{m}\right\}$, 负样本, 标签是$0$
-
-$V(D,G)$就变成了:
+使用均值的方式去近似期望，于是
 
 $$
 \tilde{V}=\frac{1}{m} \sum_{i=1}^{m} \log D\left(x^{i}\right)+\frac{1}{m} \sum_{i=1}^{m} \log \left(1-D\left(\tilde{x}^{i}\right)\right)
 $$
 
-到这里我们这条路走到底了，我们要回去做该做的事了。
-
-### GAN总的算法
-
-<p align='center'>
-<img src='/images/ml/GAN/gan_alg.png' width='50%'>
-</p>
+其中
+- $x^i$来自玲爱数据集, 标签为**1**,
+- $\tilde{x}^i$来自生成器数据集, 标签为**0**。
 
 
-<!-- 无他,这一部分就是公式的推导了。
+### GAN算法
 
+<Cimg src='/images/ml/GAN/gan_alg.png' width='80%' caption="GAN 算法"/>
+
+@flowstart
+st=>start: Start
+e=>end: End
+
+st->e
+@flowend
+
+<!-- 
 $V(D,G) = E_{x \sim P_{\text {data}}}[\log D(x)]+E_{x \sim P_{G}}[\log (1-D(x))]$
 
 $=\int_{x} P_{\text {data}}(x) \log D(x) d x+\int_{x} P_{G}(x) \log (1-D(x)) d x$
@@ -223,9 +316,18 @@ $$
 
 最大值点找到了, 我们看看此时的最大值是多少。 -->
 
+
 **参考**:
-
-[台大李宏毅老师GAN课程:GAN Lecture 4 (2018): Basic Theory](https://youtu.be/DMA4MrNieWo)
-
+1. 首页图片来自JosieArt [Deep Dream Generator](https://deepdreamgenerator.com/ddream/92vgqih729l)
+2. 国立台湾大李宏毅老师GAN课程 [GAN Lecture 4 (2018): Basic Theory](https://youtu.be/DMA4MrNieWo)
+3. 维基百科: [Generative adversarial network](https://en.wikipedia.org/wiki/Generative_adversarial_network)
+4. Medium: [Understanding Generative Adversarial Networks (GANs)](https://towardsdatascience.com/understanding-generative-adversarial-networks-gans-cd6e4651a29)
+5. GAN示意图: [Generative Adversarial Network (GAN)](https://www.geeksforgeeks.org/generative-adversarial-network-gan/)
+6. 维基百科：[半分、青い](https://ja.wikipedia.org/wiki/%E5%8D%8A%E5%88%86%E3%80%81%E9%9D%92%E3%81%84%E3%80%82)
+7. 步骤示意图: [一个大象放进冰箱的过程](https://aminoapps.com/c/art/page/blog/yi-ge-da-xiang-fang-jin-bing-xiang-de-guo-cheng/WXhX_u7epNpZLE8n3W6B5olrzlNmzz)
+8. [火熱的生成對抗網路（GAN），你究竟好在哪裡](https://www.itread01.com/content/1548965366.html)
+9. Stackoverflow [image with caption - vuepress](https://stackoverflow.com/questions/52335784/image-with-caption-vuepress)
+10. [html使用简单标签改变字体（加粗、斜体...）](https://blog.csdn.net/lsbd1993/article/details/26484641)
+11. [Flowchart](https://flowchart.vuepress.ulivz.com/)
 
 <Livere/>

@@ -5,7 +5,7 @@ pageClass: python-class
 开始这节学习之前，我们先来看看Steady Hand游戏是怎么回事。
 
 <p align="center">
-<iframe src="//player.bilibili.com/player.html?aid=48432827&cid=84825562&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width=480 height=380> </iframe>
+<iframe width="560" height="315"  src="//player.bilibili.com/player.html?aid=48432827&cid=84825562&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 </p>
 
 整个游戏有一个开始点，一个挑战终点，在开始点和结束点之间有一根铜丝。游戏规则是这样: 

@@ -58,7 +58,7 @@ GAN有两个神经网络🕸🕸。
 日本晨间剧《[半分、青い。](https://ja.wikipedia.org/wiki/%E5%8D%8A%E5%88%86%E3%80%81%E9%9D%92%E3%81%84%E3%80%82)》，讲述了一个活泼小女孩，玲爱，在一次生病后造成左耳失聪，却没因此而气馁，
 在父母与青梅竹马的鼓励下继续开朗的活着，成为东京漫画家的故事。
 
-<Cimg src='/images/ml/GAN/永野芽郁.jpg' width='100%' caption='《半分、青い。》中的玲爱开心地加入GAN训练项目'/>
+<Cimg src='/images/ml/GAN/yongyeyayu.jpg' width='100%' caption='《半分、青い。》中的玲爱开心地加入GAN训练项目'/>
 
 说这个故事是因为我们这里需要**漫画家**😉。
 
@@ -177,7 +177,7 @@ $$
 答案是肯定的。这件事玲爱的漫画老师[秋風羽織](https://ja.wikipedia.org/wiki/%E8%B1%8A%E5%B7%9D%E6%82%A6%E5%8F%B8)
 先生可以帮我们大忙。
 
-<Cimg src='/images/ml/GAN/秋风.jpg' width='100%' caption='《半分、青い。》中的秋風羽織正在查看两类图片'/>
+<Cimg src='/images/ml/GAN/qiufeng.jpg' width='100%' caption='《半分、青い。》中的秋風羽織正在查看两类图片'/>
 
 我们将玲爱和生成器$G$画的头像分别拿去给秋风先生过目，让他说说谁画得更真实。毕竟是玲爱是秋风先生
 的得意弟子，因此他总是想也不想就直接说玲爱的画的更好，还总是说生成的差太多。
@@ -261,16 +261,30 @@ $$
 - $\tilde{x}^i$来自生成器数据集, 标签为**0**。
 
 
-### GAN算法
+## GAN算法
+始终要记得GAN我们要的是$G$, 因此第一步搭建$G$网络，第二步是准备训练数据，第三步是训练。
+但是训练的过程我们需要一个判别器$D$来帮助我们分清好坏。因此我们要顺便训练一个$D$。
+总结算法如下: 
+::: tip GAN算法
+- 初始化$D,G$的参数分别为$\theta_d, \theta_g$
+- 循环训练:
+    - 训练$D$, $k$次:
+        - 从分布$P_{data}(x)$中随机采样$m$个 $\{x^1,x^2,...,x^m\}$
+        - 从已知分布$P_{prior}(z)$中随机采样$m$个 $\{z^1,z^2,...,z^m\}$
+        - 使用$\tilde{x}^i=G(z^i)$获得生成数据 $\{\tilde{x}^1, \tilde{x}^2,...,\tilde{x}^m\}$
+        - 更新$D$的参数$\theta_d$来最大化
+            - $\tilde{V}=\frac{1}{m} \sum_{i=1}^{m} \log D\left(x^{i}\right)+\frac{1}{m} \sum_{i=1}^{m} \log \left(1-D\left(\tilde{x}^{i}\right)\right)$
+            - $\theta_{d} \leftarrow \theta_{d}+\eta \nabla \tilde{V}\left(\theta_{d}\right)$
+    - 训练$G$, $1$次:
+        - 重新从已知分布$P_{prior}(z)$中随机采样$m$个 $\{z^1,z^2,...,z^m\}$
+        - 更新$G$的参数来最小化
+            - $\tilde{V}=\frac{1}{m} \sum_{i=1}^{m} \log D\left(x^{i}\right)+\frac{1}{m} \sum_{i=1}^{m} \log \left(1-D\left(\tilde{x}^{i}\right)\right)$
+            - $\theta_{g} \leftarrow \theta_{g}-\eta \nabla \tilde{V}\left(\theta_{g}\right)$
 
-<Cimg src='/images/ml/GAN/gan_alg.png' width='80%' caption="GAN 算法"/>
+:::
 
-@flowstart
-st=>start: Start
-e=>end: End
+GAN在训练判别器时，生成器的参数固定不变；在训练生成器时，判别器的参数固定不变。
 
-st->e
-@flowend
 
 <!-- 
 $V(D,G) = E_{x \sim P_{\text {data}}}[\log D(x)]+E_{x \sim P_{G}}[\log (1-D(x))]$
@@ -328,6 +342,5 @@ $$
 8. [火熱的生成對抗網路（GAN），你究竟好在哪裡](https://www.itread01.com/content/1548965366.html)
 9. Stackoverflow [image with caption - vuepress](https://stackoverflow.com/questions/52335784/image-with-caption-vuepress)
 10. [html使用简单标签改变字体（加粗、斜体...）](https://blog.csdn.net/lsbd1993/article/details/26484641)
-11. [Flowchart](https://flowchart.vuepress.ulivz.com/)
 
 <Livere/>

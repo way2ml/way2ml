@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /images/logo_green.svg
+heroImage: /logo.svg
 features:
 - title: Linux 👉👉👉
   details: 用简洁的语言讲解Linux系统，让你轻松使用Linux。

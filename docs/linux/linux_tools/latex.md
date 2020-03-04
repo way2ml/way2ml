@@ -14,6 +14,8 @@ pageClass: linux-class
 
 字母上面加一点： `\dot{x}`:$\dot{x}$
 
+字母上面波浪线： `\tilde{x}`:$\tilde{x}$
+
 [更多参考](https://en.wikipedia.org/wiki/Wikipedia:LaTeX_symbols)
 
 <Livere/>

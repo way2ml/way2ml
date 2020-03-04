@@ -41,7 +41,9 @@ module.exports = {
         // 代码一键复制
         ['vuepress-plugin-code-copy', true],
         // 流程图
-        'flowchart'
+        'flowchart',
+        // Mermaid
+        'mermaidjs'
     ],
     themeConfig:{
         smoothScroll: true,

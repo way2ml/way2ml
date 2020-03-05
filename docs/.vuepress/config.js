@@ -24,6 +24,11 @@ module.exports = {
         }
       },
       head: [
+        ['link', { rel: 'icon', href: '/logo.svg' }],
+        ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+        ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+        ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+        ['meta', { name: 'msapplication-TileColor', content: '#000000' }],
         ['link', {rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css'}], 
         ['link', {rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css'}] 
     ],  
@@ -38,12 +43,16 @@ module.exports = {
         },
         // 图片缩放
         '@vuepress/medium-zoom',
+        // pwa说是用来加速的 和heading配套使用
+        '@vuepress/pwa',
+        {
+            serviceWorker: true,
+            updatePopup: true
+        },
         // 代码一键复制
         ['vuepress-plugin-code-copy', true],
         // 流程图
-        'flowchart',
-        // Mermaid
-        'mermaidjs'
+        'flowchart'
     ],
     themeConfig:{
         smoothScroll: true,

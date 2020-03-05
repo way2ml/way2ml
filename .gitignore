@@ -1,5 +1,5 @@
-.vuepress/dist/*
+docs/.vuepress/dist/*
 node_modules/*
 yarn*
-*.sh
-
+package-lock.json
+.DS_Store

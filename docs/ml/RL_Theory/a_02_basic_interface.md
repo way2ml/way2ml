@@ -16,23 +16,4 @@ pageClass: ml-class
 如果你的奖励也在合理的变化, 是不是就又会有新的发现呢? 
 :::
 
-<mermaid/>
-
-```mermaid
-graph TD  
-  subgraph  
-    event1["USERsadfasdf_SPENDED"] 
-    event1 --> keycloak1("Blocage du compte")  
-  end
-  subgraph 
-    event2["USER_SUSPENDED"] 
-    event2 --> workplace1("Blocage du compte")  
-  end
-
-  style keycloak1 fill:#ffb6c1  
-  style workplace1 fill:#e6e6fa  
-  style event1 fill:#c1cdc1,stroke:#333,stroke-width:2px,stroke-dasharray: 10
-  style event2 fill:#c1cdc1,stroke:#333,stroke-width:2px,stroke-dasharray: 10
-```
-
 <Livere/>

@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# This script automaticly deploys way2ml
+
 # abort on errors
 set -e
 

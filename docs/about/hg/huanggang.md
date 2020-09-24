@@ -49,6 +49,7 @@
 :::
 
 ::: tip 论文
+- Neural Network Model for Structure Factor of Polymer Systems, Jie Huang, Shiben Li*, Xinghua Zhang*, and **Gang Huang**, [The Journal of Chemical Physics,  2020 153 (12) 124902.](https://aip.scitation.org/doi/full/10.1063/5.0022464)
 - X. Liu, <u>G. Huang</u>, K.-K. Hu, N. Sheng, C. S. Tian, Y. R. Shen, Y.-C. Wen, G. S. Shi, H. P. Fang, **Sharing of Na+ by Three −COO– Groups at Deprotonated Carboxyl-Terminated Self-Assembled Monolayer-Charged Aqueous Interface**, J. Phys. Chem. C 122, 16,9111-9116 (2018), DOI: 10.1021/acs.jpcc.8b02065; 
 - <u>G. Huang</u>, **A derivation of Expressing Feynman propagator in terms of a 4- momentum integral**, Retrieved on: 29 Sep (2015), DOI: 10.13140/RG.2.1.5081.0724;
 - <u>G. Huang</u>, R. Khatib, M. P. Gaigeot, J. Lisy, H.Allen and M. Sulpizi, 

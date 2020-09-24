@@ -1,6 +1,6 @@
 # Markdown语法入门啦🎉🎉🎉
 <p align='center'>
-<img src='/images/linux/linux_tools/markdown/girl2.png' width='50%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/l5Uc9S.jpg' width='50%'>
 </p>
 
 使用Markdown写文档真的是很方便啊🤫！花十分钟来试试吧🤪
@@ -159,14 +159,14 @@ Hi, 大家好！ [way2ml](https://www.way2ml.com) 欢迎您！
 ## 图片
 图片插入方法多，任选下面的一个！🥰 图片的链接可以是本地的链接，也可以是网络上的图片链接。
 ### 使用标准Markdown语法
-![女孩](/images/linux/linux_tools/markdown/girl1.png)
+![女孩](https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/64yjoo.jpg)
 ```markdown
 ![女孩](/images/linux/linux_tools/markdown/girl1.png)
 ```
 可以看到使用标准的Markdown语法会使得图片的宽度占比很大。
 ### 使用HTML语法插入
 Markdown最终是会被后台转化成HTML的，因此在写的时候就使用HTML的语法也完全是可以的。
-<img src='/images/linux/linux_tools/markdown/girl1.png' width='50%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/64yjoo.jpg' width='50%'>
 
 ```html
 <img src='/images/linux/linux_tools/markdown/girl1.png' width='50%'>
@@ -175,7 +175,7 @@ Markdown最终是会被后台转化成HTML的，因此在写的时候就使用HT
 
 有时我们还可能需要将图片居中，就像下面这样:
 <p align='center'>
-<img src='/images/linux/linux_tools/markdown/girl1.png' width='50%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/64yjoo.jpg' width='50%'>
 </p>
 
 ```html

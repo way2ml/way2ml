@@ -6,7 +6,7 @@ Learning an Actor。这种方法的核心就是Policy Gradient。
 ### 什么叫Actor? 
 **Actor**就是一个函数,写作$Action = \pi(Observation)$。
 <p align="center">
-<img src='/images/ml/RL/RL_NN_structure.png' width='60%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/RL_NN_structure.png' width='60%'>
 </p>
 
 - Input: Agent观测到的Observation。
@@ -25,7 +25,7 @@ Learning an Actor。这种方法的核心就是Policy Gradient。
 那么就只需要下面这三个步骤:
 #### 1. 定义一系列的函数
 <p align="center">
-<img src='/images/ml/RL/DRL_Step1.png' width='60%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/DRL_Step1.png' width='60%'>
 </p>
 
 使用神经网络来学习我们的Actor有什么好处呢? 
@@ -58,7 +58,7 @@ Learning an Actor。这种方法的核心就是Policy Gradient。
 
 **这个期望值$\bar{R}_{\theta}$就表示函数的好坏。**　那应该如何去计算这个期望值呢? 
 <p align='center'>
-<img src='/images/ml/RL/trajectory.png' width='60%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/trajectory.png' width='60%'>
 </p>
 为了表示得方便，我们把一个episode考虑成一个trajectory $\tau$:
 - $\tau = {s_1,a_1,r_1,s_2,a_2,r_2,...,s_T,a_T,r_T}$
@@ -188,7 +188,7 @@ $$
 **Step 1**: 收集数据
 给定一个策略$\pi_{\theta}$, 让Agent去玩N次游戏，收集下面一组数据:
 <p align='center'>
-<img src='/images/ml/RL/when_to_update.png' width='60%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/when_to_update.png' width='60%'>
 </p>
 
 **Step 2**: 更新网络参数
@@ -253,13 +253,13 @@ $$
 更进一步，考虑下面的情况:
 
 <p align='center'>
-<img src='/images/ml/RL/assign_suitable_credit0.png' width='60%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/assign_suitable_credit0.png' width='60%'>
 </p>
 
 在第一个回合里面，其实做得比较好的是$(s_a,a_1)$,而后面的$(s_b,a_2)$和$(s_c,a_3)$做得不够好。如果按照前面提到的算梯度的方法，都会乘以同样的权值$R(\tau)$,在玩的次数不够多的情况下,这其实是不够好的。我们注意到，其实一个动作的好坏应该是和前面发生的事情是没有关系的，而和后面发生的事情相关，于是将计算梯度时的权值变成下面的样子:
 
 <p align='center'>
-<img src='/images/ml/RL/assign_suitable_credit1.png' width='60%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/assign_suitable_credit1.png' width='60%'>
 </p>
 
 又考虑到，一个动作影响后面的结果不会太久，于是我们对权值再次进行改良:

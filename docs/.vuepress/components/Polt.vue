@@ -28,7 +28,6 @@
     }
 </script>
 
-
 <style scoped>
 .counter{
     display: inline-block;

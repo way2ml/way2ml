@@ -33,7 +33,12 @@ git remote add origin git@github.com:HuangJiaLian/3DCNN.git
 git push -u origin master
 ```
 
+不再追踪(untrack)文件
+```bash
+git rm -r --cached FILENAME
+```
 
+[参考](http://www.codeblocq.com/2016/01/Untrack-files-already-added-to-git-repository-based-on-gitignore/)
 
 ## 进阶
 

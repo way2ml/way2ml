@@ -29,7 +29,7 @@ Observation space: Box(2,) # 表示可以观测到两个量(x方向上的位移�
 Action space: Discrete(3) # 表示小车可采取的三个动作(0向左加速, 1 没有操作, 2 向右加速)
 ```
 <p align='center'>
-<img src='/images/ml/RL_Prt/MountainCar.png'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/MountainCar.png'>
 </p>
 
 得到上述的结果，表示成功安装了gym.
@@ -60,7 +60,7 @@ env.close()
 下面的视频记录了上面代码达到的效果:
 
 <video style="display:block; margin: 0 auto;" width="50%" controls>
-<source src="/images/ml/RL_Prt/1_first_try.mp4" type="video/mp4">
+<source src="https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/1_first_try.mp4" type="video/mp4">
 </video>
 
 从上面的结果可以看出来，这辆小车不能通过蛮力直接冲上高地，我们需要采取一定的策略。
@@ -100,7 +100,7 @@ env.close()
 上面的代码让小车达到了目标高地，为它鼓掌吧。
 
 <video style="display:block; margin: 0 auto;" width="50%" controls>
-<source src="/images/ml/RL_Prt/2_second_try.mp4" type="video/mp4">
+<source src="https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/2_second_try.mp4" type="video/mp4">
 </video>
 
 虽然过山车达到了高地，但却不是凭借自己的聪明才智，是我们告诉了它应该这样做。

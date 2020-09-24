@@ -184,7 +184,7 @@ if __name__ == "__main__":
 
 这样我们将训练的过程记录了下来, 我得到这样一张图:
 <p align='center'>
-<img src='/images/ml/RL_Prt/plot.png'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/plot.png'>
 </p>
 
 可以看到在大概前300个episode在总的奖励上都没有什么提升，但是在400个episode后性能就有了明显的提升。

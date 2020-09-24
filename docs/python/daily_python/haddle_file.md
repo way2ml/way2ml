@@ -82,3 +82,11 @@ os.getcwd()
 os.path.dirname(os.getcwd())
 # 
 ```
+
+## 如何删除文件，文件夹
+
+- `os.remove()` removes a file.
+- `os.rmdir()` removes an empty directory.
+- `shutil.rmtree()` deletes a directory and all its contents.
+
+[参考](https://stackoverflow.com/questions/6996603/how-to-delete-a-file-or-folder)

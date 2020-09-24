@@ -33,7 +33,7 @@ with tf.Session() as sess:
 首先我们构造下面的神经网络的结构: 
 
 <p align='center'>
-<img src='/images/ml/RL_Prt/nn_structure_0.png' width='50%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/nn_structure_0.png' width='50%'>
 </p>
 
 在这个网络结构中,可以被训练的参数有$w_{11},w_{12},w_{13},b_{11},b_{12},b_{13},w_{21},w_{22},w_{23},b_{21}$

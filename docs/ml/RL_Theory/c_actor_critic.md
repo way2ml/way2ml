@@ -7,7 +7,7 @@ Asynchronous Advantage Actor-Critic 怎么发音？
 [eɪˈsɪŋkrənəs]
 
 <p align="center">
-<audio ref='A3C' src="/images/ml/RL/A3C/A3C.mp3" controls loop preload></audio>
+<audio ref='A3C' src="https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/A3C.mp3" controls preload></audio>
 </p>
 
 
@@ -30,7 +30,7 @@ Reinforce是Policy Gradient的其中一种方法，你在不知不觉中已经�
 
 关于为什么要在Actor的Loss里面添加Entropy的项，这里有一个[讨论](https://github.com/dennybritz/reinforcement-learning/issues/34)。
 
-网络上唯一一个按照这里提到的方法写的[程序]。(https://github.com/dennybritz/reinforcement-learning/blob/master/PolicyGradient/CliffWalk%20Actor%20Critic%20Solution.ipynb)
+网络上唯一一个按照这里提到的方法写的[程序](https://github.com/dennybritz/reinforcement-learning/blob/master/PolicyGradient/CliffWalk%20Actor%20Critic%20Solution.ipynb).
 
 
 <Livere/>

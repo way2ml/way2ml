@@ -4,7 +4,7 @@ pageClass: ml-class
 
 # 强化学习的分类
 <p align="center">
-<img src='/images/ml/RL/RL_Classification.png' width='60%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/RL_Classification.png' width='60%'>
 </p>
 
 - Policy-based(新)

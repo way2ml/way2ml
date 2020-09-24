@@ -4,7 +4,7 @@ author: 黄杰
 ---
 # GAN入门，有这篇就够了🎉🎉🎉
 <p align='center'>
-<img src='/images/ml/GAN/deepdream.png' width='100%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/deepdream.png' width='100%'>
 </p>
 
 2016年某日，有人在[Quora](https://www.quora.com)上抛出问题: [在深度学习领域有哪些正在或将要爆发的大突破？](https://www.quora.com/What-are-some-recent-and-potentially-upcoming-breakthroughs-in-deep-learning) 
@@ -18,7 +18,7 @@ author: 黄杰
 对GAN给出这么高的评价很有可能是GAN在图像领域有着广泛的应用。
 
 
-<Cimg src='/images/ml/GAN/yann-lecun.jpg' width='100%' caption='卷积神经网络之父 杨立昆(Yann Lecun)正在向学习GAN的我们微笑'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/yann-lecun.jpg' width='100%' caption='卷积神经网络之父 杨立昆(Yann Lecun)正在向学习GAN的我们微笑'/>
 
 例如，文章开头的图片就是GAN应用的一个很好的例子。这是一个叫做[Deep Dream Generator](https://deepdreamgenerator.com)
 的网页应用，用户JosieArt上传一张大象🐘图片，然后选择了图片左下角的风格，通过训练好的生成器
@@ -37,7 +37,7 @@ GAN有两个神经网络🕸🕸。
 反之，当图片$Y$的噪声很大或者很奇怪时，函数值为正。 
 
 
-<Cimg src='/images/ml/GAN/gans.jpg' width='100%' caption='Generative adversarial network(GAN)'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/gans.jpg' width='100%' caption='Generative adversarial network(GAN)'/>
 
 
 另一个网络叫做**生成器**(Generator), 记为$G(Z)$。
@@ -59,7 +59,7 @@ GAN有两个神经网络🕸🕸。
 日本晨间剧《[半分、青い。](https://ja.wikipedia.org/wiki/%E5%8D%8A%E5%88%86%E3%80%81%E9%9D%92%E3%81%84%E3%80%82)》，讲述了一个活泼小女孩，玲爱，在一次生病后造成左耳失聪，却没因此而气馁，
 在父母与青梅竹马的鼓励下继续开朗的活着，成为东京漫画家的故事。
 
-<Cimg src='/images/ml/GAN/yongyeyayu.jpg' width='100%' caption='《半分、青い。》中的玲爱开心地加入GAN训练项目'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/yongyeyayu.jpg' width='100%' caption='《半分、青い。》中的玲爱开心地加入GAN训练项目'/>
 
 说这个故事是因为我们这里需要**漫画家**😉。
 
@@ -77,7 +77,7 @@ GAN有两个神经网络🕸🕸。
 
 ## 训练思路📕
 训练GAN可以分成下面的步骤😅:
-<Cimg src='/images/ml/GAN/daxiang.jpg' width='100%' caption='把大象放进冰箱的3个步骤'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/daxiang.jpg' width='100%' caption='把大象放进冰箱的3个步骤'/>
 
 **步骤1**<br/>
 搭建一个生成器神经网络,所有参数用$\theta$表示，目的是用来生成图片$x$, 而这些样本$x$都服从分布$P_{G}(x; \theta)$。
@@ -102,8 +102,8 @@ $$
 $$
 
 其中$\prod_{k=1}^n P_{G}(x_k; \theta)$叫做样本的**Likelihood**。 
-可以证明:
 
+可以证明:
 $$
 \arg \max_{\theta} \prod_{k=1}^n P_{G}(x_k; \theta) = \arg \min_{\theta} [KL(P_{data}||P_{G})]
 $$
@@ -146,7 +146,7 @@ $= \arg \min_{\theta} [KL(P_{data}||P_{G})]$
 
 这个神经网络具体应该是什么样子的呢? 我们看下面这张图: 
 
-<Cimg src='/images/ml/GAN/generator.png' width='50%' caption='GAN中生成器(Generator)的结构'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/generator.png' width='50%' caption='GAN中生成器(Generator)的结构'/>
 
 
 输入是128维的一个向量, 这些输入的值可以控制输出头像的一些特征，例如头发的颜色，头发的长短, 肤色，性别等等。
@@ -178,7 +178,7 @@ $$
 答案是肯定的。这件事玲爱的漫画老师[秋風羽織](https://ja.wikipedia.org/wiki/%E8%B1%8A%E5%B7%9D%E6%82%A6%E5%8F%B8)
 先生可以帮我们大忙。
 
-<Cimg src='/images/ml/GAN/qiufeng.jpg' width='100%' caption='《半分、青い。》中的秋風羽織正在查看两类图片'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/qiufeng.jpg' width='100%' caption='《半分、青い。》中的秋風羽織正在查看两类图片'/>
 
 我们将玲爱和生成器$G$画的头像分别拿去给秋风先生过目，让他说说谁画得更真实。毕竟是玲爱是秋风先生
 的得意弟子，因此他总是想也不想就直接说玲爱的画的更好，还总是说生成的差太多。
@@ -213,7 +213,7 @@ $$
 要反映$Div(P_{G}, P_{data})$, 就需要有一个判别器网络。
 判别器的结构是什么样的呢?
 
-<Cimg src='/images/ml/GAN/discriminator.png' width='50%' caption='GAN中判别器(Discriminator)的结构' />
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/discriminator.png' width='50%' caption='GAN中判别器(Discriminator)的结构' />
 
 可以看到，判别器的输入是图片，输出是一个数,这个数反映的是这张图有多像玲爱画的。
 

@@ -42,5 +42,5 @@ GAIL算法要优化两个大的部分:
 在GAIL算法训练结束的时候我们可以同时得到两个最优的网络。
 
 <p align='center'>
-<img src='/images/ml/RL/GAIL/GAIL_Algorithm.png' width='100%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/GAIL_Algorithm.png' width='100%'>
 </p>

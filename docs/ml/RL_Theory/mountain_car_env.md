@@ -39,7 +39,7 @@ plt.show()
 ```
 
 <p align='center'>
-<img src='/images/ml/RL/Env/MountainCarTrack.png'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/MCarTrack.png'>
 </p>
 
 ::: tip 环境的信息
@@ -75,7 +75,7 @@ $$
 你可能会问为什么轨道方向和重力方向的夹角是$3x_t$, 你看看下面这张图可能就不会纠结了:
 
 <p align='center'>
-<img src='/images/ml/RL/Env/MountainCarTrack_A.png'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/MountainCarTrack_A.png'>
 </p>
 
 除了轨道外，我还画了$\cos(3x)$的图像(对应绿色线)，这条曲线的纵坐标反应了重力在轨道方向上的分力的大小

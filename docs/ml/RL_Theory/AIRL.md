@@ -176,7 +176,7 @@ f^{*}\left(s, a, s^{\prime}\right)=r^{*}(s)+\gamma V^{*}\left(s^{\prime}\right)-
 $$
 
 <p align='center'>
-<img src='/images/ml/RL/AIRL/AIRL.png' width='100%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/AIRL.png' width='100%'>
 </p>
 
 

@@ -71,7 +71,7 @@ if __name__ == "__main__":
 没错，就是这么厉害，我们看看视频感受一下吧! 
 
 <video style="display:block; margin: 0 auto;" width="50%" controls>
-<source src="/images/ml/RL_Prt/dqn.mp4" type="video/mp4">
+<source src="https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/dqn.mp4" type="video/mp4">
 </video>
     
 <Livere/>

@@ -53,7 +53,7 @@ cv2.waitKey(0)
 ```
 于是得到:
 
-![detected_faces](/images/ml/face_recognition/detected_faces.png)
+![detected_faces](https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/detected_faces.png)
 
 ## 4. 人脸识别
 ```python

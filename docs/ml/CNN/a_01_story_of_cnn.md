@@ -3,11 +3,7 @@ pageClass: ml-class
 ---
 # 成长的故事:卷积神经网络的引入
 
-<!-- <p align="center">
-<Cimg src='/images/ml/which_parts_cnn_pays_attention/childhood.jpg' width='100%'/>
-</p> -->
-
-![childhood](/images/ml/which_parts_cnn_pays_attention/childhood.jpg)
+![childhood](https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/Yj5Vur.jpg)
 
 小时候，你和妈妈走在一起，有一只带斑点的小动物从你面前经过，好奇的你用你的小手指着它，对妈妈说道:"咦，看！什么？"　你从妈妈那里得知了这种带斑点的小动物叫做小猫。过了几天，你因为淘气，偷偷跑到邻居家的菜园里，被拴在橘子树边的黑黑的同样也有斑点的动物吓了一大跳。由于惊吓过度你哭着回来给妈妈说:"那边的猫好凶，汪汪叫。"，　此时妈妈大笑道"那才不是得猫呢，那是小强家养的狗啊。" 哦，小小年纪的你才知道，原来并不是带斑点的动物都叫做猫。像这种比较大的，会叫的那是狗啊。时光流逝，日复一日，年复一年，你一天天长大，你到过村里各种各样的地方，看过各种各样的猫和狗。成长为优秀小青年的你就算是妈妈不在身边你也再不会犯当初那种将狗认成猫的错误了。这便是成长的故事。 
 
@@ -15,7 +11,7 @@ pageClass: ml-class
 
 卷积神经网络，英文叫做**Convolutional Nerual Network**,简称叫CNN或者ConvNet。它是深度神经网络(Deep Neural Network)的一种。卷积神经网络最为常见的一个应用便是用来做**图像的分类**。就像小时候的你要认出眼前的动物是猫还是狗一样，那时你在做一个猫狗分类器呢(最神奇的是连你自己也没有意识到你在做这个有趣的工作)。传统的图像处理我们需要自己设计滤波器，但是设计滤波器本身其实是非常难的。小时候的你不也做过吗? 你说有斑点的动物就是猫。当遇到有斑点的狗的时候，这个规则就不管用了。你能体会到设计这种固有规则有多难了吧！卷积神经网络的优点是几乎很少需要对图片本身做预处理，更重要的是不需要自己设计图像滤波器。**卷积神经网络可以自动得学习它认为重要的滤波器。**通过标记好的图片，对卷积神经网络进行**训练(training)**。这个训练的过程就是在学习滤波器的过程。这个过程和你学会分清楚猫和狗有很多相似的地方。看过了各种各样的猫和狗，你对猫和狗的判断越来越准确，看一样你就立马能够分辨出来究竟是猫还是狗。你也不用可以去想你是怎么判断出来了，几乎是凭一种直觉。
 
-<Cimg src='/images/ml/which_parts_cnn_pays_attention/cat_dog.jpeg' width='100%' caption='可爱的🐱和🐶'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/cat_dog.jpeg' width='100%' caption='可爱的🐱和🐶'/>
 
 现在我们尝试使用计算机搭建一个卷积神经网络来完成你小时候就做过的事。我们来训练一个猫和狗的分类器。不就分个猫和狗吗？这有多难。等等，可能并不是那么容易哦！就连小时候的你不也犯错了吗? 还是让我们一步步来吧。
 
@@ -35,28 +31,28 @@ data/
 
 我们先来看看这些照片张什么样吧!你看到曾经那只小花猫了吗?
 
-<Cimg src='/images/ml/which_parts_cnn_pays_attention/cat0.gif' width='100%' caption='记忆中的小花猫'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/cat0.gif' width='100%' caption='记忆中的小花猫'/>
 
 同样还有记忆中的那只小强家的大花狗。
 
-<Cimg src='/images/ml/which_parts_cnn_pays_attention/dog0.gif' width='100%' caption='小强家的大花狗'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/dog0.gif' width='100%' caption='小强家的大花狗'/>
 
 准备好训练数据后，我们准备好我们卷积神经网络了。这个时候我们需要搭建一个卷积神经网络，在这个时候，我们先有意地忽略掉卷积神经网络的内部的细节(后续我会专门来讲它的原理)。现在你可以简单将神经网络想象成一个具有学习能力的大脑,也就是可以被训练的(**trainable**)。刚刚搭建好的网络，就像是没有思路的大脑(**initial state**)，根本没有办法区分猫和狗。然后我们让卷积神经网络去看训练图片中的图片,也就是将图片输入(**feed in**)到神经网络，然后让它根据它现有的能力去做一个判断(**predict**)，告诉我们一个结果(这个结果也就是卷积神经网络的输出**output**)。因为我们的训练数据是有标签的，所以在卷积神经网络给出它的答案后，我们会去对比它给出的结果和答案是不是对得上。如果它做得对，我们便告诉它:"不错不错，你思路是对的，继续努力！"。　当我们夸奖神经网络的时候，它的有些脑回路便会得到强化。当然，当它在看了图片给出错误答案的时候我们也得及时地告诉它:"嘿，注意咯。你这样想是不对的哦。及时调整状态!"。当我们批评它过后它便会调整它的一些错误思路。所以在这里你可以看到这里存在一个**反馈调整的过程**，
 下面的图展示地就是训练神经网络的过程:
 
-<Cimg src='/images/ml/which_parts_cnn_pays_attention/training.gif' width='100%' caption='训练过程'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/training.gif' width='100%' caption='训练过程'/>
 
 我们使用两万三千多上猫和狗的照片一遍一遍(**epoch**)地训练卷积神经网络，大概训练了一个上午的时间，神经网络不断进步，最后在百分制的测试中，它已经能够达到93分的成绩(**testing accuracy**)。
 
 我们不停地给神经网络看各种猫和狗的照片，然后让它做出判断，根据它的判断，我们给我合适的指导，然后它不停地强化和削弱某些意识。慢慢地，慢慢地改变，变得越来越聪明。看过了很多图片，这个虚拟的大脑变得越来越成熟。其实啊，这个便成熟的过程就是网络训练的过程(**training process**)。当卷积神经网络变得足够成熟的时候，也就是在考试(testing)的时候能够考出高分的时候，我们便可以不用再训练了它了。这时我们好好地保存好这个我们含辛茹苦培养出来的卷积神经网络(**save trained model**)。这时它已经不需要我们的指导了，可以独立去完成判断猫和狗的任务了。下面的图是训练好后的神经网络的表现:
 
 
-<Cimg src='/images/ml/which_parts_cnn_pays_attention/testing.gif' width='100%' caption='测试过程'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/testing.gif' width='100%' caption='测试过程'/>
 
 
 对与识别猫和狗这件事，这个卷积神经网络已经是一个专家了。于是你带上它，回到儿时，又是那个菜园，又是那棵橘子树，又是那个黑中夹着斑点的动物。你的小手正准备去摸摸这只大猫咪，突然听到耳畔有个声音告诉你，"快跑，这只狗会咬你啊!"。于是你赶紧收手。有惊无险。记住了，这次是卷积神经网络在帮你哦! 
 
-<Cimg src='/images/ml/which_parts_cnn_pays_attention/end.png' width='100%' caption='记忆中的小路'/>
+<Cimg src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/end.png' width='100%' caption='记忆中的小路'/>
 
 最后希望卷积神经网络的故事能够让你印象深刻。
 

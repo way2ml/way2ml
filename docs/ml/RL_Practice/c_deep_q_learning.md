@@ -9,7 +9,7 @@ pageClass: ml-class
 首先我们看一下DQN的算法:
 
 <p align='center'>
-<img src='/images/ml/RL_Prt/dqn_algorithm.png'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/dqn_algorithm.png'>
 </p>
 
 根据算法我们将其转化成Python程序，如下:

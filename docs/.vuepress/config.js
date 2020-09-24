@@ -1,12 +1,3 @@
-/*
- * @Description: 
- * @Author: Jack Huang
- * @Github: https://github.com/HuangJiaLian
- * @Date: 2019-09-05 16:24:09
- * @LastEditors: Jack Huang
- * @LastEditTime: 2019-11-12 15:31:45
- */
-
 module.exports = {
     title: 'Way To Machine Learning',
     description: ' ',   
@@ -51,8 +42,10 @@ module.exports = {
         },
         // 代码一键复制
         ['vuepress-plugin-code-copy', true],
+        
         // 流程图
-        'flowchart'
+        'flowchart',
+
     ],
     themeConfig:{
         smoothScroll: true,
@@ -61,14 +54,15 @@ module.exports = {
         // if your docs are not at the root of the repo:
         docsDir: 'docs',
         // defaults to false, set to true to enable
-        editLinks: true,
+        editLinks: false,
         // custom text for edit link. Defaults to "Edit this page"
-        editLinkText:'编辑此页',
+        // editLinkText:'编辑此页',
         // 是否允许默认的搜索
         // search: false,
+
         nav:[
             {text: 'Home', link:'/'},
-            {text: 'Linux',
+            {text: 'Tools',
              items:[
                  {text:'动手学Linux',link:'/linux/learn_linux_by_doing/'},
                  {text:'Linux工具箱',link:'/linux/linux_tools/'},
@@ -306,6 +300,9 @@ module.exports = {
 
             '/ml/Information_Theory/':[
                 '',
+                'randomvar',
+                'commmonDis',
+                'informationEn'
             ],
             // 其他
             '/ml/Others/':[
@@ -319,6 +316,6 @@ module.exports = {
 
         },
         sidebarDepth:3,
-        lastUpdated: '上次更新',
+        // lastUpdated: '上次更新',
     }
 }

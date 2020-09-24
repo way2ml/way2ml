@@ -22,4 +22,10 @@ ssh-copy-id jack@112.2.1.23
 # 下的文件 compare_train.zip 到本机的当前目录(.)下
 scp jack@10.95.10.44:~/compare_train.zip .
 ```
+
+## 远程传输大文件
+```bash
+rsync  -r -P --rsh=ssh hj@10.1.17.50:~/Gang/glass_physics/ .
+```
+听说rsync比scp更好用，要
 <Livere/>

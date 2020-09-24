@@ -17,4 +17,4 @@ Youtube: [Gang Huang](https://www.youtube.com/channel/UCXnLQRWwGfdm69t-mJrWC-Q)<
 
 ---
 
-👉[捐助&支持](./donate.md)👈
+👉[支持&加油](./donate.md)👈

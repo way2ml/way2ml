@@ -190,7 +190,7 @@ env.close()
 接下来的这个视频展示了整个学习的过程: 
 
 <video style="display:block; margin: 0 auto;" width="50%" controls>
-<source src="/images/ml/RL_Prt/learn_process.mp4" type="video/mp4">
+<source src="https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/learn_process.mp4" type="video/mp4">
 </video>
 
 Q-table是一种特别简单的方法，可以处理过山车这样简单的问题。但遇到复杂的问题，若是还有这种方法，那么就会出现问题了。

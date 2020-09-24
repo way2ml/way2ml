@@ -4,7 +4,7 @@ pageClass: ml-class
 
 # 强化学习的基本模型
 <p align="center">
-<img src='/images/ml/RL/RL.png' width='60%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/RL.png' width='60%'>
 </p>
 在只有少数动作会得到奖励的情况下,找到正确的动作是学习的难点。
 

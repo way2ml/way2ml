@@ -4,7 +4,7 @@ pageClass: ml-class
 # Proximal Policy Optimization(PPO)
 OpenAI默认的强化学习算法, 是Policy Gradient的变形。
 <p align='center'>
-<img src='/images/ml/RL/ppo.png' width='100%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/ppo.png' width='100%'>
 </p>
 
 ## On-Policy到Off-Policy 
@@ -62,7 +62,7 @@ $\mathbb{E}_{x\sim q}[f^2(x)\frac{p^2(x)}{q^2(x)}] = \int f^2(x)\frac{p^2(x)}{q^
 :::
 
 <p align='center'>
-<img src='/images/ml/RL/p_q_explain.png' width='60%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/p_q_explain.png' width='60%'>
 </p>
 
 本来两者的期望按理来说应该是一样的，但是由于两个概率分布$p(x)$, $q(x)$ 相差太大，若是采样不够就会出现得到的两个分布的的期望
@@ -160,7 +160,7 @@ $$
 上面式子中的$KL(\theta,\theta^k)$还没有给出来，它需要通过采样数据得到,不是那么容易，因此为了逃避这个问题, 我们使用PPO2算法,它对应的目标函数是:
 
 <p align='center'>
-<img src='/images/ml/RL/ppo2.png', width='100%'>
+<img src='https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/ppo2.png', width='100%'>
 </p>
 
 这个式子里面没有了$KL$, 看起来变得复杂了，但事实操作的时候变得很简单, $\varepsilon$是一个可变的参数。这个式子可以达到和$KL$一样的功能，就是使得$p_\theta$和$p_{\theta^k}$不要差距太大。它是怎么做到的呢?

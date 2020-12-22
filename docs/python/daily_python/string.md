@@ -64,3 +64,37 @@ print(alist)
 ``` python
 "{0:.2f}".format(13.949999999999999)
 ```
+
+## 如何得到现在的时间？
+```python
+import time
+
+def timeString():
+    return time.strftime("%Y%m%d-%H%M%S")
+```
+
+调用上面的函数 `timeString()` 可以得到:
+```bash
+20201222-162651
+```
+
+这个简单的操作可以方便你对生成的文件命名，而不会覆盖掉原来的文件。
+
+```python
+fileName = 'Hello_{}.jpg'.format(timeString())
+```
+
+```python
+In [4]: fileName = 'Hello_{}.jpg'.format(timeString())
+
+In [5]: fileName
+Out[5]: 'Hello_20201222-163104.jpg'
+
+In [6]: fileName = 'Hello_{}.jpg'.format(timeString())
+
+In [7]: fileName
+Out[7]: 'Hello_20201222-163115.jpg'
+```
+
+是不是挺酷的。
+

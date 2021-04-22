@@ -1,70 +1,47 @@
+<p align='center'>
+<img src='/images/about/jack_circle.png' width='15%'>
+</p>
+
 # 黄杰
-::: tip 联系方式
-- <jiehuang@stu.wzu.edu.cn>
+::: tip 专业
+- 本科: 电子信息工程, 计算机应用
+- 研究生: 凝聚态物理, 机器学习
 :::
 
-
-::: tip 自我评价
-动手能力强，善于吸收新事物，Linux运用自如，精通C和Python，擅长机器学习，英语听说读写俱佳。
-:::
-
-
-::: tip 专业科研
-- 专业: <u>**机器学习与凝聚态物理**</u>
-- 科研: <u>**基于深度学习的高分子链结构因子的拟合， 反向强化学习中奖励的物理意义**</u>
-:::
-
-::: tip 发表论文
-1. Neural Network Model for Structure Factor of Polymer Systems, **Jie Huang**, Shiben Li*, Xinghua Zhang*, and Gang Huang, [The Journal of Chemical Physics,  2020 153 (12) 124902.](https://aip.scitation.org/doi/full/10.1063/5.0022464)
+::: tip 论文
+- "Hydrogen bond donor-acceptor exchange in water",  **Jie Huang**, Gang Huang*, and Shiben Li* [arXiv](https://arxiv.org/abs/2104.07965)
+- "Neural network model for structure factor of polymer systems", **Jie Huang**, Shiben Li*, Xinghua Zhang*, and Gang Huang , The Journal of Chemical Physics 153, 124902 (2020) [Online](https://aip.scitation.org/doi/10.1063/5.0022464) [arXiv](https://arxiv.org/abs/2104.09853)
+- 基于树莓派的线性CCD扫描翻译装置, **黄杰**, 西华师范大学本科毕业论文 (2016.6) [查看](https://raw.githubusercontent.com/HuangJiaLian/DataBase0/master/uPic/CCD_Translation_Machine.pdf)
 :::
 
 ::: tip 教育背景
-- <u>**温州大学 凝聚态物理**</u> 研究生 2018-2021
-    - 研究课题: 机器学习在凝聚态物理中的应用
-- <u>**西华师范大学 电子信息工程**</u> 本科 2012-2016
-    - 优秀毕业设计: 基于**树莓派**的线性CCD**扫描翻译**装置
+- 2018~2021: 温州大学 数理学院 凝聚态物理专业 研究生
+- 2012~2016: 西华师范大学 数学与电子信息工程学院 电子信息工程 本科
 :::
 
 
-::: tip 工作经验
-- <u>**上海鹰捷智能科技有限公司 软件开发工程师**</u> 
-- <u>**北京航空航天大学 联合培养研究生**</u> 
+::: tip 工作经历
+- 2016~2018: 上海鹰捷智能科技有限公司 软件开发工程师 
+- 2018~2019: 北京航空航天大学软物质中心 联合培养研究生
 :::
 
 
 ::: tip 获奖或证书
-- 2018年9月: <u>**北京大学** 人工智能实践: **Tensorflow笔记优秀课程证书**</u>
-- 2018年6月: <u>**中国自动化学会** “**深度与宽度强化学习**” 前沿讲习班结业证书</u>
-- 2017年12月: 上海鹰捷智能科技公司: <u>研发部**最佳团队**奖</u>
-- 2016年12月: 上海鹰捷智能科技公司: <u>**最具创造力员工**奖</u>
-- 2016年6月: <u>西华师范大学**计算机应用**辅修证书</u>
-- 2016年3月: <u>**University of Texas** 课程证书: **Embedded System: Shape The World**</u>
-- 2015年8月: <u>**TI杯全国大学生电子设计竞赛二等奖**</u>
-- 2015年4月: <u>工业和信息化部人才交流中心 **单片机应用开发工程师 (高级)** 证书</u>
-- 2015年4月: <u>**第六届蓝桥杯**全国软件和信息技术专业人才**大赛二等奖**</u>
-- 2014年10月: <u>**哈尔滨工业大学**课程证书: **高级语言程序设计(Python)**</u>
-- 2014年9月: <u>全国**计算机**等级考试(**3级**): 嵌入式系统开发技术证书</u>
-- 2013年12月: <u>全国**计算机**等级考试(**2级**)**:** C语言证书</u>
-- 2013年12月: <u>通过大学**英语六级**</u>
-- 2013年6月:  <u>通过大学**英语四级**</u>
+- 2020.11: 温州大学 研究生国家奖学金
+- 2018.09: 北京大学 *人工智能实践 Tensorflow笔记* 课程满分证书
+- 2017.12: 鹰捷公司 研发部最佳团队奖
+- 2016.12: 鹰捷公司 最具创造力员工奖
+- 2016.03: University of Texas *Embedded System: Shape The World* 课程证书
+- 2015.08: TI杯中国大学生电子设计竞赛二等奖
+- 2015.04: 中国工业和信息化部人才交流中心 单片机应用高级开发工程师 证书
+- 2014.09: 中国计算机等级考试三级 (嵌入式系统开发技术证书)
+- 2013.12: 中国大学生英语六级(CET6)
 ::: 
 
-
 ::: tip 技能清单
-- **Python**：能够非常熟练使用Python。
-- **Tensorflow**:  已将Tensorflow运用于多个机器学习项目。
-- **Linux**：**2013年开始使用Linux**，在Linux下工作学习得心应手。
-- **C语言**：解码项目，USB通讯等多个项目均由C, C++开发。
-- **Git**: 已将git运用在团队协作中。
-- **Shell编程**：擅长在Linux环境下使用Shell脚本进行自动化操作。
-- **全国计算机等级考试三级**：嵌入式开发技术。
-- **English**: **英语应用能力优秀**，大三过**英语六级**，能够毫无压力
-  地**阅读英文专业文献**，能够在纯英文环境下办公。	
+`English`, `Python`, `C`, `Linux`, `git`, `LaTeX`, `shell`
 :::
 
-
-::: tip 个人兴趣
-- **吉他弹唱**: 网易云音乐电台:**Jack.H的电台**
-- **Raspberry Pi**: 用**Linux**实现创意
-- **日语**: 准备过N2
+::: tip 兴趣爱好
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=400 height=247 src="//music.163.com/outchain/player?type=4&id=348244114&auto=0&height=430"></iframe>
 ::: 

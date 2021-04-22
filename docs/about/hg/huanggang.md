@@ -1,4 +1,7 @@
 ## 黄刚
+
+<img src='/images/about/dylan_circle.png' width='20%'>
+
 ::: tip 联系方式
 - 德国美因茨大学 理论物理，Staudinerg Weg 7, Mainz, Germany 55099
 - 13693402927 

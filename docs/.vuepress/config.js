@@ -35,11 +35,11 @@ module.exports = {
         // 图片缩放
         '@vuepress/medium-zoom',
         // pwa说是用来加速的 和heading配套使用
-        '@vuepress/pwa',
-        {
-            serviceWorker: true,
-            updatePopup: true
-        },
+        // '@vuepress/pwa',
+        // {
+        //     serviceWorker: true,
+        //     updatePopup: true
+        // },
         // 代码一键复制
         ['vuepress-plugin-code-copy', true],
         
@@ -311,6 +311,7 @@ module.exports = {
                 'entropy_cross_entropy_and_kl_divergence',
                 'why_ppo_cant_solve_moutain_car',
                 'Convex_function',
+                'PCA',
                 'some_math'
             ],
 
